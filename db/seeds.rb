@@ -20,3 +20,9 @@ Column.create!(
   name: "WIP",
   board_id: 1,
 )
+
+Task.create!(
+  name: "Task",
+  description: "Study",
+  column_id: 1,
+)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_115200) do
+ActiveRecord::Schema.define(version: 2020_12_06_121115) do
 
   create_table "boards", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2020_12_06_115200) do
     t.index ["board_id"], name: "index_columns_on_board_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.integer "column_id", null: false
+    t.string "name", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["column_id"], name: "index_tasks_on_column_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "name", null: false
@@ -37,4 +46,5 @@ ActiveRecord::Schema.define(version: 2020_12_06_115200) do
 
   add_foreign_key "boards", "users"
   add_foreign_key "columns", "boards"
+  add_foreign_key "tasks", "columns"
 end
