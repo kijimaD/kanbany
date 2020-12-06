@@ -15,3 +15,8 @@ Board.create!(
   name: 'Working',
   user_id: 1,
 )
+
+Column.create!(
+  name: "WIP",
+  board_id: 1,
+)
