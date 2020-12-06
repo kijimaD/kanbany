@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_many :board
+  has_many :boards
 end
