@@ -1,6 +1,6 @@
 # README
 
-Diagrams: https://app.diagrams.net/#G1Aow4lPRjP7HDDZf8qi4Db1_pz-jVSL4h
+Diagrams: https://drive.google.com/file/d/1x_7fCL2Vq5yhAJSV4Rvxy34q9gM11woa/view?usp=sharing
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
