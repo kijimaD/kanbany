@@ -10,8 +10,8 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - run: bundle exec bin/webpack
       - run: bundle update --bundler
       - run: bundle install
+      - run: bundle exec bin/webpack
       - run: bundle exec rails db:create db:migrate RAILS_ENV=test
       - run: bundle exec rspec
