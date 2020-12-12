@@ -12,4 +12,5 @@ jobs:
       - run: bundle update --bundler
       - run: bundle install
       - run: bundle exec rails db:create db:migrate RAILS_ENV=test
+      - run: bundle exec rails webpacker:compile RAILS_ENV=test
       - run: bundle exec rspec
