@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'bootstrap', '~> 4.3.1'
 
+gem 'react-rails'
+
 group :production do
   gem 'pg'
 end
