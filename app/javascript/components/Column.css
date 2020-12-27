@@ -5,3 +5,9 @@
     float:left;
     margin: 4px 8px;
 }
+
+.ColumnHeader {
+    border-bottom: thin solid black;
+    color:blue;
+    margin-bottom: 4px;
+}

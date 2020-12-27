@@ -3,3 +3,8 @@
     border: medium solid black;
     margin: 1px;
 }
+
+.CardHeader {
+    border-bottom: thin solid black;
+    color: green;
+}

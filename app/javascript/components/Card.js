@@ -5,8 +5,12 @@ import "./Card.css";
 class Card extends React.Component {
   render () {
     return (
-      <div className="Card">
-        Card: {this.props.description}
+        <div className="Card">
+          <div className="CardHeader">
+            Name: {this.props.description}
+          </div>
+          <div className="CardHeader">
+          </div>
       </div>
     );
   }
