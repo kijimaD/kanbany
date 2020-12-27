@@ -7,17 +7,16 @@ class Board extends React.Component {
   render () {
     return (
         <div className="Board">
-        <Column description="Done"/>
-        <Column description="Day"/>
-        <Column description="Week"/>
+          <Column description="Done"/>
+          <Column description="Day"/>
           <Column description="Month"/>
           <Column description="Someday"/>
-      </div>
+        </div>
     );
   }
 }
 
 Board.propTypes = {
-  description: PropTypes.string
+    description: PropTypes.string
 };
 export default Board
