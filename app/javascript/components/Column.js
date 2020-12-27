@@ -1,11 +1,15 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
+import Card from "./Card.js"
+import "./Column.css";
+
 class Column extends React.Component {
   render () {
     return (
-      <React.Fragment>
-        Description: {this.props.description}
-      </React.Fragment>
+      <div className="Column">
+        Column: {this.props.description}
+	<Card description="kanbany"/>
+      </div>
     );
   }
 }

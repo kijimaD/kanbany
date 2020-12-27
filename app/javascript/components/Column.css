@@ -1,0 +1,7 @@
+.Column {
+    width: 200px;
+    height: 800px;
+    border: medium solid black;
+    float:left;
+    margin: 1px;
+}
