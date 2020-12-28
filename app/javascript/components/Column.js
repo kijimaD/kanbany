@@ -8,18 +8,18 @@ class Column extends React.Component {
         return (
             <div className="Column">
               <div className="ColumnHeader">
-                <small className="HeaderName">{this.props.description}</small>
+                <small className="HeaderName">{this.props.name}</small>
                 <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
               <div className="ColumnContent">
               </div>
-	      <Card description="kanbany"/>
+	      <Card name="kanbany"/>
             </div>
         );
     }
 }
 
 Column.propTypes = {
-    description: PropTypes.string
+    name: PropTypes.string
 };
 export default Column

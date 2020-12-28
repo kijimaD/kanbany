@@ -3,6 +3,7 @@ class StaticsController < ApplicationController
   # GET /statics
   # GET /statics.json
   def index
+    @columns = Column.all()
   end
 
   # GET /statics/1

@@ -17,7 +17,22 @@ Board.create!(
 )
 
 Column.create!(
-  name: "WIP",
+  name: "Done",
+  board_id: 1,
+)
+
+Column.create!(
+  name: "Today",
+  board_id: 1,
+)
+
+Column.create!(
+  name: "Week",
+  board_id: 1,
+)
+
+Column.create!(
+  name: "Month",
   board_id: 1,
 )
 
