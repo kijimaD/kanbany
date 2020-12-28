@@ -8,7 +8,8 @@ class Column extends React.Component {
         return (
             <div className="Column">
               <div className="ColumnHeader">
-                Column: {this.props.description}
+                <small className="HeaderName">{this.props.description}</small>
+                <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
               <div className="ColumnContent">
               </div>

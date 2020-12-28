@@ -7,7 +7,7 @@ class Card extends React.Component {
     return (
         <div className="Card">
           <div className="CardHeader">
-            Name: {this.props.description}
+            {this.props.description}
           </div>
           <div className="CardHeader">
           </div>
