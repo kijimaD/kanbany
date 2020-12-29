@@ -5,6 +5,6 @@
 }
 
 .CardHeader {
-    border-bottom: thin solid black;
+    border-bottom: 4px solid #ffaa3f;
     color: green;
 }
