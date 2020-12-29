@@ -4,6 +4,15 @@ import Card from "./Card.js"
 import "./Column.css";
 
 class Column extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {initialTasks: this.props.tasks, tasks:[]}
+    }
+
+    componentDidMount() {
+        this.setState({tasks: this.state.initialTasks})
+    }
+
     render () {
         return (
             <div className="Column">
@@ -12,8 +21,8 @@ class Column extends React.Component {
                 <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
               <div className="ColumnContent">
+	        <Card name="task" description="p10-20" />
               </div>
-	      <Card name="kanbany"/>
             </div>
         );
     }

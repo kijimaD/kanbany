@@ -11,14 +11,15 @@ class Board extends React.Component {
 
     componentDidMount() {
         this.setState({columns: this.state.initialColumns})
-}
+    }
 
     render () {
         return (
             <div className="Board">
               {this.state.columns.map(column =>
-                                      <Column name={column.name}/>
+                                      <Column name={column.name} tasks={column.tasks} />
                                      )}
+              <button className="Column-add-button btn btn-outline-primary">+</button>
             </div>
         );
     }

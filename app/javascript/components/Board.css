@@ -2,3 +2,8 @@
     height: 1000px;
     border: medium solid black;
 }
+
+.Column-add-button {
+    margin: 8px;
+    height: 800px;
+}
