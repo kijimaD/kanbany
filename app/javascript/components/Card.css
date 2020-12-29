@@ -1,10 +1,18 @@
 .Card {
     height: 100px;
-    border: thin solid black;
     margin: 8px;
+    padding: 4px;
 }
 
 .CardHeader {
-    border-bottom: 4px solid #ffaa3f;
-    color: green;
+    border-bottom: 2px solid #ffaa3f;
+    margin-bottom: 4px;
+    font-weight: 900;
+}
+
+.CardContent {
+}
+
+.ContentButton {
+    padding: 0px 4px;
 }

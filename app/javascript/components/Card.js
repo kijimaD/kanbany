@@ -10,9 +10,8 @@ class Card extends React.Component {
             {this.props.name}
           </div>
           <div className="CardContent">
-            {this.props.description}
-            <button className="btn btn-sm btn-outline-primary float-right">←</button>
-            <button className="btn btn-sm btn-outline-primary float-right">↓</button>
+            <small>{this.props.description}</small>
+            <button className="ContentButton btn btn-sm btn-outline-primary float-right">←</button>
           </div>
       </div>
     );
