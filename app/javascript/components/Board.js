@@ -6,19 +6,36 @@ import "./Board.css";
 class Board extends React.Component {
     constructor(props){
         super(props)
-        this.state = {initialColumns: this.props.columns, columns:[]}
+        this.state = {
+            error: null,
+            columns: [],
+        }
     }
 
     componentDidMount() {
-        this.setState({columns: this.state.initialColumns})
+        fetch(this.props.url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        columns: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        error
+                    });
+                }
+            )
     }
 
     render () {
+        const { error, columns } = this.state;
         return (
             <div className="Board">
-              {this.state.columns.map(column =>
-                                      <Column name={column.name} tasks={column.tasks} />
-                                     )}
+            {this.state.columns.map(column =>
+                                    <Column name={column.name}/>
+                                   )}
               <button className="Column-add-button btn btn-outline-primary">+</button>
             </div>
         );

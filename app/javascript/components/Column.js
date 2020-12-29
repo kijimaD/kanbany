@@ -21,7 +21,7 @@ class Column extends React.Component {
                 <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
               <div className="ColumnContent">
-	        <Card name="task" description="p10-20" />
+	        <Card name="task" description="p20" />
               </div>
             </div>
         );

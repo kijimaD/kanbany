@@ -2,6 +2,6 @@
     <div class="jumbotron mt-4 bg-white">
 	<h1 class="display-1">Kanbany</h1>
         <p class="text-secondary">Kanban application specializing in personal task management</p>
-	<%= react_component("Board", { columns: @columns }) %>
+	<%= react_component("Board", url: "/api/v1/columns") %>
     </div>
 </div>
