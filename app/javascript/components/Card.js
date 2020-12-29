@@ -7,9 +7,12 @@ class Card extends React.Component {
     return (
         <div className="Card">
           <div className="CardHeader">
-            {this.props.description}
+            {this.props.name}
           </div>
-          <div className="CardHeader">
+          <div className="CardContent">
+            {this.props.description}
+            <button className="btn btn-sm btn-outline-primary float-right">←</button>
+            <button className="btn btn-sm btn-outline-primary float-right">↓</button>
           </div>
       </div>
     );
@@ -17,6 +20,7 @@ class Card extends React.Component {
 }
 
 Card.propTypes = {
-  description: PropTypes.string
+    name: PropTypes.string,
+    description: PropTypes.string
 };
 export default Card

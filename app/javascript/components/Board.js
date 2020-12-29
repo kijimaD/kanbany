@@ -4,19 +4,45 @@ import Column from "./Column";
 import "./Board.css";
 
 class Board extends React.Component {
-  render () {
-    return (
-        <div className="Board">
-          <Column description="Done"/>
-          <Column description="Day"/>
-          <Column description="Month"/>
-          <Column description="Someday"/>
-        </div>
-    );
-  }
+    constructor(props){
+        super(props)
+        this.state = {
+            error: null,
+            columns: [],
+        }
+    }
+
+    componentDidMount() {
+        fetch(this.props.url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        columns: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        error
+                    });
+                }
+            )
+    }
+
+    render () {
+        const { error, columns } = this.state;
+        return (
+            <div className="Board">
+            {this.state.columns.map(column =>
+                                    <Column name={column.name}/>
+                                   )}
+              <button className="Column-add-button btn btn-outline-primary">+</button>
+            </div>
+        );
+    }
 }
 
 Board.propTypes = {
-    description: PropTypes.string
+    name: PropTypes.string,
 };
 export default Board

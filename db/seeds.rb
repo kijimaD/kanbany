@@ -17,12 +17,51 @@ Board.create!(
 )
 
 Column.create!(
-  name: "WIP",
+  name: "Done",
+  board_id: 1,
+)
+
+Column.create!(
+  name: "Today",
+  board_id: 1,
+)
+
+Column.create!(
+  name: "Week",
+  board_id: 1,
+)
+
+Column.create!(
+  name: "Month",
   board_id: 1,
 )
 
 Task.create!(
-  name: "Task",
-  description: "Study",
+  name: "Study React",
+  description: "p0-10",
   column_id: 1,
+)
+
+Task.create!(
+  name: "Study Rails",
+  description: "p0-20",
+  column_id: 1,
+)
+
+Task.create!(
+  name: "Study Rails",
+  description: "p20-30",
+  column_id: 1,
+)
+
+Task.create!(
+  name: "Study English",
+  description: "p300-350",
+  column_id: 2,
+)
+
+Task.create!(
+  name: "Study Chinese",
+  description: "p10-50",
+  column_id: 2,
 )

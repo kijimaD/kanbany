@@ -4,22 +4,31 @@ import Card from "./Card.js"
 import "./Column.css";
 
 class Column extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {initialTasks: this.props.tasks, tasks:[]}
+    }
+
+    componentDidMount() {
+        this.setState({tasks: this.state.initialTasks})
+    }
+
     render () {
         return (
             <div className="Column">
               <div className="ColumnHeader">
-                <small className="HeaderName">{this.props.description}</small>
+                <small className="HeaderName">{this.props.name}</small>
                 <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
               <div className="ColumnContent">
+	        <Card name="task" description="p20" />
               </div>
-	      <Card description="kanbany"/>
             </div>
         );
     }
 }
 
 Column.propTypes = {
-    description: PropTypes.string
+    name: PropTypes.string
 };
 export default Column
