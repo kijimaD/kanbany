@@ -21,7 +21,7 @@ class Column extends React.Component {
                 <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
 	      <div className="ColumnContent">
-            {this.props.tasks.map(task =>
+            {this.state.tasks.map(task =>
                                     <Card name={task.name} description={task.description}/>
                                    )}
               </div>
