@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Time from "./Time.js"
 import "./Card.css";
 
 class Card extends React.Component {
@@ -10,9 +11,15 @@ class Card extends React.Component {
             {this.props.name}
           </div>
           <div className="CardContent">
-            {this.props.description}
-            <button className="btn btn-sm btn-outline-primary float-right">←</button>
-            <button className="btn btn-sm btn-outline-primary float-right">↓</button>
+            <small>
+	      {this.props.description}
+	    </small>
+            <button className="ContentButton btn btn-sm btn-outline-primary float-right">←</button>
+          </div>
+          <div className="CardFooter">
+            <small className="float-right text-secondary">
+              <Time time={this.props.created_at}/>
+            </small>
           </div>
       </div>
     );

@@ -6,6 +6,7 @@ json.array! @columns do |column|
       json.id task.id
       json.name task.name
       json.description task.description
+      json.created_at task.created_at
     end
   end
 end
