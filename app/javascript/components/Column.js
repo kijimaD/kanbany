@@ -22,7 +22,9 @@ class Column extends React.Component {
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
-                                    <Card name={task.name} description={task.description}/>
+                                  <Card name={task.name}
+                                        description={task.description}
+                                        created_at={task.created_at} />
                                    )}
               </div>
             </div>

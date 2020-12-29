@@ -1,13 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
+import moment from 'moment';
+
 class Time extends React.Component {
-  render () {
-    return (
-      <React.Fragment>
-        Time: {this.props.time}
-      </React.Fragment>
-    );
-  }
+    render () {
+        const timeString = moment(this.props.time).fromNow();
+        return (
+            <span className="time">
+              {timeString}
+            </span>
+        );
+    }
 }
 
 Time.propTypes = {
