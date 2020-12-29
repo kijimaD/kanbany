@@ -20,8 +20,10 @@ class Column extends React.Component {
                 <small className="HeaderName">{this.props.name}</small>
                 <button className="HeaderButton btn btn-outline-primary">+</button>
               </div>
-              <div className="ColumnContent">
-	        <Card name="task" description="p20" />
+	      <div className="ColumnContent">
+            {this.state.tasks.map(task =>
+                                    <Card name={task.name} description={task.description}/>
+                                   )}
               </div>
             </div>
         );
