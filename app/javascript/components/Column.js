@@ -11,10 +11,24 @@ class Column extends React.Component {
             tasks:[],
         };
         this.handleCreate = this.handleCreate.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
         this.setState({tasks: this.state.initialTasks});
+    }
+
+    handleDelete(id){
+        fetch(`/api/v1/tasks/${id}`,
+              {
+                  method: 'DELETE',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              })
+            .then((response) => {
+                this.deleteTask(id);
+            });
     }
 
     deleteTask(id){
@@ -22,6 +36,7 @@ class Column extends React.Component {
         this.setState({
             tasks: tasks
         });
+        console.log(this.state.tasks)
     }
 
     addTask(task){
@@ -64,7 +79,7 @@ class Column extends React.Component {
                                         name={task.name}
                                         description={task.description}
                                         created_at={task.created_at}
-                                        deleteTask={this.deleteTask.bind(this)}/>
+                                        handleDelete={this.handleDelete}/>
                                    )}
               </div>
             </div>

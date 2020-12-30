@@ -7,7 +7,6 @@ class Card extends React.Component {
 
     constructor(props){
         super(props)
-        this.handleDelete = this.handleDelete.bind(this);
         this.state = {
             form: {
                 name: this.props.name,
@@ -50,25 +49,12 @@ class Card extends React.Component {
               });
     }
 
-    handleDelete(id){
-        fetch(`/api/v1/tasks/${id}`,
-              {
-                  method: 'DELETE',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              })
-            .then((response) => {
-                this.props.deleteTask(id);
-            });
-    }
-
     render () {
         return (
             <div className="Card">
               <div className="CardHeader">
                 <input type="text" value={this.state.form.name} onChange={e=>this.handleChange(e, "name", this.props.id)} />
-                <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.handleDelete(this.props.id)}>X</button>
+                <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id)}>X</button>
               </div>
               <div className="CardContent">
                 <small>
