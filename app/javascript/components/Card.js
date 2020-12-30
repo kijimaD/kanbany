@@ -31,7 +31,7 @@ class Card extends React.Component {
         return (
             <div className="Card">
               <div className="CardHeader">
-                {this.props.name}
+                <input type="text" value={this.props.name}/>
                 <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.handleDelete(this.props.id)}>X</button>
               </div>
               <div className="CardContent">
