@@ -22,7 +22,8 @@ class Column extends React.Component {
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
-                                  <Card name={task.name}
+                                  <Card id={task.id}
+                                        name={task.name}
                                         description={task.description}
                                         created_at={task.created_at} />
                                    )}
