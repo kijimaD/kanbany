@@ -21,3 +21,8 @@
 .ContentButton {
     padding: 0px 12px;
 }
+
+input {
+    width: 120px;
+    border: none;
+}

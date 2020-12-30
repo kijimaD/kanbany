@@ -8,10 +8,46 @@ class Card extends React.Component {
     constructor(props){
         super(props)
         this.handleDelete = this.handleDelete.bind(this);
+        this.state = {
+            form: {
+                name: this.props.name,
+                description: this.props.description,
+            }
+        }
     }
 
     componentDidMount() {
 
+    }
+
+    handleChange(e, key, id){
+        let target = e.target;
+        let value = target.value;
+        let form = this.state.form;
+        form[key] = value;
+
+        this.setState({
+            form: form
+        });
+
+        this.handleUpdate(id);
+    }
+
+    handleUpdate(id){
+        let body = JSON.stringify({
+            task: {
+                name: this.state.form.name,
+                description: this.state.form.description,
+            }
+        });
+        fetch(`/api/v1/tasks/${id}`,
+              {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              });
     }
 
     handleDelete(id){
@@ -23,7 +59,7 @@ class Card extends React.Component {
                   }
               })
             .then((response) => {
-                this.props.deleteTask(id)
+                this.props.deleteTask(id);
             });
     }
 
@@ -31,12 +67,12 @@ class Card extends React.Component {
         return (
             <div className="Card">
               <div className="CardHeader">
-                {this.props.name}
+                <input type="text" value={this.state.form.name} onChange={e=>this.handleChange(e, "name", this.props.id)} />
                 <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.handleDelete(this.props.id)}>X</button>
               </div>
               <div className="CardContent">
                 <small>
-	          {this.props.description}
+                <input type="text" value={this.state.form.description} onChange={e=>this.handleChange(e, "description", this.props.id)} />
 	        </small>
                 <button className="ContentButton btn btn-sm btn-outline-primary float-right">←</button>
               </div>

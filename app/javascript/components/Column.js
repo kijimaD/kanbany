@@ -6,7 +6,10 @@ import "./Column.css";
 class Column extends React.Component {
     constructor(props){
         super(props);
-        this.state = {initialTasks: this.props.tasks, tasks:[]};
+        this.state = {
+            initialTasks: this.props.tasks,
+            tasks:[],
+        };
         this.handleCreate = this.handleCreate.bind(this);
     }
 
