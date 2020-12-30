@@ -13,8 +13,8 @@ class Column extends React.Component {
         this.setState({tasks: this.state.initialTasks});
     }
 
-    deleteList(id){
-        let tasks = this.state.tasks.filter((list) => task.id != id);
+    deleteTask(id){
+        let tasks = this.state.tasks.filter((task) => task.id != id);
         this.setState({
             tasks: tasks
 })}
@@ -31,7 +31,8 @@ class Column extends React.Component {
                                   <Card id={task.id}
                                         name={task.name}
                                         description={task.description}
-                                        created_at={task.created_at} />
+                                        created_at={task.created_at}
+                                        deleteTask={this.deleteTask.bind(this)}/>
                                    )}
               </div>
             </div>

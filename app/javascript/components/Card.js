@@ -22,6 +22,9 @@ class Card extends React.Component {
                       'Content-Type': 'application/json'
                   }
               })
+            .then((response) => {
+                this.props.deleteTask(id)
+            })
     }
 
     render () {
