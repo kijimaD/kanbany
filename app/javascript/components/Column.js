@@ -36,7 +36,6 @@ class Column extends React.Component {
         this.setState({
             tasks: tasks
         });
-        console.log(this.state.tasks)
     }
 
     addTask(task){
