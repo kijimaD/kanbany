@@ -41,7 +41,7 @@ class Column extends React.Component {
                   },
                   body: body,
               })
-            .then((response) => {return response;})
+            .then((response) => {return response.json();})
             .then((task) => {
                 this.addTask(task);
         });
