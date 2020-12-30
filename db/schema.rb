@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_06_121115) do
+ActiveRecord::Schema.define(version: 2020_12_30_010205) do
 
   create_table "boards", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_12_06_121115) do
 
   create_table "tasks", force: :cascade do |t|
     t.integer "column_id", null: false
-    t.string "name", null: false
+    t.string "name", default: "", null: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
