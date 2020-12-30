@@ -31,8 +31,8 @@ class Column extends React.Component {
             });
     }
 
-    deleteTask(id){
-        let tasks = this.state.tasks.filter((task) => task.id != id);
+    deleteTask(task_id){
+        let tasks = this.state.tasks.filter((task) => task.id != task_id);
         this.setState({
             tasks: tasks
         });

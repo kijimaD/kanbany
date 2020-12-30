@@ -53,12 +53,12 @@ class Card extends React.Component {
         return (
             <div className="Card">
               <div className="CardHeader">
-                <input type="text" value={this.state.form.name} onChange={e=>this.handleChange(e, "name", this.props.id)} />
+                <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
                 <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id)}>X</button>
               </div>
               <div className="CardContent">
                 <small>
-                <input type="text" value={this.state.form.description} onChange={e=>this.handleChange(e, "description", this.props.id)} />
+                <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
 	        </small>
                 <button className="ContentButton btn btn-sm btn-outline-primary float-right">←</button>
               </div>

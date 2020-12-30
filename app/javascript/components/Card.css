@@ -26,3 +26,12 @@ input {
     width: 120px;
     border: none;
 }
+
+input:hover {
+    border-radius: 1em;
+    background-color: whitesmoke;
+}
+
+input:focus {
+    outline: none;
+}
