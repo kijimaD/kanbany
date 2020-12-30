@@ -15,7 +15,7 @@ class Card extends React.Component {
     }
 
     handleDelete(id){
-        fetch(`http://localhost:3000/api/v1/tasks/${id}`,
+        fetch(`/api/v1/tasks/${id}`,
               {
                   method: 'DELETE',
                   headers: {
@@ -24,7 +24,7 @@ class Card extends React.Component {
               })
             .then((response) => {
                 this.props.deleteTask(id)
-            })
+            });
     }
 
     render () {

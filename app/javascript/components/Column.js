@@ -7,6 +7,7 @@ class Column extends React.Component {
     constructor(props){
         super(props);
         this.state = {initialTasks: this.props.tasks, tasks:[]};
+        this.handleCreate = this.handleCreate.bind(this);
     }
 
     componentDidMount(){
@@ -17,14 +18,41 @@ class Column extends React.Component {
         let tasks = this.state.tasks.filter((task) => task.id != id);
         this.setState({
             tasks: tasks
-})}
+        });
+    }
+
+    addTask(task){
+        this.setState({
+            tasks: this.state.tasks.concat(task)
+        });
+    }
+
+    handleCreate(column_id){
+        let body = JSON.stringify({
+            task: {
+                column_id: column_id,
+            }
+        });
+        fetch(`/api/v1/tasks`,
+              {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              })
+            .then((response) => {return response.json();})
+            .then((task) => {
+                this.addTask(task);
+        });
+    }
 
     render () {
         return (
             <div className="Column">
               <div className="ColumnHeader">
                 <small className="HeaderName">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-primary">↓</button>
+                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>↓</button>
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
