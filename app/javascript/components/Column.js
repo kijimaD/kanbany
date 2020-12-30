@@ -11,10 +11,24 @@ class Column extends React.Component {
             tasks:[],
         };
         this.handleCreate = this.handleCreate.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
         this.setState({tasks: this.state.initialTasks});
+    }
+
+    handleDelete(id){
+        fetch(`/api/v1/tasks/${id}`,
+              {
+                  method: 'DELETE',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              })
+            .then((response) => {
+                this.deleteTask(id);
+            });
     }
 
     deleteTask(id){
@@ -59,11 +73,12 @@ class Column extends React.Component {
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
-                                  <Card id={task.id}
+                                  <Card key={task.id}
+                                        id={task.id}
                                         name={task.name}
                                         description={task.description}
                                         created_at={task.created_at}
-                                        deleteTask={this.deleteTask.bind(this)}/>
+                                        handleDelete={this.handleDelete}/>
                                    )}
               </div>
             </div>
