@@ -8,10 +8,27 @@ class Card extends React.Component {
     constructor(props){
         super(props)
         this.handleDelete = this.handleDelete.bind(this);
+        this.state = {
+            form: {
+                name: this.props.name,
+                description: this.props.description,
+            }
+        }
     }
 
     componentDidMount() {
 
+    }
+
+    handleChange(e, key){
+        let target = e.target;
+        let value = target.value;
+        let form = this.state.form;
+        form[key] = value;
+
+        this.setState({
+            form: form
+        });
     }
 
     handleDelete(id){
@@ -23,7 +40,7 @@ class Card extends React.Component {
                   }
               })
             .then((response) => {
-                this.props.deleteTask(id)
+                this.props.deleteTask(id);
             });
     }
 
@@ -31,12 +48,12 @@ class Card extends React.Component {
         return (
             <div className="Card">
               <div className="CardHeader">
-                <input type="text" value={this.props.name}/>
+                <input type="text" value={this.state.form.name} onChange={e=>this.handleChange(e, 'name')} />
                 <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.handleDelete(this.props.id)}>X</button>
               </div>
               <div className="CardContent">
                 <small>
-	          {this.props.description}
+	          {this.state.form.description}
 	        </small>
                 <button className="ContentButton btn btn-sm btn-outline-primary float-right">←</button>
               </div>
