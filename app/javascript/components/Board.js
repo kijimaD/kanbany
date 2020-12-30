@@ -9,7 +9,7 @@ class Board extends React.Component {
         this.state = {
             error: null,
             columns: [],
-        }
+        };
     }
 
     componentDidMount() {
@@ -26,7 +26,7 @@ class Board extends React.Component {
                         error
                     });
                 }
-            )
+            );
     }
 
     render () {
@@ -45,4 +45,4 @@ class Board extends React.Component {
 Board.propTypes = {
     name: PropTypes.string,
 };
-export default Board
+export default Board;

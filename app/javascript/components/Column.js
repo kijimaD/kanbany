@@ -1,17 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Card from "./Card.js"
+import Card from "./Card.js";
 import "./Column.css";
 
 class Column extends React.Component {
     constructor(props){
-        super(props)
-        this.state = {initialTasks: this.props.tasks, tasks:[]}
+        super(props);
+        this.state = {initialTasks: this.props.tasks, tasks:[]};
     }
 
-    componentDidMount() {
-        this.setState({tasks: this.state.initialTasks})
+    componentDidMount(){
+        this.setState({tasks: this.state.initialTasks});
     }
+
+    deleteTask(id){
+        let tasks = this.state.tasks.filter((task) => task.id != id);
+        this.setState({
+            tasks: tasks
+})}
 
     render () {
         return (
@@ -22,9 +28,11 @@ class Column extends React.Component {
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
-                                  <Card name={task.name}
+                                  <Card id={task.id}
+                                        name={task.name}
                                         description={task.description}
-                                        created_at={task.created_at} />
+                                        created_at={task.created_at}
+                                        deleteTask={this.deleteTask.bind(this)}/>
                                    )}
               </div>
             </div>
@@ -35,4 +43,4 @@ class Column extends React.Component {
 Column.propTypes = {
     name: PropTypes.string
 };
-export default Column
+export default Column;
