@@ -24,7 +24,7 @@ class Card extends React.Component {
               })
             .then((response) => {
                 this.props.deleteTask(id)
-            })
+            });
     }
 
     render () {

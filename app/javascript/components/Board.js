@@ -34,7 +34,7 @@ class Board extends React.Component {
         return (
             <div className="Board">
             {this.state.columns.map(column =>
-                                    <Column name={column.name} tasks={column.tasks}/>
+                                    <Column id={column.id} name={column.name} tasks={column.tasks}/>
                                    )}
               <button className="Column-add-button btn btn-outline-primary">+</button>
             </div>
