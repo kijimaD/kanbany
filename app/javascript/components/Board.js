@@ -33,7 +33,7 @@ class Board extends React.Component {
     handleCopy(column_id, name){
         let body = JSON.stringify({
             task: {
-                column_id: column_id - 1,
+                column_id: (column_id - 1),
                 name: name
             }
         });
@@ -52,7 +52,22 @@ class Board extends React.Component {
     }
 
     addPreviousColumn(task, column_id){
+        var columns = [...this.state.columns];
+        columns.map(function(column){
+            if(column.id === (column_id - 1)){
+                column.tasks = column.tasks.concat(task);
+            }
+        }
+                   );
 
+        this.setState({
+            columns: columns
+        });
+
+        // console.log(columns);
+        console.log(columns);
+        console.log(this.state);
+        // // alert("Not working asynchronous copy... Please reload.");
     }
 
     render () {
