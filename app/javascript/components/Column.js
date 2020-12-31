@@ -69,7 +69,9 @@ class Column extends React.Component {
             <div className="Column">
               <div className="ColumnHeader">
                 <small className="HeaderName">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>↓</button>
+                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>
+                  <i className="fas fa-bolt"></i>
+                </button>
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
