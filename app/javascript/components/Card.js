@@ -54,7 +54,7 @@ class Card extends React.Component {
             <div className="Card">
               <div className="CardHeader">
                 <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
-                <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id)}>
+                <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id)} tabIndex="-1" >
                   <i className="far fa-trash-alt"></i>
                 </button>
               </div>
@@ -62,7 +62,7 @@ class Card extends React.Component {
                 <small>
                 <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
 	        </small>
-                <button className="ContentButton btn btn-sm btn-outline-primary float-right" onClick={() => this.props.handleCopy(this.props.column_id, this.state.form.name)}>
+                <button className="ContentButton btn btn-sm btn-outline-primary float-right" onClick={() => this.props.handleCopy(this.props.column_id, this.state.form.name)} tabIndex="-1" >
                   <i className="fas fa-project-diagram fa-flip-horizontal"></i>
                 </button>
               </div>
