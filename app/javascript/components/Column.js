@@ -31,8 +31,8 @@ class Column extends React.Component {
             });
     }
 
-    deleteTask(id){
-        let tasks = this.state.tasks.filter((task) => task.id != id);
+    deleteTask(task_id){
+        let tasks = this.state.tasks.filter((task) => task.id != task_id);
         this.setState({
             tasks: tasks
         });
@@ -69,7 +69,9 @@ class Column extends React.Component {
             <div className="Column">
               <div className="ColumnHeader">
                 <small className="HeaderName">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>↓</button>
+                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>
+                  <i className="fas fa-bolt"></i>
+                </button>
               </div>
 	      <div className="ColumnContent">
             {this.state.tasks.map(task =>
@@ -78,7 +80,9 @@ class Column extends React.Component {
                                         name={task.name}
                                         description={task.description}
                                         created_at={task.created_at}
-                                        handleDelete={this.handleDelete}/>
+                                        column_id={this.props.id}
+                                        handleDelete={this.handleDelete}
+                                        handleCopy={this.props.handleCopy} />
                                    )}
               </div>
             </div>
