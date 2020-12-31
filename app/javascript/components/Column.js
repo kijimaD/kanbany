@@ -80,7 +80,9 @@ class Column extends React.Component {
                                         name={task.name}
                                         description={task.description}
                                         created_at={task.created_at}
-                                        handleDelete={this.handleDelete}/>
+                                        column_id={this.props.id}
+                                        handleDelete={this.handleDelete}
+                                        handleCopy={this.props.handleCopy} />
                                    )}
               </div>
             </div>

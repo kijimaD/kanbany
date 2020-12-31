@@ -5,11 +5,12 @@ import "./Board.css";
 
 class Board extends React.Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
             error: null,
             columns: [],
         };
+        this.handleCopy = this.handleCopy.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +30,31 @@ class Board extends React.Component {
             );
     }
 
+    handleCopy(column_id, name){
+        let body = JSON.stringify({
+            task: {
+                column_id: column_id - 1,
+                name: name
+            }
+        });
+        fetch(`/api/v1/tasks`,
+              {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              })
+            .then((response) => {return response.json();})
+            .then((task) => {
+                this.addPreviousColumn(task, column_id);
+            });
+    }
+
+    addPreviousColumn(task, column_id){
+
+    }
+
     render () {
         const { error, columns } = this.state;
         return (
@@ -37,7 +63,8 @@ class Board extends React.Component {
                                     <Column key={column.id}
                                             id={column.id}
                                             name={column.name}
-                                            tasks={column.tasks} />
+                                            tasks={column.tasks}
+                                            handleCopy={this.handleCopy} />
                                    )}
               <button className="Column-add-button btn btn-outline-primary">+</button>
             </div>
