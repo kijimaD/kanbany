@@ -68,7 +68,7 @@ class Column extends React.Component {
         return (
             <div className="Column">
               <div className="ColumnHeader">
-                <small className="HeaderName">{this.props.name}</small>
+                <small className="HeaderName text-primary">{this.props.name}</small>
                 <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>
                   <i className="fas fa-bolt"></i>
                 </button>
