@@ -51,25 +51,52 @@ class Card extends React.Component {
 
     render () {
         return (
-            <div className="Card">
-              <div className="CardHeader">
-                <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
-                <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id)}>
-                  <i className="far fa-trash-alt"></i>
-                </button>
-              </div>
-              <div className="CardContent">
-                <small>
-                <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
-	        </small>
-                <button className="ContentButton btn btn-sm btn-outline-primary float-right" onClick={() => this.props.handleCopy(this.props.column_id, this.state.form.name)}>
-                  <i className="fas fa-project-diagram fa-flip-horizontal"></i>
-                </button>
-              </div>
-              <div className="CardFooter">
-                <small className="float-right text-secondary">
-                  <Time time={this.props.created_at}/>
-                </small>
+            <div className="Cards container-fluid">
+              <div className="row">
+
+                <div className="col-10 px-0">
+	          <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
+                    <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
+	          </div>
+
+	          <div className="CardContent">
+                    <small>
+                      <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
+	            </small>
+                  </div>
+                  <div className="CardFooter">
+                    <small className="float-right text-secondary">
+                      <Time time={this.props.created_at}/>
+                    </small>
+                  </div>
+                </div>
+
+                <div className="col-2 px-0">
+                  <div className="dropright drop-hover">
+                    <button className="MenuButton btn btn-outline-primary py-4 pl-0" data-toggle="dropdown">
+                      <span className="material-icons">
+                        layers
+                      </span>
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
+                          <span className="material-icons transform">
+                            account_tree
+                          </span>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <span className="material-icons">
+                            delete_sweep
+                          </span>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
         );

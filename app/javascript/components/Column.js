@@ -10,82 +10,37 @@ class Column extends React.Component {
             initialTasks: this.props.tasks,
             tasks:[],
         };
-        this.handleCreate = this.handleCreate.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
     }
 
     componentDidMount(){
         this.setState({tasks: this.state.initialTasks});
     }
 
-    handleDelete(id){
-        fetch(`/api/v1/tasks/${id}`,
-              {
-                  method: 'DELETE',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              })
-            .then((response) => {
-                this.deleteTask(id);
-            });
-    }
-
-    deleteTask(task_id){
-        let tasks = this.state.tasks.filter((task) => task.id != task_id);
-        this.setState({
-            tasks: tasks
-        });
-    }
-
-    addTask(task){
-        this.setState({
-            tasks: this.state.tasks.concat(task)
-        });
-    }
-
-    handleCreate(column_id){
-        let body = JSON.stringify({
-            task: {
-                column_id: column_id,
-            }
-        });
-        fetch(`/api/v1/tasks`,
-              {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: body,
-              })
-            .then((response) => {return response.json();})
-            .then((task) => {
-                this.addTask(task);
-        });
-    }
-
     render () {
         return (
-            <div className="Column">
-              <div className="ColumnHeader">
-                <small className="HeaderName">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>
+	    <div className="Column">
+	      <div className="ColumnHeader">
+                <small className="HeaderName text-primary">{this.props.name}</small>
+                <button className="HeaderButton btn btn-sm btn-outline-secondary" onClick={() => this.props.handleCreate(this.props.id)}>
                   <i className="fas fa-bolt"></i>
+                  <span className="material-icons">
+                    flash_on
+                  </span>
                 </button>
-              </div>
+	      </div>
 	      <div className="ColumnContent">
-            {this.state.tasks.map(task =>
-                                  <Card key={task.id}
-                                        id={task.id}
-                                        name={task.name}
-                                        description={task.description}
-                                        created_at={task.created_at}
-                                        column_id={this.props.id}
-                                        handleDelete={this.handleDelete}
-                                        handleCopy={this.props.handleCopy} />
-                                   )}
+		{this.props.tasks.map(task =>
+                                      <Card key={task.id}
+                                            id={task.id}
+                                            name={task.name}
+                                            description={task.description}
+                                            created_at={task.created_at}
+                                            column_id={this.props.id}
+                                            handleCreate={this.props.handleCreate}
+                                            handleDelete={this.props.handleDelete} />
+                                     )}
               </div>
-            </div>
+	    </div>
         );
     }
 }
