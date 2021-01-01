@@ -26,12 +26,12 @@
 }
 
 .MenuButton {
-    border: none;
+    border: none !important;
     color: black !important;
 }
 
 .MenuButton:hover {
-    border: none;
+    border: none !important;
     color: white !important;
 }
 
