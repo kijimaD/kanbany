@@ -51,40 +51,49 @@ class Card extends React.Component {
 
     render () {
         return (
-            <div className="Card">
-	      <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
-                <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
+            <div className="Cards container-fluid">
+              <div className="row">
 
-                <div className="dropleft drop-hover float-right">
-                  <button className="HeaderButton btn btn-sm btn-outline-secondary" data-toggle="dropdown">
-                    <i className="fas fa-th"></i>
-                  </button>
-                  <ul className="dropdown-menu">
-                    <li className="dropright drop-hover float-right">
-                      <li>
-                        <button className="ContentButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
-                          <i className="fas fa-project-diagram fa-flip-horizontal"></i>
-                        </button>
-                      </li>
-                      <li>
-                        <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
-                          <i className="far fa-trash-alt"></i>
-                        </button>
-                      </li>
-                    </li>
-                  </ul>
+                <div className="col-10">
+	          <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
+                    <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
+	          </div>
+
+	          <div className="CardContent">
+                    <small>
+                      <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
+	            </small>
+                  </div>
+                  <div className="CardFooter">
+                    <small className="float-right text-secondary">
+                      <Time time={this.props.created_at}/>
+                    </small>
+                  </div>
                 </div>
 
-	      </div>
-	      <div className="CardContent">
-                <small>
-                  <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
-	        </small>
-              </div>
-              <div className="CardFooter">
-                <small className="float-right text-secondary">
-                  <Time time={this.props.created_at}/>
-                </small>
+                <div className="col-2">
+                  <div className="dropleft drop-hover float-right">
+                    <button className="HeaderButton btn btn-lg btn-outline-Light py-4" data-toggle="dropdown">
+
+                      <i className="fas fa-ellipsis-v"></i>
+                    </button>
+                    <ul className="dropdown-menu">
+                      <li className="dropright drop-hover float-right">
+                        <li>
+                          <button className="ContentButton btn btn-lg btn-block btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
+                            <i className="fas fa-project-diagram fa-flip-horizontal"></i>
+                          </button>
+                        </li>
+                        <li>
+                          <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
+                            <i className="far fa-trash-alt"></i>
+                          </button>
+                        </li>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
         );
