@@ -38,3 +38,13 @@ input:hover {
 input:focus {
     outline: none;
 }
+
+/* Bootstrap4 dropdown settings */
+
+.drop-hover:hover > .dropdown-menu {
+    display: block !important;
+}
+
+.dropdown-toggle::after {
+    display:none;
+}

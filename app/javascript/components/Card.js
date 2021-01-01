@@ -52,19 +52,34 @@ class Card extends React.Component {
     render () {
         return (
             <div className="Card">
-		<div className="CardHeader" style={{ borderBottomColor: 'black' }}>
+	      <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
                 <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
-                <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
-                  <i className="far fa-trash-alt"></i>
-                </button>
-              </div>
-              <div className="CardContent">
+
+                <div className="dropdown drop-hover float-right">
+                  <button className="btn btn-sm btn-outlinesecondary" data-toggle="dropdown">
+                    <i className="fas fa-th"></i>
+                  </button>
+                  <ul className="dropdown-menu">
+                    <li className="dropright drop-hover">
+                      <li>
+                        <button className="ContentButton btn btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <i className="far fa-trash-alt"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
+                          <i className="fas fa-project-diagram fa-flip-horizontal"></i>
+                        </button>
+                      </li>
+                    </li>
+                  </ul>
+                </div>
+
+	      </div>
+	      <div className="CardContent">
                 <small>
-                <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
+                  <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
 	        </small>
-                <button className="ContentButton btn btn-sm btn-outline-primary float-right" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
-                  <i className="fas fa-project-diagram fa-flip-horizontal"></i>
-                </button>
               </div>
               <div className="CardFooter">
                 <small className="float-right text-secondary">
