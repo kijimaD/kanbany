@@ -55,20 +55,20 @@ class Card extends React.Component {
 	      <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
                 <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
 
-                <div className="dropdown drop-hover float-right">
-                  <button className="btn btn-sm btn-outlinesecondary" data-toggle="dropdown">
+                <div className="dropleft drop-hover float-right">
+                  <button className="HeaderButton btn btn-sm btn-outline-secondary" data-toggle="dropdown">
                     <i className="fas fa-th"></i>
                   </button>
                   <ul className="dropdown-menu">
-                    <li className="dropright drop-hover">
+                    <li className="dropright drop-hover float-right">
                       <li>
-                        <button className="ContentButton btn btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
-                          <i className="far fa-trash-alt"></i>
+                        <button className="ContentButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
+                          <i className="fas fa-project-diagram fa-flip-horizontal"></i>
                         </button>
                       </li>
                       <li>
-                        <button className="ContentButton btn btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
-                          <i className="fas fa-project-diagram fa-flip-horizontal"></i>
+                        <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <i className="far fa-trash-alt"></i>
                         </button>
                       </li>
                     </li>

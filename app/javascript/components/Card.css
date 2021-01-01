@@ -17,6 +17,9 @@
 
 .CardFooter {
 }
+.HeaderButton {
+    border: none;
+}
 
 .ContentButton {
     width: 3em;
