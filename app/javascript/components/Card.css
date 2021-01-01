@@ -30,8 +30,13 @@
     color: black !important;
 }
 
+.MenuButton:hover {
+    border: none;
+    color: white !important;
+}
+
 input {
-    width: 180px;
+    width: 100%;
     border: none;
 }
 
@@ -50,10 +55,7 @@ input:focus {
 
 /* Bootstrap4 dropdown settings */
 
-.drop-hover:hover > .dropdown-menu {
+.drop-hover:hover .dropdown-menu {
     display: block !important;
-}
-
-.dropdown-toggle::after {
-    display:none;
+    margin: 0;
 }

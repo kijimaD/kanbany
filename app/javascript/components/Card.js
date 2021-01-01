@@ -54,7 +54,7 @@ class Card extends React.Component {
             <div className="Cards container-fluid">
               <div className="row">
 
-                <div className="col-10">
+                <div className="col-10 px-0">
 	          <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
                     <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
 	          </div>
@@ -71,29 +71,27 @@ class Card extends React.Component {
                   </div>
                 </div>
 
-                <div className="col-2">
-                  <div className="dropleft drop-hover float-right">
-                    <button className="MenuButton btn btn-lg btn-block btn-outline-primary py-4" data-toggle="dropdown">
+                <div className="col-2 px-0">
+                  <div className="dropright drop-hover">
+                    <button className="MenuButton btn btn-outline-primary py-4 pl-0" data-toggle="dropdown">
                       <span className="material-icons">
-                        lens
+                        layers
                       </span>
                     </button>
                     <ul className="dropdown-menu">
-                      <li className="dropright drop-hover float-right">
-                        <li>
-                          <button className="ContentButton btn btn-lg btn-block btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
-                            <span className="material-icons transform">
-                              account_tree
-                            </span>
-                          </button>
-                        </li>
-                        <li>
-                          <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
-                            <span className="material-icons">
-                              delete_sweep
-                            </span>
-                          </button>
-                        </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
+                          <span className="material-icons transform">
+                            account_tree
+                          </span>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <span className="material-icons">
+                            delete_sweep
+                          </span>
+                        </button>
                       </li>
                     </ul>
                   </div>
