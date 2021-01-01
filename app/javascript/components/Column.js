@@ -10,7 +10,6 @@ class Column extends React.Component {
             initialTasks: this.props.tasks,
             tasks:[],
         };
-        this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
     }
 
@@ -38,43 +37,17 @@ class Column extends React.Component {
         });
     }
 
-    addTask(task){
-        this.setState({
-            tasks: this.state.tasks.concat(task)
-        });
-    }
-
-    handleCreate(column_id){
-        let body = JSON.stringify({
-            task: {
-                column_id: column_id,
-            }
-        });
-        fetch(`/api/v1/tasks`,
-              {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: body,
-              })
-            .then((response) => {return response.json();})
-            .then((task) => {
-                this.addTask(task);
-        });
-    }
-
     render () {
         return (
             <div className="Column">
               <div className="ColumnHeader">
                 <small className="HeaderName text-primary">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.handleCreate(this.props.id)}>
+                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.props.handleCreate(this.props.id)}>
                   <i className="fas fa-bolt"></i>
                 </button>
               </div>
 	      <div className="ColumnContent">
-            {this.state.tasks.map(task =>
+            {this.props.tasks.map(task =>
                                   <Card key={task.id}
                                         id={task.id}
                                         name={task.name}
