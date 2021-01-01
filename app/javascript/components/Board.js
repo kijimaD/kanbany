@@ -110,7 +110,7 @@ class Board extends React.Component {
 		})
 	    }
 	});
-
+	console.log(columns)
         this.setState({
             columns: columns
         });

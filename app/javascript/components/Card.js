@@ -43,7 +43,7 @@ class Card extends React.Component {
 
                 <div className="col-2 px-0">
                   <div className="dropright drop-hover">
-                    <button className="MenuButton btn btn-outline-primary py-4 pl-0" data-toggle="dropdown">
+                    <button className="MenuButton btn btn-outline-primary py-4 pl-0" data-toggle="dropdown" tabIndex="-1">
                       <span className="material-icons">
                         layers
                       </span>
