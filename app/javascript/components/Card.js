@@ -52,7 +52,7 @@ class Card extends React.Component {
     render () {
         return (
             <div className="Card">
-              <div className="CardHeader">
+		<div className="CardHeader" style={{ borderBottomColor: 'black' }}>
                 <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
                 <button className="ContentButton btn btn-sm btn-outline-danger float-right" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
                   <i className="far fa-trash-alt"></i>
