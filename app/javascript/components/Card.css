@@ -18,15 +18,16 @@
 .CardFooter {
 }
 
-.HeaderButton {
-    border: none;
-}
-
 .ContentButton {
     width: 3em;
     padding-top: 0;
     padding-bottom: 0;
     border: none;
+}
+
+.MenuButton {
+    border: none;
+    color: black !important;
 }
 
 input {
@@ -41,6 +42,10 @@ input:hover {
 
 input:focus {
     outline: none;
+}
+
+.material-icons.transform {
+    transform: scale(-1, 1);
 }
 
 /* Bootstrap4 dropdown settings */

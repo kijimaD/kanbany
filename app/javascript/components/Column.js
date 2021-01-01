@@ -18,26 +18,29 @@ class Column extends React.Component {
 
     render () {
         return (
-		<div className="Column">
-		<div className="ColumnHeader">
+	    <div className="Column">
+	      <div className="ColumnHeader">
                 <small className="HeaderName text-primary">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-primary" onClick={() => this.props.handleCreate(this.props.id)}>
-                <i className="fas fa-bolt"></i>
+                <button className="HeaderButton btn btn-sm btn-outline-secondary" onClick={() => this.props.handleCreate(this.props.id)}>
+                  <i className="fas fa-bolt"></i>
+                  <span className="material-icons">
+                    flash_on
+                  </span>
                 </button>
-		</div>
-		<div className="ColumnContent">
+	      </div>
+	      <div className="ColumnContent">
 		{this.props.tasks.map(task =>
                                       <Card key={task.id}
-                                      id={task.id}
-                                      name={task.name}
-                                      description={task.description}
-                                      created_at={task.created_at}
-                                      column_id={this.props.id}
-                                      handleCreate={this.props.handleCreate}
-                                      handleDelete={this.props.handleDelete} />
+                                            id={task.id}
+                                            name={task.name}
+                                            description={task.description}
+                                            created_at={task.created_at}
+                                            column_id={this.props.id}
+                                            handleCreate={this.props.handleCreate}
+                                            handleDelete={this.props.handleDelete} />
                                      )}
-            </div>
-		</div>
+              </div>
+	    </div>
         );
     }
 }

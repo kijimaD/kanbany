@@ -73,20 +73,25 @@ class Card extends React.Component {
 
                 <div className="col-2">
                   <div className="dropleft drop-hover float-right">
-                    <button className="HeaderButton btn btn-lg btn-outline-Light py-4" data-toggle="dropdown">
-
-                      <i className="fas fa-ellipsis-v"></i>
+                    <button className="MenuButton btn btn-lg btn-block btn-outline-primary py-4" data-toggle="dropdown">
+                      <span className="material-icons">
+                        lens
+                      </span>
                     </button>
                     <ul className="dropdown-menu">
                       <li className="dropright drop-hover float-right">
                         <li>
                           <button className="ContentButton btn btn-lg btn-block btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
-                            <i className="fas fa-project-diagram fa-flip-horizontal"></i>
+                            <span className="material-icons transform">
+                              account_tree
+                            </span>
                           </button>
                         </li>
                         <li>
                           <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
-                            <i className="far fa-trash-alt"></i>
+                            <span className="material-icons">
+                              delete_sweep
+                            </span>
                           </button>
                         </li>
                       </li>
