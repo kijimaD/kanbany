@@ -12,6 +12,7 @@ class Board extends React.Component {
         };
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -92,6 +93,48 @@ class Board extends React.Component {
         });
     }
 
+    handleChange(e, key, task_id, column_id){
+        let target = e.target;
+        let value = target.value;
+
+	var columns = [...this.state.columns];
+
+	columns.map(function(column){
+	    if(column.id === column_id) {
+		column.tasks.map(function(task){
+		    if(task.id === task_id) {
+			task[key] = value;
+		    }
+		})
+	    }
+	});
+
+	console.log()
+
+        this.setState({
+            columns: columns
+        });
+        this.handleUpdate(task_id, task);
+    }
+
+    handleUpdate(id, task){
+        let body = JSON.stringify({
+	    task: {
+		column_id: task.column_id,
+		name: task.name,
+		description: task.description
+	    }
+	});
+        fetch(`/api/v1/tasks/${id}`,
+              {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              });
+    }
+
     render () {
         const { error, columns } = this.state;
         return (
@@ -103,6 +146,7 @@ class Board extends React.Component {
 					tasks={column.tasks}
 					handleCreate={this.handleCreate}
                                         handleDelete={this.handleDelete}
+					handleChange={this.handleChange}
 					/>
                                        )}
 		<button className="Column-add-button btn btn-outline-primary">+</button>
