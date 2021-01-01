@@ -55,7 +55,7 @@ class Column extends React.Component {
                                         created_at={task.created_at}
                                         column_id={this.props.id}
                                         handleDelete={this.handleDelete}
-                                        handleCopy={this.props.handleCopy} />
+                                        handleCreate={this.props.handleCreate} />
                                    )}
               </div>
             </div>

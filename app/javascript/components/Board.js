@@ -31,50 +31,11 @@ class Board extends React.Component {
             );
     }
 
-    handleCopy(column_id, name){
-        let body = JSON.stringify({
-            task: {
-                column_id: (column_id - 1),
-                name: name
-            }
-        });
-        fetch(`/api/v1/tasks`,
-              {
-                  method: 'POST',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: body,
-              })
-            .then((response) => {return response.json();})
-            .then((task) => {
-                this.addTaskToPreviousColumn(task, column_id);
-            });
-    }
-
-    addTaskToPreviousColumn(task, column_id){
-        var columns = [...this.state.columns];
-        columns.map(function(column){
-            if(column.id === (column_id - 1)){
-                column.tasks = column.tasks.concat(task);
-            }
-        }
-                   );
-
-        this.setState({
-            columns: columns
-        });
-
-        // console.log(columns);
-        console.log(columns);
-        console.log(this.state);
-        // // alert("Not working asynchronous copy... Please reload.");
-    }
-
-    handleCreate(column_id){
+    handleCreate(column_id, name=""){
         let body = JSON.stringify({
             task: {
                 column_id: column_id,
+		name: name
             }
         });
         fetch(`/api/v1/tasks`,
@@ -114,7 +75,6 @@ class Board extends React.Component {
 					id={column.id}
 					name={column.name}
 					tasks={column.tasks}
-					handleCopy={this.handleCopy}
 					handleCreate={this.handleCreate}
 					/>
                                        )}

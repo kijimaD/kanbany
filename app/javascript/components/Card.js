@@ -62,7 +62,7 @@ class Card extends React.Component {
                 <small>
                 <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
 	        </small>
-                <button className="ContentButton btn btn-sm btn-outline-primary float-right" onClick={() => this.props.handleCopy(this.props.column_id, this.state.form.name)} tabIndex="-1" >
+                <button className="ContentButton btn btn-sm btn-outline-primary float-right" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
                   <i className="fas fa-project-diagram fa-flip-horizontal"></i>
                 </button>
               </div>
