@@ -63,6 +63,20 @@ class Card extends React.Component {
                           </span>
                         </button>
                       </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-default" onClick={() => this.props.handleValueChange(this.props.column_id - 1, "column_id", this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <span className="material-icons">
+                            keyboard_backspace
+                          </span>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-default" onClick={() => this.props.handleValueChange(this.props.column_id + 1, "column_id", this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <span className="material-icons">
+                            arrow_right_alt
+                          </span>
+                        </button>
+                      </li>
                     </ul>
                   </div>
                 </div>

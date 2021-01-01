@@ -38,7 +38,9 @@ class Column extends React.Component {
                                             column_id={this.props.id}
                                             handleCreate={this.props.handleCreate}
                                             handleDelete={this.props.handleDelete}
-                                            handleChange={this.props.handleChange} />
+                                            handleChange={this.props.handleChange}
+                                            handleValueChange={this.props.handleValueChange}
+                                      />
 
                                      )}
               </div>

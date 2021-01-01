@@ -13,6 +13,7 @@ class Board extends React.Component {
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleValueChange = this.handleValueChange.bind(this);
     }
 
     componentDidMount() {
@@ -93,6 +94,38 @@ class Board extends React.Component {
         });
     }
 
+    handleValueChange(value){
+
+    }
+
+    handleValueChange(value, key, task_id, column_id){
+	var columns = [...this.state.columns];
+
+	columns.map(function(column){
+	    if(column.id === column_id) {
+		column.tasks.map(function(task){
+		    if(task.id === task_id) {
+			task[key] = value;
+		    }
+		})
+	    }
+	});
+
+        this.setState({
+            columns: columns
+        });
+
+	// Crap ---
+	const column = columns.filter(column => {
+	    return column.id === column_id;
+	})
+	const task = column[0].tasks.filter(task => {
+	    return task.id === task_id;
+	})
+        this.handleUpdate(task_id, task[0]);
+	// --- ---
+    }
+
     handleChange(e, key, task_id, column_id){
         let target = e.target;
         let value = target.value;
@@ -154,6 +187,7 @@ class Board extends React.Component {
 					handleCreate={this.handleCreate}
                                         handleDelete={this.handleDelete}
 					handleChange={this.handleChange}
+					handleValueChange={this.handleValueChange}
 					/>
                                        )}
 		<button className="Column-add-button btn btn-outline-primary">+</button>
