@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Time from "./Time.js"
+import Time from "./Time.js";
 import "./Card.css";
 
 class Card extends React.Component {
@@ -12,41 +12,11 @@ class Card extends React.Component {
                 name: this.props.name,
                 description: this.props.description,
             }
-        }
+        };
     }
 
     componentDidMount() {
 
-    }
-
-    handleChange(e, key, id){
-        let target = e.target;
-        let value = target.value;
-        let form = this.state.form;
-        form[key] = value;
-
-        this.setState({
-            form: form
-        });
-
-        this.handleUpdate(id);
-    }
-
-    handleUpdate(id){
-        let body = JSON.stringify({
-            task: {
-                name: this.state.form.name,
-                description: this.state.form.description,
-            }
-        });
-        fetch(`/api/v1/tasks/${id}`,
-              {
-                  method: 'PATCH',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  },
-                  body: body,
-              });
     }
 
     render () {
@@ -56,12 +26,12 @@ class Card extends React.Component {
 
                 <div className="col-10 px-0">
 	          <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
-                    <input type="text" value={this.state.form.name} placeholder="Title" onChange={e=>this.handleChange(e, "name", this.props.id)} />
+                    <input type="text" value={this.props.name} placeholder="Title" onChange={e=>this.props.handleChange(e, "name", this.props.id, this.props.column_id)} />
 	          </div>
 
 	          <div className="CardContent">
                     <small>
-                      <input type="text" value={this.state.form.description} placeholder="description" onChange={e=>this.handleChange(e, "description", this.props.id)} />
+                      <input type="text" value={this.props.description} placeholder="Description" onChange={e=>this.props.handleChange(e, "description", this.props.id, this.props.column_id)} />
 	            </small>
                   </div>
                   <div className="CardFooter">
@@ -73,14 +43,14 @@ class Card extends React.Component {
 
                 <div className="col-2 px-0">
                   <div className="dropright drop-hover">
-                    <button className="MenuButton btn btn-outline-primary py-4 pl-0" data-toggle="dropdown">
+                    <button className="MenuButton btn btn-outline-primary py-4 pl-0" data-toggle="dropdown" tabIndex="-1">
                       <span className="material-icons">
                         layers
                       </span>
                     </button>
                     <ul className="dropdown-menu">
                       <li>
-                        <button className="ContentButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.state.form.name)} tabIndex="-1" >
+                        <button className="ContentButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.props.name)} tabIndex="-1" >
                           <span className="material-icons transform">
                             account_tree
                           </span>
@@ -90,6 +60,20 @@ class Card extends React.Component {
                         <button className="ContentButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
                           <span className="material-icons">
                             delete_sweep
+                          </span>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id, this.props.column_id, this.props.column_id - 1)} tabIndex="-1" >
+                          <span className="material-icons">
+                            keyboard_backspace
+                          </span>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id, this.props.column_id, this.props.column_id + 1)} tabIndex="-1" >
+                          <span className="material-icons">
+                            arrow_right_alt
                           </span>
                         </button>
                       </li>
@@ -107,4 +91,4 @@ Card.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string
 };
-export default Card
+export default Card;

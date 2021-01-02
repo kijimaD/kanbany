@@ -12,6 +12,6 @@
 
 .HeaderButton {
     float: right;
-    border: none;
+    border: none !important;
     color: orange !important;
 }

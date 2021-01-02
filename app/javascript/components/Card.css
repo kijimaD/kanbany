@@ -20,18 +20,16 @@
 
 .ContentButton {
     width: 3em;
-    padding-top: 0;
-    padding-bottom: 0;
     border: none;
 }
 
 .MenuButton {
-    border: none;
+    border: none !important;
     color: black !important;
 }
 
 .MenuButton:hover {
-    border: none;
+    border: none !important;
     color: white !important;
 }
 
@@ -57,5 +55,8 @@ input:focus {
 
 .drop-hover:hover .dropdown-menu {
     display: block !important;
-    margin: 0;
+    margin: 0 !important;
+    border: none !important;
+    border-left: 4px solid orange !important;
+    border-radius: 0 !important;
 }
