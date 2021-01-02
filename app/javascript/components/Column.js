@@ -35,6 +35,7 @@ class Column extends React.Component {
                                             name={task.name}
                                             description={task.description}
                                             created_at={task.created_at}
+                                            card={task}
                                             column_id={this.props.id}
                                             handleCreate={this.props.handleCreate}
                                             handleDelete={this.props.handleDelete}

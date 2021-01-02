@@ -1,5 +1,5 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 import Column from "./Column";
 import "./Board.css";
 
@@ -60,8 +60,7 @@ class Board extends React.Component {
             if(column.id === column_id) {
                 column.tasks = column.tasks.concat(task);
             }
-        }
-                   );
+        });
 
         this.setState({
             columns: columns
@@ -94,35 +93,35 @@ class Board extends React.Component {
         });
     }
 
-    handleValueChange(value){
-
-    }
-
-    handleValueChange(value, key, task_id, column_id){
+    handleValueChange(key, process_task, value, current_column_id, new_column_id){
 	var columns = [...this.state.columns];
 
-	columns.map(function(column){
-	    if(column.id === column_id) {
-		column.tasks.map(function(task){
-		    if(task.id === task_id) {
-			task[key] = value;
-		    }
-		})
+	process_task[key] = value;
+
+        columns.map(function(column) {
+	    // delete
+            if(column.id === current_column_id) {
+		column.tasks = column.tasks.filter((task) => task.id != process_task.id);
+            }
+
+	    // add
+	    if(column.id === new_column_id) {
+ 		column.tasks = column.tasks.concat(process_task);
 	    }
 	});
-	console.log(columns)
+
         this.setState({
             columns: columns
         });
 
 	// Crap ---
 	const column = columns.filter(column => {
-	    return column.id === column_id;
-	})
+	    return column.id === new_column_id;
+	});
 	const task = column[0].tasks.filter(task => {
-	    return task.id === task_id;
-	})
-        this.handleUpdate(task_id, task[0]);
+	    return task.id === process_task.id;
+	});
+        this.handleUpdate(process_task.id, task[0]);
 	// --- ---
     }
 
@@ -138,7 +137,7 @@ class Board extends React.Component {
 		    if(task.id === task_id) {
 			task[key] = value;
 		    }
-		})
+		});
 	    }
 	});
 
@@ -149,10 +148,10 @@ class Board extends React.Component {
 	// Crap ---
 	const column = columns.filter(column => {
 	    return column.id === column_id;
-	})
+	});
 	const task = column[0].tasks.filter(task => {
 	    return task.id === task_id;
-	})
+	});
         this.handleUpdate(task_id, task[0]);
 	// --- ---
     }
@@ -178,20 +177,20 @@ class Board extends React.Component {
     render () {
         const { error, columns } = this.state;
         return (
-		<div className="Board">
-		{this.state.columns.map(column =>
-					<Column key={column.id}
-					id={column.id}
-					name={column.name}
-					tasks={column.tasks}
-					handleCreate={this.handleCreate}
-                                        handleDelete={this.handleDelete}
-					handleChange={this.handleChange}
-					handleValueChange={this.handleValueChange}
-					/>
-                                       )}
-		<button className="Column-add-button btn btn-outline-primary">+</button>
-		</div>
+	    <div className="Board">
+	      {this.state.columns.map(column =>
+				      <Column key={column.id}
+					      id={column.id}
+					      name={column.name}
+					      tasks={column.tasks}
+					      handleCreate={this.handleCreate}
+                                              handleDelete={this.handleDelete}
+					      handleChange={this.handleChange}
+					      handleValueChange={this.handleValueChange}
+				      />
+                                     )}
+	      <button className="Column-add-button btn btn-outline-primary">+</button>
+	    </div>
         );
     }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Time from "./Time.js"
+import Time from "./Time.js";
 import "./Card.css";
 
 class Card extends React.Component {
@@ -12,7 +12,7 @@ class Card extends React.Component {
                 name: this.props.name,
                 description: this.props.description,
             }
-        }
+        };
     }
 
     componentDidMount() {
@@ -64,14 +64,14 @@ class Card extends React.Component {
                         </button>
                       </li>
                       <li>
-                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange(this.props.column_id - 1, "column_id", this.props.id, this.props.column_id)} tabIndex="-1" >
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id, this.props.column_id, this.props.column_id - 1)} tabIndex="-1" >
                           <span className="material-icons">
                             keyboard_backspace
                           </span>
                         </button>
                       </li>
                       <li>
-                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange(this.props.column_id + 1, "column_id", this.props.id, this.props.column_id)} tabIndex="-1" >
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id, this.props.column_id, this.props.column_id + 1)} tabIndex="-1" >
                           <span className="material-icons">
                             arrow_right_alt
                           </span>
@@ -91,4 +91,4 @@ Card.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string
 };
-export default Card
+export default Card;
