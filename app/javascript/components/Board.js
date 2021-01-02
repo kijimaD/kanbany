@@ -33,11 +33,12 @@ class Board extends React.Component {
             );
     }
 
-    handleCreate(column_id, name=""){
+    handleCreate(column_id, name="", color=""){
         let body = JSON.stringify({
             task: {
                 column_id: column_id,
-		name: name
+		name: name,
+		color: color,
             }
         });
         fetch(`/api/v1/tasks`,
