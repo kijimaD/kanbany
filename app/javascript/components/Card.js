@@ -64,14 +64,14 @@ class Card extends React.Component {
                         </button>
                       </li>
                       <li>
-                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id, this.props.column_id, this.props.column_id - 1)} tabIndex="-1" >
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id - 1, this.props.column_id, this.props.column_id - 1)} tabIndex="-1" >
                           <span className="material-icons">
                             keyboard_backspace
                           </span>
                         </button>
                       </li>
                       <li>
-                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id, this.props.column_id, this.props.column_id + 1)} tabIndex="-1" >
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id + 1, this.props.column_id, this.props.column_id + 1)} tabIndex="-1" >
                           <span className="material-icons">
                             arrow_right_alt
                           </span>
