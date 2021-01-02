@@ -6,9 +6,9 @@ class Time extends React.Component {
     render () {
         const timeString = moment(this.props.time).fromNow();
         return (
-            <span className="time">
-              {timeString}
-            </span>
+	    <span className="text-left px-1">
+	      {timeString}
+	    </span>
         );
     }
 }

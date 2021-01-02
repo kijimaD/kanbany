@@ -1,35 +1,17 @@
-.Card {
-    height: 100px;
-    margin: 16px 8px;
-    padding: 4px;
-}
-
-.CardHeader {
-    border-bottom: 4px solid black;
-    margin-bottom: 4px;
-    font-weight: 900;
-    min-height: 2em;
-}
-
 .CardContent {
-    min-height: 2em;
-}
-
-.CardFooter {
+    border-left: 2px solid black;
 }
 
 .ContentButton {
-    width: 3em;
     border: none;
 }
 
 .MenuButton {
-    border: none !important;
     color: black !important;
 }
 
 .MenuButton:hover {
-    border: none !important;
+
     color: white !important;
 }
 
