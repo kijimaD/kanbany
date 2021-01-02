@@ -27,9 +27,9 @@ class Card extends React.Component {
                     </small>
                   </div> {/* col */}
 
-                  <div className="col-4">
+                  <div className="col-4 p-0">
                     <div className="dropright drop-hover text-right">
-                      <button className="btn btn-outline-warning border-0 my-0 py-0 text-dark" data-toggle="dropdown" tabIndex="-1">
+                      <button className="btn btn-outline-warning border-0 my-0 pr-0 text-dark" data-toggle="dropdown" tabIndex="-1">
                         <span className="material-icons">
                           layers
                         </span>

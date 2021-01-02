@@ -1,3 +1,7 @@
+.Card {
+    margin: 0 8px;
+}
+
 .Description {
     border-bottom: 4px solid black;
 }
