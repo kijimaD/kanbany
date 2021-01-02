@@ -1,19 +1,8 @@
-.CardContent {
-    border-left: 2px solid black;
+.Description {
+    border-bottom: 4px solid black;
 }
 
-.ContentButton {
-    border: none;
-}
-
-.MenuButton {
-    color: black !important;
-}
-
-.MenuButton:hover {
-
-    color: white !important;
-}
+/* input */
 
 input {
     width: 100%;
@@ -21,13 +10,14 @@ input {
 }
 
 input:hover {
-    border-radius: 1em;
     background-color: whitesmoke;
 }
 
 input:focus {
     outline: none;
 }
+
+/* icon font */
 
 .material-icons.transform {
     transform: scale(-1, 1);
@@ -41,4 +31,8 @@ input:focus {
     border: none !important;
     border-left: 4px solid orange !important;
     border-radius: 0 !important;
+}
+
+.dropdown-menu li{
+    margin: 2px;
 }
