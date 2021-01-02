@@ -161,7 +161,8 @@ class Board extends React.Component {
 	    task: {
 		column_id: task.column_id,
 		name: task.name,
-		description: task.description
+                color: task.color,
+		description: task.description,
 	    }
 	});
         fetch(`/api/v1/tasks/${id}`,

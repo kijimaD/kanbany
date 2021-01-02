@@ -6,17 +6,7 @@ import "./Card.css";
 class Card extends React.Component {
 
     constructor(props){
-        super(props)
-        this.state = {
-            form: {
-                name: this.props.name,
-                description: this.props.description,
-            }
-        };
-    }
-
-    componentDidMount() {
-
+        super(props);
     }
 
     render () {
@@ -25,7 +15,7 @@ class Card extends React.Component {
               <div className="row">
 
                 <div className="col-10 px-0">
-	          <div className="CardHeader" style={{ borderBottomColor: 'black' }}>
+	          <div className="CardHeader" style={{ borderBottomColor: this.props.card.color }}>
                     <input type="text" value={this.props.name} placeholder="Title" onChange={e=>this.props.handleChange(e, "name", this.props.id, this.props.column_id)} />
 	          </div>
 
@@ -74,6 +64,13 @@ class Card extends React.Component {
                         <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id + 1, this.props.column_id, this.props.column_id + 1)} tabIndex="-1" >
                           <span className="material-icons">
                             arrow_right_alt
+                          </span>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="ContentButton btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("color", this.props.card, "orange", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <span className="material-icons">
+                            format_paint
                           </span>
                         </button>
                       </li>
