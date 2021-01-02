@@ -6,28 +6,21 @@ import "./Column.css";
 class Column extends React.Component {
     constructor(props){
         super(props);
-        this.state = {
-            initialTasks: this.props.tasks,
-            tasks:[],
-        };
-    }
-
-    componentDidMount(){
-        this.setState({tasks: this.state.initialTasks});
     }
 
     render () {
         return (
 	    <div className="Column">
 	      <div className="ColumnHeader">
-                <small className="HeaderName text-primary">{this.props.name}</small>
-                <button className="HeaderButton btn btn-sm btn-outline-secondary" onClick={() => this.props.handleCreate(this.props.id)} tabIndex="-1">
+                <small className="text-dark">{this.props.name}</small>
+                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.id)} tabIndex="-1">
                   <i className="fas fa-bolt"></i>
                   <span className="material-icons">
                     flash_on
                   </span>
                 </button>
-	      </div>
+	      </div> {/* ColumnHeader */}
+
 	      <div className="ColumnContent">
 		{this.props.tasks.map(task =>
                                       <Card key={task.id}
@@ -44,8 +37,9 @@ class Column extends React.Component {
                                       />
 
                                      )}
-              </div>
-	    </div>
+              </div> {/* ColumnContent */}
+
+	    </div> // Column
         );
     }
 }
