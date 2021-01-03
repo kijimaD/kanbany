@@ -27,14 +27,22 @@ input:focus {
     transform: scale(-1, 1);
 }
 
+.MenuButton {
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    margin: 4px;
+}
+
 /* Bootstrap4 dropdown settings */
+
+.drop-hover .dropdown-menu {
+    box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px !important;
+}
 
 .drop-hover:hover .dropdown-menu {
     display: block !important;
     margin: 0 !important;
     border: none !important;
-    border-left: 4px solid orange !important;
-    border-radius: 0 !important;
 }
 
 .dropdown-menu li{

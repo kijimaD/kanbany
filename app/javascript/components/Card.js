@@ -44,54 +44,54 @@ class Card extends React.Component {
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id - 1, this.props.task.name, this.props.task.color)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id - 1, this.props.task.name, this.props.task.color)} tabIndex="-1" >
                             <span className="material-icons transform">
                               account_tree
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.task.id, this.props.task.column_id)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.task.id, this.props.task.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               delete_sweep
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(-1)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(-1)} tabIndex="-1" >
                             <span className="material-icons">
-                              keyboard_backspace
+                              arrow_left
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(1)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(1)} tabIndex="-1" >
                             <span className="material-icons">
-                              arrow_right_alt
+                              arrow_right
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.task)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.task)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.task)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
-                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.task)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
