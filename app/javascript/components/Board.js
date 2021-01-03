@@ -118,7 +118,7 @@ class Board extends React.Component {
 	this.handleUpdate(process_task);
     }
 
-    handleInputChange(e, key, process_task, column_id){
+    handleInputChange(e, key, process_task){
 	function get() {
 	    try {
 		var target = e.target;
@@ -133,7 +133,7 @@ class Board extends React.Component {
 	var columns = [...this.state.columns];
 
 	columns.map(function(column){
-	    if(column.id === column_id) {
+	    if(column.id === process_task.column_id) {
 		column.tasks.map(function(task){
 		    if(task.id === task.id) {
 			task[key] = value;
