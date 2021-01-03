@@ -21,10 +21,10 @@ class Card extends React.Component {
         return (
             <div className="Card my-2">
               <small>
-                <input type="text" value={this.props.card.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.card.name)} className="text-right text-secondary" />
+                <input type="text" value={this.props.card.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.card)} className="text-right text-secondary" />
               </small>
 
-              <input type="text" value={this.props.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.card)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.card.color }}/>
+              <input type="text" value={this.props.card.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.card)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.card.color }}/>
 
               <div className="container">
                 <div className="row">
