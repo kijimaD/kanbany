@@ -99,7 +99,10 @@ class Card extends React.Component {
                         </li>
                         <li>
                           <small className="text-muted">
-                            Created: <Time time={this.props.created_at}/>
+                            <span className="material-icons" style={{ fontSize: 12 }}>
+                              build
+                            </span>
+                            <Time time={this.props.created_at}/>
                           </small>
                         </li>
                       </ul>
