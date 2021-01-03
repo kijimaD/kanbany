@@ -12,8 +12,8 @@ class Column extends React.Component {
         return (
 	    <div className="Column">
 	      <div className="ColumnHeader">
-                <small className="text-dark">{this.props.name}</small>
-                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.id)} tabIndex="-1">
+                <small className="text-dark">{this.props.column.name}</small>
+                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
                   <i className="fas fa-bolt"></i>
                   <span className="material-icons">
                     flash_on
@@ -24,12 +24,7 @@ class Column extends React.Component {
 	      <div className="ColumnContent">
 		{this.props.tasks.map(task =>
                                       <Card key={task.id}
-                                            id={task.id}
-                                            name={task.name}
-                                            description={task.description}
-                                            created_at={task.created_at}
-                                            card={task}
-                                            column_id={this.props.id}
+                                            task={task}
                                             handleCreate={this.props.handleCreate}
                                             handleDelete={this.props.handleDelete}
                                             handleInputChange={this.props.handleInputChange}

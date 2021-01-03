@@ -170,8 +170,7 @@ class Board extends React.Component {
 	    <div className="Board">
 	      {this.state.columns.map(column =>
 				      <Column key={column.id}
-					      id={column.id}
-					      name={column.name}
+				              column={column}
 					      tasks={column.tasks}
 					      handleCreate={this.handleCreate}
                                               handleDelete={this.handleDelete}
