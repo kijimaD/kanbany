@@ -72,26 +72,26 @@ class Card extends React.Component {
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#ffc107", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.card.id, this.props.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#007bff", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.card.id, this.props.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#dc3545", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.card.id, this.props.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
-                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#28a745", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.card.id, this.props.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>

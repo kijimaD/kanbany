@@ -123,8 +123,16 @@ class Board extends React.Component {
     }
 
     handleInputChange(e, key, task_id, column_id){
-        let target = e.target;
-        let value = target.value;
+	function get() {
+	    try {
+		var target = e.target;
+		var value = target.value;
+		return value
+	    } catch {
+		return e
+	    }}
+
+	var value = get()
 
 	var columns = [...this.state.columns];
 
