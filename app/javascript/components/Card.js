@@ -21,7 +21,7 @@ class Card extends React.Component {
         return (
             <div className="Card my-2">
               <small>
-                <input type="text" value={this.props.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.card)} className="text-right text-secondary" />
+                <input type="text" value={this.props.card.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.card.name)} className="text-right text-secondary" />
               </small>
 
               <input type="text" value={this.props.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.card)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.card.color }}/>
@@ -44,7 +44,7 @@ class Card extends React.Component {
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.props.name, this.props.card.color)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.props.card.name, this.props.card.color)} tabIndex="-1" >
                             <span className="material-icons transform">
                               account_tree
                             </span>
