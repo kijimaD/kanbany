@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Column from "./Column";
 import "./Board.css";
+import moment from 'moment';
 
 class Board extends React.Component {
     constructor(props){
@@ -98,6 +99,7 @@ class Board extends React.Component {
 	var columns = [...this.state.columns];
 
 	process_task[key] = value;
+	process_task['moved_at'] = moment().format()
         columns.map(function(column) {
 	    // delete
             if(column.id === current_column_id) {

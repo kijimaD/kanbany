@@ -31,7 +31,7 @@ class Card extends React.Component {
 
                   <div className="col-8 p-0">
                     <small className="text-secondary">
-                      <Time time={this.props.created_at}/>
+                      <Time time={this.props.card.moved_at}/>
                     </small>
                   </div> {/* col */}
 
@@ -96,6 +96,11 @@ class Card extends React.Component {
                               format_paint
                             </span>
                           </button>
+                        </li>
+                        <li>
+                          <small className="text-muted">
+                            Created: <Time time={this.props.created_at}/>
+                          </small>
                         </li>
                       </ul>
                     </div> {/* dropmenu */}
