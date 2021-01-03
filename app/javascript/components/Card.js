@@ -102,7 +102,7 @@ class Card extends React.Component {
                             <span className="material-icons" style={{ fontSize: 12 }}>
                               build
                             </span>
-                            <Time time={this.props.created_at}/>
+                            <Time time={this.props.card.created_at}/>
                           </small>
                         </li>
                       </ul>
