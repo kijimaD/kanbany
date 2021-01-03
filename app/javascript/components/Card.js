@@ -10,7 +10,7 @@ class Card extends React.Component {
     }
 
     moveColumn(i) {
-        this.props.handleValueChange("column_id",
+        this.props.handleMove("column_id",
                                      this.props.card,
                                      this.props.card.column_id + i,
                                      this.props.card.column_id,

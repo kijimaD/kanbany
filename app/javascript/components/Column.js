@@ -33,7 +33,7 @@ class Column extends React.Component {
                                             handleCreate={this.props.handleCreate}
                                             handleDelete={this.props.handleDelete}
                                             handleInputChange={this.props.handleInputChange}
-                                            handleValueChange={this.props.handleValueChange}
+                                            handleMove={this.props.handleMove}
                                       />
 
                                      )}
