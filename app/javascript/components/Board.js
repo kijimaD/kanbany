@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Column from "./Column";
 import "./Board.css";
+import moment from 'moment';
 
 class Board extends React.Component {
     constructor(props){
@@ -12,8 +13,8 @@ class Board extends React.Component {
         };
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleValueChange = this.handleValueChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleMove = this.handleMove.bind(this);
     }
 
     componentDidMount() {
@@ -94,11 +95,11 @@ class Board extends React.Component {
         });
     }
 
-    handleValueChange(key, process_task, value, current_column_id, new_column_id){
+    handleMove(key, process_task, value, current_column_id, new_column_id){
 	var columns = [...this.state.columns];
 
 	process_task[key] = value;
-
+	process_task['moved_at'] = moment().format()
         columns.map(function(column) {
 	    // delete
             if(column.id === current_column_id) {
@@ -115,27 +116,27 @@ class Board extends React.Component {
             columns: columns
         });
 
-	// Crap ---
-	const column = columns.filter(column => {
-	    return column.id === new_column_id;
-	});
-	const task = column[0].tasks.filter(task => {
-	    return task.id === process_task.id;
-	});
-        this.handleUpdate(process_task.id, task[0]);
-	// --- ---
+	this.handleUpdate(process_task);
     }
 
-    handleChange(e, key, task_id, column_id){
-        let target = e.target;
-        let value = target.value;
+    handleInputChange(e, key, process_task){
+	function get() {
+	    try {
+		var target = e.target;
+		var value = target.value;
+		return value
+	    } catch {
+		return e
+	    }}
+
+	var value = get()
 
 	var columns = [...this.state.columns];
 
 	columns.map(function(column){
-	    if(column.id === column_id) {
+	    if(column.id === process_task.column_id) {
 		column.tasks.map(function(task){
-		    if(task.id === task_id) {
+		    if(task.id === process_task.id) {
 			task[key] = value;
 		    }
 		});
@@ -146,27 +147,14 @@ class Board extends React.Component {
             columns: columns
         });
 
-	// Crap ---
-	const column = columns.filter(column => {
-	    return column.id === column_id;
-	});
-	const task = column[0].tasks.filter(task => {
-	    return task.id === task_id;
-	});
-        this.handleUpdate(task_id, task[0]);
-	// --- ---
+	this.handleUpdate(process_task);
     }
 
-    handleUpdate(id, task){
+    handleUpdate(task){
         let body = JSON.stringify({
-	    task: {
-		column_id: task.column_id,
-		name: task.name,
-                color: task.color,
-		description: task.description,
-	    }
+	    task: task
 	});
-        fetch(`/api/v1/tasks/${id}`,
+        fetch(`/api/v1/tasks/${task.id}`,
               {
                   method: 'PATCH',
                   headers: {
@@ -187,8 +175,8 @@ class Board extends React.Component {
 					      tasks={column.tasks}
 					      handleCreate={this.handleCreate}
                                               handleDelete={this.handleDelete}
-					      handleChange={this.handleChange}
-					      handleValueChange={this.handleValueChange}
+					      handleInputChange={this.handleInputChange}
+					      handleMove={this.handleMove}
 				      />
                                      )}
 	      <button className="Column-add-button btn btn-outline-primary">+</button>

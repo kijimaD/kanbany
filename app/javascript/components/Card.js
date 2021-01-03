@@ -5,25 +5,33 @@ import "./Card.css";
 
 class Card extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+    }
+
+    moveHorizon(i) {
+        this.props.handleMove("column_id",
+                                     this.props.card,
+                                     this.props.card.column_id + i,
+                                     this.props.card.column_id,
+                                     this.props.card.column_id + i);
     }
 
     render () {
         return (
             <div className="Card my-2">
               <small>
-                <input type="text" value={this.props.name} placeholder="Title" onChange={e=>this.props.handleChange(e, "name", this.props.id, this.props.column_id)} className="text-right text-secondary" />
+                <input type="text" value={this.props.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.card)} className="text-right text-secondary" />
               </small>
 
-              <input type="text" value={this.props.description} placeholder="Description" onChange={e=>this.props.handleChange(e, "description", this.props.id, this.props.column_id)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.card.color }}/>
+              <input type="text" value={this.props.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.card)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.card.color }}/>
 
               <div className="container">
                 <div className="row">
 
                   <div className="col-8 p-0">
                     <small className="text-secondary">
-                      <Time time={this.props.created_at}/>
+                      <Time time={this.props.card.moved_at}/>
                     </small>
                   </div> {/* col */}
 
@@ -50,44 +58,49 @@ class Card extends React.Component {
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id - 1, this.props.column_id, this.props.column_id - 1)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(-1)} tabIndex="-1" >
                             <span className="material-icons">
                               keyboard_backspace
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.props.handleValueChange("column_id", this.props.card, this.props.column_id + 1, this.props.column_id, this.props.column_id + 1)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(1)} tabIndex="-1" >
                             <span className="material-icons">
                               arrow_right_alt
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#ffc107", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.card)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#007bff", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.card)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#dc3545", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.card)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
-                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleValueChange("color", this.props.card, "#28a745", this.props.column_id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.card)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
+                        </li>
+                        <li>
+                          <small className="text-muted">
+                            Created: <Time time={this.props.created_at}/>
+                          </small>
                         </li>
                       </ul>
                     </div> {/* dropmenu */}
