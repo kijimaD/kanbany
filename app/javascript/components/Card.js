@@ -9,7 +9,7 @@ class Card extends React.Component {
         super(props);
     }
 
-    moveColumn(i) {
+    moveHorizon(i) {
         this.props.handleMove("column_id",
                                      this.props.card,
                                      this.props.card.column_id + i,
@@ -58,14 +58,14 @@ class Card extends React.Component {
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveColumn(-1)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(-1)} tabIndex="-1" >
                             <span className="material-icons">
                               keyboard_backspace
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveColumn(1)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(1)} tabIndex="-1" >
                             <span className="material-icons">
                               arrow_right_alt
                             </span>
