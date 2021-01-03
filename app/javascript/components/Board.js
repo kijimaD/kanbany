@@ -34,7 +34,7 @@ class Board extends React.Component {
             );
     }
 
-    handleCreate(column_id, name="", color="black"){
+    handleCreate(column_id, name="", color="black", moved_at=moment().format()){
         let body = JSON.stringify({
             task: {
                 column_id: column_id,
