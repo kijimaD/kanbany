@@ -51,7 +51,7 @@ class Card extends React.Component {
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.card.id, this.props.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               delete_sweep
                             </span>

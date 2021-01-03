@@ -24,7 +24,6 @@ class Column extends React.Component {
 	      <div className="ColumnContent">
 		{this.props.tasks.map(task =>
                                       <Card key={task.id}
-                                            id={task.id}
                                             description={task.description}
                                             created_at={task.created_at}
                                             card={task}
