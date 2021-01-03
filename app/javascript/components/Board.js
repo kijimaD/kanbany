@@ -115,14 +115,10 @@ class Board extends React.Component {
             columns: columns
         });
 
-	var task = {
-	    id: process_task.id,
-	}
-	task.[key] = value;
-	this.handleUpdate(process_task.id, task);
+	this.handleUpdate(process_task);
     }
 
-    handleInputChange(e, key, task_id, column_id){
+    handleInputChange(e, key, process_task, column_id){
 	function get() {
 	    try {
 		var target = e.target;
@@ -139,7 +135,7 @@ class Board extends React.Component {
 	columns.map(function(column){
 	    if(column.id === column_id) {
 		column.tasks.map(function(task){
-		    if(task.id === task_id) {
+		    if(task.id === task.id) {
 			task[key] = value;
 		    }
 		});
@@ -150,18 +146,14 @@ class Board extends React.Component {
             columns: columns
         });
 
-	var task = {
-	    id: task_id,
-	}
-	task.[key] = value;
-	this.handleUpdate(task_id, task);
+	this.handleUpdate(process_task);
     }
 
-    handleUpdate(id, task){
+    handleUpdate(task){
         let body = JSON.stringify({
 	    task: task
 	});
-        fetch(`/api/v1/tasks/${id}`,
+        fetch(`/api/v1/tasks/${task.id}`,
               {
                   method: 'PATCH',
                   headers: {
