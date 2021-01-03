@@ -146,26 +146,16 @@ class Board extends React.Component {
             columns: columns
         });
 
-	// Crap ---
-	const column = columns.filter(column => {
-	    return column.id === column_id;
-	});
-	const task = column[0].tasks.filter(task => {
-	    return task.id === task_id;
-	});
-        this.handleUpdate(task_id, task[0]);
-	// --- ---
+	var task = {
+	    id: task_id,
+	}
+	task.[key] = value;
+	this.handleUpdate(task_id, task);
     }
 
     handleUpdate(id, task){
         let body = JSON.stringify({
-	    task: {
-		column_id: task.column_id,
-		name: task.name,
-                color: task.color,
-		description: task.description,
-                moved_at: task.moved_at,
-	    }
+	    task: task
 	});
         fetch(`/api/v1/tasks/${id}`,
               {
