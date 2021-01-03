@@ -115,15 +115,11 @@ class Board extends React.Component {
             columns: columns
         });
 
-	// Crap ---
-	const column = columns.filter(column => {
-	    return column.id === new_column_id;
-	});
-	const task = column[0].tasks.filter(task => {
-	    return task.id === process_task.id;
-	});
-        this.handleUpdate(process_task.id, task[0]);
-	// --- ---
+	var task = {
+	    id: process_task.id,
+	}
+	task.[key] = value;
+	this.handleUpdate(process_task.id, task);
     }
 
     handleChange(e, key, task_id, column_id){
