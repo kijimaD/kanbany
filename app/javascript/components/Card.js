@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Time from "./Time.js";
 import "./Card.css";
+import MenuColorButton from "./MenuColorButton.js";
 
 class Card extends React.Component {
 
@@ -71,31 +72,35 @@ class Card extends React.Component {
                             </span>
                           </button>
                         </li>
-                        <li>
-                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.task)} tabIndex="-1" >
-                            <span className="material-icons">
-                              format_paint
-                            </span>
-                          </button>
+                        <li> {/* warning */}
+                          <MenuColorButton color_code="#ffc107"
+                                           handleInputChange={this.props.handleInputChange}
+                                           task={this.props.task}
+                          />
                         </li>
-                        <li>
-                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.task)} tabIndex="-1" >
-                            <span className="material-icons">
-                              format_paint
-                            </span>
-                          </button>
+                        <li> {/* primary */}
+                          <MenuColorButton color_code="#007bff"
+                                           handleInputChange={this.props.handleInputChange}
+                                           task={this.props.task}
+                          />
                         </li>
-                        <li>
-                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.task)} tabIndex="-1" >
-                            <span className="material-icons">
-                              format_paint
-                            </span>
-                          </button>
-                          <button className="MenuButton btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.task)} tabIndex="-1" >
-                            <span className="material-icons">
-                              format_paint
-                            </span>
-                          </button>
+                        <li> {/* success */}
+                          <MenuColorButton color_code="#28a745"
+                                           handleInputChange={this.props.handleInputChange}
+                                           task={this.props.task}
+                          />
+                        </li>
+                        <li> {/* danger */}
+                          <MenuColorButton color_code="#dc3545"
+                                           handleInputChange={this.props.handleInputChange}
+                                           task={this.props.task}
+                          />
+                        </li>
+                        <li> {/* dark */}
+                          <MenuColorButton color_code="#343a40"
+                                           handleInputChange={this.props.handleInputChange}
+                                           task={this.props.task}
+                          />
                         </li>
                         <li>
                           <small className="text-muted">
