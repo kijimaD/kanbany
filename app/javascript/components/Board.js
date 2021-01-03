@@ -135,7 +135,7 @@ class Board extends React.Component {
 	columns.map(function(column){
 	    if(column.id === process_task.column_id) {
 		column.tasks.map(function(task){
-		    if(task.id === task.id) {
+		    if(task.id === process_task.id) {
 			task[key] = value;
 		    }
 		});
