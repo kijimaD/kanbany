@@ -164,6 +164,7 @@ class Board extends React.Component {
 		name: task.name,
                 color: task.color,
 		description: task.description,
+                moved_at: task.moved_at,
 	    }
 	});
         fetch(`/api/v1/tasks/${id}`,

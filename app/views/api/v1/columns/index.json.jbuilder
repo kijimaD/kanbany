@@ -8,6 +8,8 @@ json.array! @columns do |column|
       json.color task.color
       json.description task.description
       json.created_at task.created_at
+      json.column_id task.column_id
+      json.moved_at task.moved_at
     end
   end
 end
