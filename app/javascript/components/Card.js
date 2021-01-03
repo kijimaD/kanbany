@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Time from "./Time.js";
-import "./Card.css";
 import MenuColorButton from "./MenuColorButton.js";
+import "./Card.css";
 
 class Card extends React.Component {
 
@@ -12,10 +12,10 @@ class Card extends React.Component {
 
     moveHorizon(i) {
         this.props.handleMove("column_id",
-                                     this.props.task,
-                                     this.props.task.column_id + i,
-                                     this.props.task.column_id,
-                                     this.props.task.column_id + i);
+                              this.props.task,
+                              this.props.task.column_id + i,
+                              this.props.task.column_id,
+                              this.props.task.column_id + i);
     }
 
     render () {
@@ -38,9 +38,9 @@ class Card extends React.Component {
 
                   <div className="col-4 p-0">
                     <div className="dropright drop-hover text-right">
-                      <button className="btn btn-outline-warning border-0 my-0 pr-0 text-dark" data-toggle="dropdown" tabIndex="-1">
+                      <button className="btn border-0 my-0 pr-0" data-toggle="dropdown" tabIndex="-1" style={{ color: this.props.task.color }}>
                         <span className="material-icons">
-                          layers
+                          whatshot
                         </span>
                       </button>
                       <ul className="dropdown-menu">

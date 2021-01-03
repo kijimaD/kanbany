@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
 class MenuColorButton extends React.Component {
     render () {
         return (
@@ -14,4 +13,4 @@ class MenuColorButton extends React.Component {
     }
 }
 
-export default MenuColorButton
+export default MenuColorButton;
