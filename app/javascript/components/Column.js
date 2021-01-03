@@ -32,7 +32,7 @@ class Column extends React.Component {
                                             column_id={this.props.id}
                                             handleCreate={this.props.handleCreate}
                                             handleDelete={this.props.handleDelete}
-                                            handleChange={this.props.handleChange}
+                                            handleInputChange={this.props.handleInputChange}
                                             handleValueChange={this.props.handleValueChange}
                                       />
 

@@ -12,7 +12,7 @@ class Board extends React.Component {
         };
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
     }
 
@@ -122,7 +122,7 @@ class Board extends React.Component {
 	this.handleUpdate(process_task.id, task);
     }
 
-    handleChange(e, key, task_id, column_id){
+    handleInputChange(e, key, task_id, column_id){
         let target = e.target;
         let value = target.value;
 
@@ -174,7 +174,7 @@ class Board extends React.Component {
 					      tasks={column.tasks}
 					      handleCreate={this.handleCreate}
                                               handleDelete={this.handleDelete}
-					      handleChange={this.handleChange}
+					      handleInputChange={this.handleInputChange}
 					      handleValueChange={this.handleValueChange}
 				      />
                                      )}
