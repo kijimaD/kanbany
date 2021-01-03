@@ -12,8 +12,8 @@ class Column extends React.Component {
         return (
 	    <div className="Column">
 	      <div className="ColumnHeader">
-                <small className="text-dark">{this.props.name}</small>
-                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.id)} tabIndex="-1">
+                <small className="text-dark">{this.props.column.name}</small>
+                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
                   <i className="fas fa-bolt"></i>
                   <span className="material-icons">
                     flash_on
