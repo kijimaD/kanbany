@@ -24,7 +24,7 @@ class Column extends React.Component {
 	      <div className="ColumnContent">
 		{this.props.tasks.map(task =>
                                       <Card key={task.id}
-                                            card={task}
+                                            task={task}
                                             handleCreate={this.props.handleCreate}
                                             handleDelete={this.props.handleDelete}
                                             handleInputChange={this.props.handleInputChange}

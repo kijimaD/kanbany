@@ -11,27 +11,27 @@ class Card extends React.Component {
 
     moveHorizon(i) {
         this.props.handleMove("column_id",
-                                     this.props.card,
-                                     this.props.card.column_id + i,
-                                     this.props.card.column_id,
-                                     this.props.card.column_id + i);
+                                     this.props.task,
+                                     this.props.task.column_id + i,
+                                     this.props.task.column_id,
+                                     this.props.task.column_id + i);
     }
 
     render () {
         return (
             <div className="Card my-2">
               <small>
-                <input type="text" value={this.props.card.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.card)} className="text-right text-secondary" />
+                <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-right text-secondary" />
               </small>
 
-              <input type="text" value={this.props.card.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.card)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.card.color }}/>
+              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.task.color }}/>
 
               <div className="container">
                 <div className="row">
 
                   <div className="col-8 p-0">
                     <small className="text-secondary">
-                      <Time time={this.props.card.moved_at}/>
+                      <Time time={this.props.task.moved_at}/>
                     </small>
                   </div> {/* col */}
 
@@ -44,14 +44,14 @@ class Card extends React.Component {
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.card.column_id - 1, this.props.card.name, this.props.card.color)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id - 1, this.props.task.name, this.props.task.color)} tabIndex="-1" >
                             <span className="material-icons transform">
                               account_tree
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.card.id, this.props.card.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.task.id, this.props.task.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               delete_sweep
                             </span>
@@ -72,26 +72,26 @@ class Card extends React.Component {
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.card)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-warning text-white" onClick={() => this.props.handleInputChange("#ffc107", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.card)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-primary text-white" onClick={() => this.props.handleInputChange("#007bff", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.card)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-success text-white" onClick={() => this.props.handleInputChange("#28a745", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
                           </button>
-                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.card)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-secondary bg-danger text-white" onClick={() => this.props.handleInputChange("#dc3545", "color", this.props.task)} tabIndex="-1" >
                             <span className="material-icons">
                               format_paint
                             </span>
@@ -102,7 +102,7 @@ class Card extends React.Component {
                             <span className="material-icons" style={{ fontSize: 12 }}>
                               build
                             </span>
-                            <Time time={this.props.card.created_at}/>
+                            <Time time={this.props.task.created_at}/>
                           </small>
                         </li>
                       </ul>
