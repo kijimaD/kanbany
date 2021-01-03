@@ -44,14 +44,14 @@ class Card extends React.Component {
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.column_id - 1, this.props.card.name, this.props.card.color)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.card.column_id - 1, this.props.card.name, this.props.card.color)} tabIndex="-1" >
                             <span className="material-icons transform">
                               account_tree
                             </span>
                           </button>
                         </li>
                         <li>
-                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.card.id, this.props.column_id)} tabIndex="-1" >
+                          <button className="btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.card.id, this.props.card.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               delete_sweep
                             </span>
