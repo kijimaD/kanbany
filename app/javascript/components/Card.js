@@ -35,10 +35,10 @@ class Card extends React.Component {
         return (
             <div className="Card mb-2" style={{ background: this.bgGradient(this.props.task.color) }}>
               <small>
-                <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-right text-secondary" />
+                <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-right text-dark" />
               </small>
 
-              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description h5 mb-0 pb-0" />
+              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-0 pb-0" />
 
               <div className="container">
                 <div className="row">

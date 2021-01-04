@@ -26,8 +26,9 @@ input {
     background-color: transparent;
 }
 
-input:hover {
-    background-color: whitesmoke;
+.Card input:hover {
+    background: rgba(255,255,255,0.4);
+    border-radius: 4%;
 }
 
 input:focus {
