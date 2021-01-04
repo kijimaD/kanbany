@@ -13,7 +13,7 @@ class Board extends React.Component {
         };
 
         // Column
-        this.handleColumnUpdate = this.handleColumnUpdate.bind(this);
+        this.handleColumnChange = this.handleColumnChange.bind(this);
         this.handleColumnDelete = this.handleColumnDelete.bind(this);
         // Task ----------
         this.handleCreate = this.handleCreate.bind(this);
@@ -71,12 +71,7 @@ class Board extends React.Component {
         });
     }
 
-    handleColumnUpdate(e, key, column){
-        var target = e.target;
-	var value = target.value;
-
-        column[key] = value;
-
+    handleColumnUpdate(column){
         var body = JSON.stringify({
             column: column
         });
@@ -87,24 +82,25 @@ class Board extends React.Component {
                       'Content-Type': 'application/json'
                   },
                   body: body,
-              })
-            .then((response) => {return response.json();})
-            .then((column) => {
-                this.changeColumn(column);
-            });
+              });
     }
 
-    changeColumn(res_column){
+    handleColumnChange(e, key, arg_column){
+        var target = e.target;
+	var value = target.value;
+
         var columns = [...this.state.columns];
+
         columns.map(function(column){
-            if(column.id === res_column.id) {
-                column = res_column;
+            if(column.id === arg_column.id) {
+                column[key] = value;
             }
         });
 
         this.setState({
             columns: columns
         });
+        this.handleColumnUpdate(arg_column);
     }
 
     handleColumnDelete(id){
@@ -223,10 +219,11 @@ class Board extends React.Component {
 	    try {
 		var target = e.target;
 		var value = target.value;
-		return value
-	    } catch {
-		return e
+		return value;
+	    } catch(f) {
+		return e;
 	    }
+            return "error";	// This line is for syntax checker
         }
 
 	var value = get();
@@ -250,7 +247,7 @@ class Board extends React.Component {
 	this.handleUpdate(process_task);
     }
 
-    handleUpdate(task){
+    handleUpdate(task) {
         let body = JSON.stringify({
 	    task: task
 	});
@@ -273,7 +270,7 @@ class Board extends React.Component {
 				        key={column.id}
 				        column={column}
 				        tasks={column.tasks}
-                                        handleColumnUpdate={this.handleColumnUpdate}
+                                        handleColumnChange={this.handleColumnChange}
                                         handleColumnDelete={this.handleColumnDelete}
 				        handleCreate={this.handleCreate}
                                         handleDelete={this.handleDelete}
