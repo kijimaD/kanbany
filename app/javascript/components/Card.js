@@ -20,7 +20,7 @@ class Card extends React.Component {
 
     render () {
         return (
-            <div className="Card my-2">
+            <div className="Card mb-2">
               <small>
                 <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-right text-secondary" />
               </small>
@@ -31,9 +31,7 @@ class Card extends React.Component {
                 <div className="row">
 
                   <div className="col-8 p-0">
-                    <small className="text-secondary">
-                      <Time time={this.props.task.moved_at}/>
-                    </small>
+
                   </div> {/* col */}
 
                   <div className="col-4 p-0">
@@ -108,6 +106,14 @@ class Card extends React.Component {
                               build
                             </span>
                             <Time time={this.props.task.created_at}/>
+                          </small>
+                        </li>
+                        <li>
+                          <small className="text-muted">
+                            <span className="material-icons" style={{ fontSize: 12 }}>
+                              games
+                            </span>
+                            <Time time={this.props.task.moved_at}/>
                           </small>
                         </li>
                       </ul>
