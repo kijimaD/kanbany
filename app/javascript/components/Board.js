@@ -108,16 +108,19 @@ class Board extends React.Component {
     }
 
     handleColumnDelete(id){
-        fetch(`/api/v1/columns/${id}`,
-              {
-                  method: 'DELETE',
-                  headers: {
-                      'Content-Type': 'application/json'
-                  }
-              })
-	    .then((response) => {
-		this.deleteColumn(id);
-	    });
+        let check = window.confirm('Are you sure you want to delete the column?');
+        if (check){
+            fetch(`/api/v1/columns/${id}`,
+                  {
+                      method: 'DELETE',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      }
+                  })
+	        .then((response) => {
+		    this.deleteColumn(id);
+	        });
+        }
     }
 
     deleteColumn(id){
