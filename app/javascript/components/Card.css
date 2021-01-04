@@ -3,7 +3,12 @@
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;
     border-radius: 98% 2% 98% 2% / 3% 94% 6% 97%;
     background: linear-gradient(150deg, #efec88, #fefabc);
-    /* background: linear-gradient(150deg, #ff7eb9, #ffb1d5); */
+    background: linear-gradient(150deg, #ff7eb9, #ffb1d5);
+
+    /* #efec88 #fefabc */
+    /* #ff7eb9 #ffb1d5 */
+    /* #b9ff7e #ceffa4 */
+    /* #70f1ec #bcfdff */
 }
 
 .Description {
