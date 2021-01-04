@@ -18,7 +18,7 @@ class Api::V1::ColumnsController < ApplicationController
 
   def destroy
     column = Column.find(params[:id])
-    column.delete
+    column.destroy
   end
 
   private
