@@ -1,11 +1,13 @@
 .Card {
     padding: 4px;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    border-radius: 240px 15px 100px 15px / 15px 200px 15px 185px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;
+    border-radius: 98% 2% 98% 2% / 3% 94% 6% 97%;
+    background: linear-gradient(150deg, #efec88, #fefabc);
+    /* background: linear-gradient(150deg, #ff7eb9, #ffb1d5); */
 }
 
 .Description {
-    border-bottom: 2px solid black;
+
 }
 
 /* input */
@@ -13,6 +15,10 @@
 input {
     width: 100%;
     border: none;
+}
+
+.Card input {
+    background-color: transparent;
 }
 
 input:hover {
