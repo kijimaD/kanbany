@@ -29,6 +29,7 @@ class Card extends React.Component {
         case 'blue':
             return "linear-gradient(150deg, #70f1ec, #bcfdff)";
         }
+        return "linear-gradient(150deg, #efec88, #fefabc)";
     }
 
     render () {
