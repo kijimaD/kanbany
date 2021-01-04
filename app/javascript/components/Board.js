@@ -11,6 +11,10 @@ class Board extends React.Component {
             error: null,
             columns: [],
         };
+
+        this.handleColumnCreate = this.handleColumnCreate.bind(this);
+
+        // Task ----------
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,6 +38,39 @@ class Board extends React.Component {
             );
     }
 
+    // Column ----------
+    handleColumnCreate(board_id, name=""){
+        let body = JSON.stringify({
+            column: {
+                board_id: board_id,
+                name: name,
+            }
+        });
+        fetch(`/api/v1/columns`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: body,
+        })
+            .then((response) => {return response.json();})
+            .then((column) => {
+                this.addColumn(column, board_id);
+            });
+    }
+
+    addColumn(column, board_id){
+        var columns = [...this.state.columns];
+        column.tasks = [];
+        columns.push(column);
+
+        this.setState({
+            columns: columns
+        });
+    }
+
+    // Task ----------
     handleCreate(column_id, name="", color="black", moved_at=moment().format()){
         let body = JSON.stringify({
             task: {
@@ -99,7 +136,7 @@ class Board extends React.Component {
 	var columns = [...this.state.columns];
 
 	process_task[key] = value;
-	process_task['moved_at'] = moment().format()
+	process_task['moved_at'] = moment().format();
         columns.map(function(column) {
 	    // delete
             if(column.id === current_column_id) {
@@ -127,9 +164,10 @@ class Board extends React.Component {
 		return value
 	    } catch {
 		return e
-	    }}
+	    }
+        }
 
-	var value = get()
+	var value = get();
 
 	var columns = [...this.state.columns];
 
@@ -178,8 +216,8 @@ class Board extends React.Component {
 					      handleMove={this.handleMove}
 				      />
                                      )}
-	      <button className="Column-add-button btn btn-outline-primary">+</button>
-	    </div>
+	      <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
+            </div>
         );
     }
 }
