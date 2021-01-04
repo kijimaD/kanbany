@@ -36,16 +36,16 @@ class Card extends React.Component {
         return (
             <div className="Card mb-2" style={{ background: this.bgGradient(this.props.task.color) }}>
 
-              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-0 pb-0" />
+              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-2 pb-0" />
 
               <div className="container">
                 <div className="row">
 
-                  <div className="col-8 p-0 d-flex align-items-end">
-                    <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-dark small" />
+                  <div className="col-10 p-0 d-flex align-items-end">
+                    <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-dark small border-top border-dark" />
                   </div> {/* col */}
 
-                  <div className="col-4 p-0">
+                  <div className="col-2 p-0">
                     <div className="dropright drop-hover text-right">
                       <button className="btn border-0 my-0 pr-0 pb-0" data-toggle="dropdown" tabIndex="-1">
                         <span className="material-icons text-dark">
