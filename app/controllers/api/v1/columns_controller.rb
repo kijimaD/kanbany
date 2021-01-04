@@ -16,6 +16,11 @@ class Api::V1::ColumnsController < ApplicationController
     render json: column
   end
 
+  def destroy
+    column = Column.find(params[:id])
+    column.delete
+  end
+
   private
 
   def column_params
