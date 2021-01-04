@@ -10,6 +10,12 @@ class Api::V1::ColumnsController < ApplicationController
     render json: column
   end
 
+  def update
+    column = Column.find(params[:id])
+    column.update(column_params)
+    render json: column
+  end
+
   private
 
   def column_params

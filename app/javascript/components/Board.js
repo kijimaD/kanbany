@@ -12,7 +12,8 @@ class Board extends React.Component {
             columns: [],
         };
 
-        this.handleColumnCreate = this.handleColumnCreate.bind(this);
+        // Column
+        this.handleColumnUpdate = this.handleColumnUpdate.bind(this);
 
         // Task ----------
         this.handleCreate = this.handleCreate.bind(this);
@@ -64,6 +65,42 @@ class Board extends React.Component {
         var columns = [...this.state.columns];
         column.tasks = [];
         columns.push(column);
+
+        this.setState({
+            columns: columns
+        });
+    }
+
+    handleColumnUpdate(e, key, column){
+        var target = e.target;
+	var value = target.value;
+
+        column[key] = value;
+
+        var body = JSON.stringify({
+            column: column
+        });
+        fetch(`/api/v1/columns/${column.id}`,
+              {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              })
+            .then((response) => {return response.json();})
+            .then((column) => {
+                this.changeColumn(column);
+            });
+    }
+
+    changeColumn(res_column){
+        var columns = [...this.state.columns];
+        columns.map(function(column){
+            if(column.id === res_column.id) {
+                column = res_column;
+            }
+        });
 
         this.setState({
             columns: columns
@@ -210,6 +247,7 @@ class Board extends React.Component {
 				      <Column key={column.id}
 				              column={column}
 					      tasks={column.tasks}
+                                              handleColumnUpdate={this.handleColumnUpdate}
 					      handleCreate={this.handleCreate}
                                               handleDelete={this.handleDelete}
 					      handleInputChange={this.handleInputChange}
