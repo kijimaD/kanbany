@@ -1,6 +1,7 @@
 json.array! @columns do |column|
   json.id column.id
   json.name column.name
+  json.board_id column.board_id
   json.tasks do
     json.array! column.tasks do |task|
       json.id task.id

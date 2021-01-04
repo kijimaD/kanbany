@@ -18,27 +18,39 @@ class Card extends React.Component {
                               this.props.task.column_id + i);
     }
 
+    bgGradient(color) {
+        switch (color) {
+        case 'yellow':
+            return "linear-gradient(150deg, #efec88, #fefabc)";
+        case 'pink':
+            return "linear-gradient(150deg, #ff7eb9, #ffb1d5)";
+        case 'green':
+            return "linear-gradient(150deg, #b9ff7e, #ceffa4)";
+        case 'blue':
+            return "linear-gradient(150deg, #70f1ec, #bcfdff)";
+        }
+        return "linear-gradient(150deg, #efec88, #fefabc)";
+    }
+
     render () {
         return (
-            <div className="Card my-2">
+            <div className="Card mb-2" style={{ background: this.bgGradient(this.props.task.color) }}>
               <small>
-                <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-right text-secondary" />
+                <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-right text-dark" />
               </small>
 
-              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description h5 mb-0 pb-0" style={{ borderBottomColor: this.props.task.color }}/>
+              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-0 pb-0" />
 
               <div className="container">
                 <div className="row">
 
                   <div className="col-8 p-0">
-                    <small className="text-secondary">
-                      <Time time={this.props.task.moved_at}/>
-                    </small>
+
                   </div> {/* col */}
 
                   <div className="col-4 p-0">
                     <div className="dropright drop-hover text-right">
-                      <button className="btn border-0 my-0 pr-0" data-toggle="dropdown" tabIndex="-1" style={{ color: this.props.task.color }}>
+                      <button className="btn border-0 my-0 pr-0" data-toggle="dropdown" tabIndex="-1">
                         <span className="material-icons">
                           whatshot
                         </span>
@@ -72,32 +84,26 @@ class Card extends React.Component {
                             </span>
                           </button>
                         </li>
-                        <li> {/* warning */}
-                          <MenuColorButton color_code="#ffc107"
+                        <li>
+                          <MenuColorButton color_code="yellow"
                                            handleInputChange={this.props.handleInputChange}
                                            task={this.props.task}
                           />
                         </li>
-                        <li> {/* primary */}
-                          <MenuColorButton color_code="#007bff"
+                        <li>
+                          <MenuColorButton color_code="blue"
                                            handleInputChange={this.props.handleInputChange}
                                            task={this.props.task}
                           />
                         </li>
-                        <li> {/* success */}
-                          <MenuColorButton color_code="#28a745"
+                        <li>
+                          <MenuColorButton color_code="green"
                                            handleInputChange={this.props.handleInputChange}
                                            task={this.props.task}
                           />
                         </li>
-                        <li> {/* danger */}
-                          <MenuColorButton color_code="#dc3545"
-                                           handleInputChange={this.props.handleInputChange}
-                                           task={this.props.task}
-                          />
-                        </li>
-                        <li> {/* dark */}
-                          <MenuColorButton color_code="#343a40"
+                        <li>
+                          <MenuColorButton color_code="pink"
                                            handleInputChange={this.props.handleInputChange}
                                            task={this.props.task}
                           />
@@ -108,6 +114,14 @@ class Card extends React.Component {
                               build
                             </span>
                             <Time time={this.props.task.created_at}/>
+                          </small>
+                        </li>
+                        <li>
+                          <small className="text-muted">
+                            <span className="material-icons" style={{ fontSize: 12 }}>
+                              games
+                            </span>
+                            <Time time={this.props.task.moved_at}/>
                           </small>
                         </li>
                       </ul>

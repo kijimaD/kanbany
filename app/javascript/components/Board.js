@@ -11,6 +11,11 @@ class Board extends React.Component {
             error: null,
             columns: [],
         };
+
+        // Column
+        this.handleColumnUpdate = this.handleColumnUpdate.bind(this);
+        this.handleColumnDelete = this.handleColumnDelete.bind(this);
+        // Task ----------
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -34,6 +39,100 @@ class Board extends React.Component {
             );
     }
 
+    // Column ----------
+    handleColumnCreate(board_id, name=""){
+        let body = JSON.stringify({
+            column: {
+                board_id: board_id,
+                name: name,
+            }
+        });
+        fetch(`/api/v1/columns`,
+              {
+		  method: 'POST',
+		  headers: {
+                      'Content-Type': 'application/json'
+		  },
+		  body: body,
+              })
+            .then((response) => {return response.json();})
+            .then((column) => {
+                this.addColumn(column, board_id);
+            });
+    }
+
+    addColumn(column, board_id){
+        var columns = [...this.state.columns];
+        column.tasks = [];
+        columns.push(column);
+
+        this.setState({
+            columns: columns
+        });
+    }
+
+    handleColumnUpdate(e, key, column){
+        var target = e.target;
+	var value = target.value;
+
+        column[key] = value;
+
+        var body = JSON.stringify({
+            column: column
+        });
+        fetch(`/api/v1/columns/${column.id}`,
+              {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              })
+            .then((response) => {return response.json();})
+            .then((column) => {
+                this.changeColumn(column);
+            });
+    }
+
+    changeColumn(res_column){
+        var columns = [...this.state.columns];
+        columns.map(function(column){
+            if(column.id === res_column.id) {
+                column = res_column;
+            }
+        });
+
+        this.setState({
+            columns: columns
+        });
+    }
+
+    handleColumnDelete(id){
+        let check = window.confirm('Are you sure you want to delete the column?');
+        if (check){
+            fetch(`/api/v1/columns/${id}`,
+                  {
+                      method: 'DELETE',
+                      headers: {
+                          'Content-Type': 'application/json'
+                      }
+                  })
+	        .then((response) => {
+		    this.deleteColumn(id);
+	        });
+        }
+    }
+
+    deleteColumn(id){
+        var columns = [...this.state.columns];
+	columns = columns.filter((column) => column.id != id);
+
+        this.setState({
+            columns: columns
+        });
+    }
+
+    // Task ----------
     handleCreate(column_id, name="", color="black", moved_at=moment().format()){
         let body = JSON.stringify({
             task: {
@@ -99,7 +198,7 @@ class Board extends React.Component {
 	var columns = [...this.state.columns];
 
 	process_task[key] = value;
-	process_task['moved_at'] = moment().format()
+	process_task['moved_at'] = moment().format();
         columns.map(function(column) {
 	    // delete
             if(column.id === current_column_id) {
@@ -127,9 +226,10 @@ class Board extends React.Component {
 		return value
 	    } catch {
 		return e
-	    }}
+	    }
+        }
 
-	var value = get()
+	var value = get();
 
 	var columns = [...this.state.columns];
 
@@ -169,17 +269,20 @@ class Board extends React.Component {
         return (
 	    <div className="Board">
 	      {this.state.columns.map(column =>
-				      <Column key={column.id}
-				              column={column}
-					      tasks={column.tasks}
-					      handleCreate={this.handleCreate}
-                                              handleDelete={this.handleDelete}
-					      handleInputChange={this.handleInputChange}
-					      handleMove={this.handleMove}
+				      <Column
+				        key={column.id}
+				        column={column}
+				        tasks={column.tasks}
+                                        handleColumnUpdate={this.handleColumnUpdate}
+                                        handleColumnDelete={this.handleColumnDelete}
+				        handleCreate={this.handleCreate}
+                                        handleDelete={this.handleDelete}
+				        handleInputChange={this.handleInputChange}
+				        handleMove={this.handleMove}
 				      />
                                      )}
-	      <button className="Column-add-button btn btn-outline-primary">+</button>
-	    </div>
+	      <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
+            </div>
         );
     }
 }

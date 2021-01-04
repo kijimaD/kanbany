@@ -2,10 +2,14 @@
     width: 240px;
     min-height: 800px;
     float:left;
-    margin: 8px 4px;
+    margin: 8px 8px;
 }
 
 .ColumnHeader {
     margin-bottom: 32px;
     padding: 4px 8px;
+}
+
+.Column input {
+    background-color: transparent;
 }
