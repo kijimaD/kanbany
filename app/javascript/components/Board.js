@@ -12,6 +12,16 @@ class Board extends React.Component {
         this.state = {
             error: null,
             columns: [],
+            items: [
+                {
+                    id: 'gary',
+                    name: 'gary',
+                },
+                {
+                    id: 'mon',
+                    name: 'mon name',
+                }
+            ],
         };
 
         // Column
@@ -22,6 +32,8 @@ class Board extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleMove = this.handleMove.bind(this);
+
+        this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
     }
 
     componentDidMount() {
@@ -277,32 +289,42 @@ class Board extends React.Component {
               });
     }
 
+    handleOnDragEnd(result) {
+        var items = Array.from(this.state.items);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+
+        this.setState({
+            items: items
+        });
+    }
+
     render () {
         const { error, columns } = this.state;
         return (
-	    <DragDropContext>
+	    <DragDropContext onDragEnd={this.handleOnDragEnd}>
 	      <div className="Board">
 
-              <Droppable droppableId="characters">
-                {(provided) => (
-                <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                  {this.chara().map(({id, name}, index) => {
-                      return (
-                          <Draggable key={id} draggableId={id} index={index}>
-                            {(provided) => (
-                          <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-	                    <p>
-                              { name }
-                            </p>
-                          </li>
-                            )}
-                          </Draggable>
-                      );
-                  })}
-                  {provided.placeholder}
-                </ul>
-                )}
-              </Droppable>
+                <Droppable droppableId="characters">
+                  {(provided) => (
+                      <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+                        {this.state.items.map(({id, name}, index) => {
+                            return (
+                                <Draggable key={id} draggableId={id} index={index}>
+                                  {(provided) => (
+                                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+	                                <p>
+                                          { name }
+                                        </p>
+                                      </li>
+                                  )}
+                                </Draggable>
+                            );
+                        })}
+                        {provided.placeholder}
+                      </ul>
+                  )}
+                </Droppable>
 
 	        {this.state.columns.map(column =>
 				        <Column
