@@ -4,6 +4,7 @@ import Column from "./Column";
 import "./Board.css";
 import moment from 'moment';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 class Board extends React.Component {
     constructor(props){
@@ -38,6 +39,20 @@ class Board extends React.Component {
                     });
                 }
             );
+    }
+
+    chara() {
+        const characters = [
+            {
+                id: 'gary',
+                name: 'gary',
+            },
+            {
+                id: 'mon',
+                name: 'mon name',
+            }
+        ];
+        return characters;
     }
 
     // Column ----------
@@ -267,6 +282,27 @@ class Board extends React.Component {
         return (
 	    <DragDropContext>
 	      <div className="Board">
+
+              <Droppable droppableId="characters">
+                {(provided) => (
+                <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
+                  {this.chara().map(({id, name}, index) => {
+                      return (
+                          <Draggable key={id} draggableId={id} index={index}>
+                            {(provided) => (
+                          <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+	                    <p>
+                              { name }
+                            </p>
+                          </li>
+                            )}
+                          </Draggable>
+                      );
+                  })}
+                </ul>
+                )}
+              </Droppable>
+
 	        {this.state.columns.map(column =>
 				        <Column
 				          key={column.id}

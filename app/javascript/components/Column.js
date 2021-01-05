@@ -27,7 +27,7 @@ class Column extends React.Component {
                 </button>
 	      </div> {/* ColumnHeader */}
 
-	      <div className="ColumnContent">
+	        <div className="ColumnContent">
 		{this.props.tasks.map(task =>
                                       <Card key={task.id}
                                             task={task}
@@ -39,7 +39,6 @@ class Column extends React.Component {
 
                                      )}
               </div> {/* ColumnContent */}
-
 	    </div> // Column
         );
     }
