@@ -299,6 +299,7 @@ class Board extends React.Component {
                           </Draggable>
                       );
                   })}
+                  {provided.placeholder}
                 </ul>
                 )}
               </Droppable>
