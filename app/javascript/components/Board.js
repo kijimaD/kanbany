@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Column from "./Column";
 import "./Board.css";
 import moment from 'moment';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 class Board extends React.Component {
     constructor(props){
@@ -264,22 +265,24 @@ class Board extends React.Component {
     render () {
         const { error, columns } = this.state;
         return (
-	    <div className="Board">
-	      {this.state.columns.map(column =>
-				      <Column
-				        key={column.id}
-				        column={column}
-				        tasks={column.tasks}
-                                        handleColumnChange={this.handleColumnChange}
-                                        handleColumnDelete={this.handleColumnDelete}
-				        handleCreate={this.handleCreate}
-                                        handleDelete={this.handleDelete}
-				        handleInputChange={this.handleInputChange}
-				        handleMove={this.handleMove}
-				      />
-                                     )}
-	      <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
-            </div>
+	    <DragDropContext>
+	      <div className="Board">
+	        {this.state.columns.map(column =>
+				        <Column
+				          key={column.id}
+				          column={column}
+				          tasks={column.tasks}
+                                          handleColumnChange={this.handleColumnChange}
+                                          handleColumnDelete={this.handleColumnDelete}
+				          handleCreate={this.handleCreate}
+                                          handleDelete={this.handleDelete}
+				          handleInputChange={this.handleInputChange}
+				          handleMove={this.handleMove}
+				        />
+                                       )}
+	        <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
+	      </div>
+	    </DragDropContext>
         );
     }
 }
