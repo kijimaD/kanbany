@@ -290,9 +290,10 @@ class Board extends React.Component {
     }
 
     handleOnDragEnd(result) {
+        if (!result.destination) return;
         var items = Array.from(this.state.items);
-        const [reorderedItem] = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
+        const [reorderedItem] = items.splice(result.source.index, 1); // Delete
+        items.splice(result.destination.index, 0, reorderedItem); // Add
 
         this.setState({
             items: items

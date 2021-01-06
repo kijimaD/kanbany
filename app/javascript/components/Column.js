@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "./Card.js";
 import "./Column.css";
+import { DragDropContext } from 'react-beautiful-dnd';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 class Column extends React.Component {
     constructor(props){
@@ -27,17 +29,31 @@ class Column extends React.Component {
                 </button>
 	      </div> {/* ColumnHeader */}
 
-	        <div className="ColumnContent">
-		{this.props.tasks.map(task =>
-                                      <Card key={task.id}
-                                            task={task}
-                                            handleCreate={this.props.handleCreate}
-                                            handleDelete={this.props.handleDelete}
-                                            handleInputChange={this.props.handleInputChange}
-                                            handleMove={this.props.handleMove}
-                                      />
-
-                                     )}
+	      <div className="ColumnContent">
+                <DragDropContext>
+                  <Droppable droppableId="cards">
+                    {(provided) => (
+                        <ul className="cards" {...provided.droppableProps} ref={provided.innerRef}>
+		          {this.props.tasks.map((task, index) =>
+                                                <Draggable key={task.id} draggableId={String(task.id)} index={index}>
+                                                  {(provided) => (
+                                                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                                        <Card key={task.id}
+                                                              task={task}
+                                                              handleCreate={this.props.handleCreate}
+                                                              handleDelete={this.props.handleDelete}
+                                                              handleInputChange={this.props.handleInputChange}
+                                                              handleMove={this.props.handleMove}
+                                                        />
+                                                      </li>
+                                                  )}
+                                                </Draggable>
+                                               )}
+                        {provided.placeholder}
+                        </ul>
+                    )}
+                  </Droppable>
+                </DragDropContext>
               </div> {/* ColumnContent */}
 	    </div> // Column
         );
