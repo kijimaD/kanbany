@@ -12,16 +12,6 @@ class Board extends React.Component {
         this.state = {
             error: null,
             columns: [],
-            items: [
-                {
-                    id: 'gary',
-                    name: 'gary',
-                },
-                {
-                    id: 'mon',
-                    name: 'mon name',
-                }
-            ],
         };
 
         // Column
@@ -303,30 +293,7 @@ class Board extends React.Component {
     render () {
         const { error, columns } = this.state;
         return (
-	    <DragDropContext onDragEnd={this.handleOnDragEnd}>
 	      <div className="Board">
-
-                <Droppable droppableId="characters">
-                  {(provided) => (
-                      <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                        {this.state.items.map(({id, name}, index) => {
-                            return (
-                                <Draggable key={id} draggableId={id} index={index}>
-                                  {(provided) => (
-                                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-	                                <p>
-                                          { name }
-                                        </p>
-                                      </li>
-                                  )}
-                                </Draggable>
-                            );
-                        })}
-                        {provided.placeholder}
-                      </ul>
-                  )}
-                </Droppable>
-
 	        {this.state.columns.map(column =>
 				        <Column
 				          key={column.id}
@@ -338,11 +305,11 @@ class Board extends React.Component {
                                           handleDelete={this.handleDelete}
 				          handleInputChange={this.handleInputChange}
 				          handleMove={this.handleMove}
+                                          handleOnDragEnd={this.handleOnDragEnd}
 				        />
                                        )}
 	        <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
 	      </div>
-	    </DragDropContext>
         );
     }
 }
