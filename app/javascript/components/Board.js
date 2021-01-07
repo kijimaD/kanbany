@@ -286,12 +286,18 @@ class Board extends React.Component {
         const column_id = parseInt(result.draggableId.split("-")[0]);
         const task_id = parseInt(result.draggableId.split("-")[1]);
 
-        var items = Array.from(this.state.items);
-        const [reorderedItem] = items.splice(result.source.index, 1); // Delete
-        items.splice(result.destination.index, 0, reorderedItem); // Add
+	var columns = [...this.state.columns];
+
+	columns.map(function(column){
+	    if(column.id === column_id) {
+		const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
+                console.log(reorderedItem)
+                column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
+	    }
+	});
 
         this.setState({
-            items: items
+            columns: columns
         });
     }
 
