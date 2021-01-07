@@ -12,6 +12,7 @@ class Board extends React.Component {
         this.state = {
             error: null,
             columns: [],
+            items: [],
         };
 
         // Column
@@ -281,6 +282,10 @@ class Board extends React.Component {
 
     handleOnDragEnd(result) {
         if (!result.destination) return;
+
+        const column_id = parseInt(result.draggableId.split("-")[0]);
+        const task_id = parseInt(result.draggableId.split("-")[1]);
+
         var items = Array.from(this.state.items);
         const [reorderedItem] = items.splice(result.source.index, 1); // Delete
         items.splice(result.destination.index, 0, reorderedItem); // Add

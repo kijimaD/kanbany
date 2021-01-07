@@ -35,7 +35,7 @@ class Column extends React.Component {
                     {(provided) => (
                         <ul className="cards" {...provided.droppableProps} ref={provided.innerRef}>
 		          {this.props.tasks.map((task, index) =>
-                                                <Draggable key={task.id} draggableId={String(task.id)} index={index}>
+                                                <Draggable key={task.id} draggableId={ String(this.props.column.id) + "-" + String(task.id) } index={index}>
                                                   {(provided) => (
                                                       <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
                                                         <Card key={task.id}
