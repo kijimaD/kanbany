@@ -2,7 +2,7 @@ class Api::V1::ColumnsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    @columns = Column.all
+    @columns = Column.rank(:row_order)
   end
 
   def create

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_07_142640) do
+ActiveRecord::Schema.define(version: 2021_01_07_143047) do
 
   create_table "boards", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_01_07_142640) do
     t.string "name", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "row_order"
     t.index ["board_id"], name: "index_columns_on_board_id"
   end
 
