@@ -291,7 +291,6 @@ class Board extends React.Component {
 	columns.map(function(column){
 	    if(column.id === column_id) {
 		const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
-                console.log(reorderedItem)
                 column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
 	    }
 	});
