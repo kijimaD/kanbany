@@ -30,7 +30,7 @@ class Column extends React.Component {
 	      </div> {/* ColumnHeader */}
 
 	      <div className="ColumnContent">
-                <DragDropContext onDragEnd={this.props.handleOnDragEnd}>
+                <DragDropContext onDragEnd={this.props.handleOnDragEndTask}>
                   <Droppable droppableId="cards">
                     {(provided) => (
                         <ul className="cards" {...provided.droppableProps} ref={provided.innerRef}>

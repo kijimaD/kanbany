@@ -12,19 +12,18 @@ class Board extends React.Component {
         this.state = {
             error: null,
             columns: [],
-            items: [],
         };
 
         // Column
         this.handleColumnChange = this.handleColumnChange.bind(this);
         this.handleColumnDelete = this.handleColumnDelete.bind(this);
+        this.handleOnDragEndColumn = this.handleOnDragEndColumn.bind(this);
         // Task ----------
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleMove = this.handleMove.bind(this);
-
-        this.handleOnDragEnd = this.handleOnDragEnd.bind(this);
+        this.handleOnDragEndTask = this.handleOnDragEndTask.bind(this);
     }
 
     componentDidMount() {
@@ -280,12 +279,25 @@ class Board extends React.Component {
               });
     }
 
-    handleOnDragEnd(result) {
+    handleOnDragEndColumn(result) {
+        if (!result.destination) return;
+
+        const column_id = parseInt(result.draggableId.split("-")[0]);
+	var columns = [...this.state.columns];
+
+	const [reorderedColumn] = columns.splice(result.source.index, 1); // Get tesk
+        columns.splice(result.destination.index, 0, reorderedColumn); // Add
+
+        this.setState({
+            columns: columns
+        });
+    }
+
+    handleOnDragEndTask(result) {
         if (!result.destination) return;
 
         const column_id = parseInt(result.draggableId.split("-")[0]);
         const task_id = parseInt(result.draggableId.split("-")[1]);
-
 	var columns = [...this.state.columns];
 
 	columns.map(function(column){
@@ -315,7 +327,7 @@ class Board extends React.Component {
 
         return (
 	    <div className="Board">
-              <DragDropContext>
+              <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
                 <Droppable droppableId="columns" direction="horizontal">
                   {(provided, snapshot) => (
                       <ul className="columns" {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
@@ -333,7 +345,7 @@ class Board extends React.Component {
                                                           handleDelete={this.handleDelete}
 				                          handleInputChange={this.handleInputChange}
 				                          handleMove={this.handleMove}
-                                                          handleOnDragEnd={this.handleOnDragEnd}
+                                                          handleOnDragEndTask={this.handleOnDragEndTask}
 				                        />
                                                       </li>
                                                   )}
