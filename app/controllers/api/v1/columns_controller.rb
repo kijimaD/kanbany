@@ -24,6 +24,6 @@ class Api::V1::ColumnsController < ApplicationController
   private
 
   def column_params
-    params.require(:column).permit(:id, :name, :board_id)
+    params.require(:column).permit(:id, :name, :board_id, :row_order_position)
   end
 end

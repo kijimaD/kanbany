@@ -291,6 +291,21 @@ class Board extends React.Component {
         this.setState({
             columns: columns
         });
+        this.updateColumnRank(column_id, result.destination.index);
+    }
+
+    updateColumnRank(column_id, index) {
+        let body = JSON.stringify({
+            column: { row_order_position: index }
+        });
+        fetch(`/api/v1/columns/${column_id}`,
+              {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              });
     }
 
     handleOnDragEndTask(result) {
