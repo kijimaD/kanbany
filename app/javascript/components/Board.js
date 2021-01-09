@@ -43,20 +43,6 @@ class Board extends React.Component {
             );
     }
 
-    chara() {
-        const characters = [
-            {
-                id: 'gary',
-                name: 'gary',
-            },
-            {
-                id: 'mon',
-                name: 'mon name',
-            }
-        ];
-        return characters;
-    }
-
     // Column ----------
     handleColumnCreate(board_id, name=""){
         let body = JSON.stringify({
@@ -73,7 +59,7 @@ class Board extends React.Component {
 		  },
 		  body: body,
               })
-            .then((response) => {return response.json();})
+            .then((response) => {return response.json()})
             .then((column) => {
                 this.addColumn(column, board_id);
             });
@@ -357,36 +343,36 @@ class Board extends React.Component {
 
         return (
 	    <div className="Board">
-              <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
-                <Droppable droppableId="columns" direction="horizontal">
-                  {(provided, snapshot) => (
-                      <ul className="columns" {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-	                {this.state.columns.map((column, index) =>
-                                                <Draggable key={column.id} draggableId={ String(column.id) } index={index}>
-                                                  {(provided) => (
-                                                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-				                        <Column
-				                          key={column.id}
-				                          column={column}
-				                          tasks={column.tasks}
-                                                          handleColumnChange={this.handleColumnChange}
-                                                          handleColumnDelete={this.handleColumnDelete}
-				                          handleCreate={this.handleCreate}
-                                                          handleDelete={this.handleDelete}
-				                          handleInputChange={this.handleInputChange}
-				                          handleMove={this.handleMove}
-                                                          handleOnDragEndTask={this.handleOnDragEndTask}
-				                        />
-                                                      </li>
-                                                  )}
-                                                </Draggable>
-                                               )}
-                        {provided.placeholder}
-                      </ul>
-                  )}
-                </Droppable>
-              </DragDropContext>
-	      <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
+            <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
+            <Droppable droppableId="columns" direction="horizontal">
+            {(provided, snapshot) => (
+                <ul className="columns" {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+	        {this.state.columns.map((column, index) =>
+                                        <Draggable key={column.id} draggableId={ String(column.id) } index={index}>
+                                        {(provided) => (
+                                            <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+				            <Column
+				            key={column.id}
+				            column={column}
+				            tasks={column.tasks}
+                                            handleColumnChange={this.handleColumnChange}
+                                            handleColumnDelete={this.handleColumnDelete}
+				            handleCreate={this.handleCreate}
+                                            handleDelete={this.handleDelete}
+				            handleInputChange={this.handleInputChange}
+				            handleMove={this.handleMove}
+                                            handleOnDragEndTask={this.handleOnDragEndTask}
+				                />
+                                            </li>
+                                        )}
+                                        </Draggable>
+                                       )}
+                {provided.placeholder}
+                </ul>
+            )}
+            </Droppable>
+            </DragDropContext>
+	    <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
 	    </div>
         );
     }
