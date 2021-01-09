@@ -331,8 +331,6 @@ class Board extends React.Component {
     render () {
         const { error, columns } = this.state;
 
-
-
         const getListStyle = isDraggingOver => ({
             display: 'flex',
             padding: grid,
@@ -350,7 +348,16 @@ class Board extends React.Component {
 	        {this.state.columns.map((column, index) =>
                                         <Draggable key={column.id} draggableId={ String(column.id) } index={index}>
                                         {(provided) => (
-                                            <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                            <li ref={provided.innerRef} {...provided.draggableProps}>
+                                              <span {...provided.dragHandleProps}
+                                                    style={{
+                                                        display: "inline-block",
+                                                        margin: "0 10px",
+                                                        border: "1px solid black"
+                                                    }}
+                                              >
+                                                Drag
+                                              </span>
 				            <Column
 				            key={column.id}
 				            column={column}
