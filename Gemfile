@@ -32,6 +32,8 @@ gem 'bootstrap', '~> 4.3.1'
 
 gem 'react-rails'
 
+gem 'ranked-model'
+
 group :production do
   gem 'pg'
 end

@@ -156,6 +156,8 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.1)
+    ranked-model (0.4.6)
+      activerecord (>= 4.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -253,6 +255,7 @@ DEPENDENCIES
   pg
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.4)
+  ranked-model
   react-rails
   rspec-rails
   sass-rails (>= 6)
