@@ -58,7 +58,7 @@ class Board extends React.Component {
 		  },
 		  body: body,
               })
-            .then((response) => {return response.json()})
+            .then((response) => {return response.json();})
             .then((column) => {
                 this.addColumn(column, board_id);
             });
@@ -271,6 +271,11 @@ class Board extends React.Component {
         const task_id = parseInt(result.draggableId.split("-")[1]);
 	var columns = [...this.state.columns];
 
+        function getTask() {
+            return columns.filter(column => column.id === column_id)[0].tasks
+                          .filter(task => task.id === task_id)[0];
+        }
+
         if (result.type === "column") {
 	    const [reorderedColumn] = columns.splice(result.source.index, 1);
             columns.splice(result.destination.index, 0, reorderedColumn);
@@ -290,13 +295,27 @@ class Board extends React.Component {
 	            }
 	        });
 
-                this.setState({
-                    columns: columns
-                });
-                this.updateTaskRank(task_id, result.destination.index);
+                this.updateTaskRank(task_id, column_id, result.destination.index);
             } else {
                 // different column
+                this.updateTaskRank(task_id, result.destination.droppableId, result.destination.index);
+                var process_task = getTask();
+
+                columns.map(function(column) {
+	            // delete
+                    if(column.id === column_id) {
+		        column.tasks = column.tasks.filter((task) => task.id != task_id);
+                    }
+	            // add
+	            if(column.id === parseInt(result.destination.droppableId)) {
+                        column.tasks.splice(result.destination.index, 0, process_task); // Add
+	            }
+	        });
             }
+
+            this.setState({
+                columns: columns
+            });
         }
     }
 
@@ -314,10 +333,14 @@ class Board extends React.Component {
               });
     }
 
-    updateTaskRank(task_id, index) {
+    updateTaskRank(task_id, column_id, index) {
         let body = JSON.stringify({
-            task: { row_order_position: index }
+            task: {
+                row_order_position: index,
+                column_id: column_id
+            }
         });
+
         fetch(`/api/v1/tasks/${task_id}`,
               {
                   method: 'PATCH',
