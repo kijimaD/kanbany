@@ -325,6 +325,21 @@ class Board extends React.Component {
         this.setState({
             columns: columns
         });
+        this.updateTaskRank(task_id, result.destination.index);
+    }
+
+    updateTaskRank(task_id, index) {
+        let body = JSON.stringify({
+            task: { row_order_position: index }
+        });
+        fetch(`/api/v1/tasks/${task_id}`,
+              {
+                  method: 'PATCH',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: body,
+              });
     }
 
     render () {
