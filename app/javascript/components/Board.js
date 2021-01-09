@@ -23,7 +23,6 @@ class Board extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleMove = this.handleMove.bind(this);
-        this.handleOnDragEndTask = this.handleOnDragEndTask.bind(this);
     }
 
     componentDidMount() {
@@ -59,7 +58,7 @@ class Board extends React.Component {
 		  },
 		  body: body,
               })
-            .then((response) => {return response.json()})
+            .then((response) => {return response.json();})
             .then((column) => {
                 this.addColumn(column, board_id);
             });
@@ -269,15 +268,55 @@ class Board extends React.Component {
         if (!result.destination) return;
 
         const column_id = parseInt(result.draggableId.split("-")[0]);
+        const task_id = parseInt(result.draggableId.split("-")[1]);
 	var columns = [...this.state.columns];
 
-	const [reorderedColumn] = columns.splice(result.source.index, 1); // Get tesk
-        columns.splice(result.destination.index, 0, reorderedColumn); // Add
+        function getTask() {
+            return columns.filter(column => column.id === column_id)[0].tasks
+                          .filter(task => task.id === task_id)[0];
+        }
 
-        this.setState({
-            columns: columns
-        });
-        this.updateColumnRank(column_id, result.destination.index);
+        if (result.type === "column") {
+	    const [reorderedColumn] = columns.splice(result.source.index, 1);
+            columns.splice(result.destination.index, 0, reorderedColumn);
+
+            this.setState({
+                columns: columns
+            });
+            this.updateColumnRank(column_id, result.destination.index);
+        }
+
+        if (result.type === "card") {
+            if (result.source.droppableId === result.destination.droppableId) {
+	        columns.map(function(column){
+	            if(column.id === column_id) {
+		        const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
+                        column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
+	            }
+	        });
+
+                this.updateTaskRank(task_id, column_id, result.destination.index);
+            } else {
+                // different column
+                this.updateTaskRank(task_id, result.destination.droppableId, result.destination.index);
+                var process_task = getTask();
+
+                columns.map(function(column) {
+	            // delete
+                    if(column.id === column_id) {
+		        column.tasks = column.tasks.filter((task) => task.id != task_id);
+                    }
+	            // add
+	            if(column.id === parseInt(result.destination.droppableId)) {
+                        column.tasks.splice(result.destination.index, 0, process_task); // Add
+	            }
+	        });
+            }
+
+            this.setState({
+                columns: columns
+            });
+        }
     }
 
     updateColumnRank(column_id, index) {
@@ -294,30 +333,14 @@ class Board extends React.Component {
               });
     }
 
-    handleOnDragEndTask(result) {
-        if (!result.destination) return;
-
-        const column_id = parseInt(result.draggableId.split("-")[0]);
-        const task_id = parseInt(result.draggableId.split("-")[1]);
-	var columns = [...this.state.columns];
-
-	columns.map(function(column){
-	    if(column.id === column_id) {
-		const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
-                column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
-	    }
-	});
-
-        this.setState({
-            columns: columns
-        });
-        this.updateTaskRank(task_id, result.destination.index);
-    }
-
-    updateTaskRank(task_id, index) {
+    updateTaskRank(task_id, column_id, index) {
         let body = JSON.stringify({
-            task: { row_order_position: index }
+            task: {
+                row_order_position: index,
+                column_id: column_id
+            }
         });
+
         fetch(`/api/v1/tasks/${task_id}`,
               {
                   method: 'PATCH',
@@ -331,8 +354,6 @@ class Board extends React.Component {
     render () {
         const { error, columns } = this.state;
 
-
-
         const getListStyle = isDraggingOver => ({
             display: 'flex',
             padding: grid,
@@ -343,36 +364,51 @@ class Board extends React.Component {
 
         return (
 	    <div className="Board">
-            <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
-            <Droppable droppableId="columns" direction="horizontal">
-            {(provided, snapshot) => (
-                <ul className="columns" {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-	        {this.state.columns.map((column, index) =>
-                                        <Draggable key={column.id} draggableId={ String(column.id) } index={index}>
-                                        {(provided) => (
-                                            <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-				            <Column
-				            key={column.id}
-				            column={column}
-				            tasks={column.tasks}
-                                            handleColumnChange={this.handleColumnChange}
-                                            handleColumnDelete={this.handleColumnDelete}
-				            handleCreate={this.handleCreate}
-                                            handleDelete={this.handleDelete}
-				            handleInputChange={this.handleInputChange}
-				            handleMove={this.handleMove}
-                                            handleOnDragEndTask={this.handleOnDragEndTask}
-				                />
-                                            </li>
-                                        )}
-                                        </Draggable>
-                                       )}
-                {provided.placeholder}
-                </ul>
-            )}
-            </Droppable>
-            </DragDropContext>
-	    <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
+              <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
+                <Droppable droppableId="column" type="column" direction="horizontal">
+                  {(provided, snapshot) => (
+                      <ul
+                        className="columns"
+                        ref={provided.innerRef}
+                        style={getListStyle(snapshot.isDraggingOver)}
+                      >
+	                {this.state.columns.map((column, index) =>
+                                                <Draggable
+                                                  key={column.id}
+                                                  draggableId={ String(column.id) }
+                                                  index={index}>
+                                                  {(provided, snapshot) => (
+                                                      <li
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}>
+                                                        <span {...provided.dragHandleProps}
+                                                              style={{
+                                                                  border: "1px solid black"
+                                                              }}
+                                                        >
+                                                          Drag
+                                                        </span>
+				                        <Column
+				                          key={column.id}
+				                          column={column}
+				                          tasks={column.tasks}
+                                                          handleColumnChange={this.handleColumnChange}
+                                                          handleColumnDelete={this.handleColumnDelete}
+				                          handleCreate={this.handleCreate}
+                                                          handleDelete={this.handleDelete}
+				                          handleInputChange={this.handleInputChange}
+				                          handleMove={this.handleMove}
+				                        />
+                                                      </li>
+                                                  )}
+                                                </Draggable>
+                                               )}
+                        {provided.placeholder}
+                      </ul>
+                  )}
+                </Droppable>
+              </DragDropContext>
+	      <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
 	    </div>
         );
     }

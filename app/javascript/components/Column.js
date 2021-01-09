@@ -30,30 +30,39 @@ class Column extends React.Component {
 	      </div> {/* ColumnHeader */}
 
 	      <div className="ColumnContent">
-                <DragDropContext onDragEnd={this.props.handleOnDragEndTask}>
-                  <Droppable droppableId="cards">
-                    {(provided) => (
-                        <ul className="cards" {...provided.droppableProps} ref={provided.innerRef}>
-		          {this.props.tasks.map((task, index) =>
-                                                <Draggable key={task.id} draggableId={ String(this.props.column.id) + "-" + String(task.id) } index={index}>
-                                                  {(provided) => (
-                                                      <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                                        <Card key={task.id}
-                                                              task={task}
-                                                              handleCreate={this.props.handleCreate}
-                                                              handleDelete={this.props.handleDelete}
-                                                              handleInputChange={this.props.handleInputChange}
-                                                              handleMove={this.props.handleMove}
-                                                        />
-                                                      </li>
-                                                  )}
-                                                </Draggable>
-                                               )}
+                <Droppable droppableId={ String(this.props.column.id) } type="card">
+                  {(provided, snapshot) => (
+                      <ul
+                        className="cards"
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                      >
+		        {this.props.tasks.map((task, index) =>
+                                              <Draggable
+                                                key={task.id}
+                                                draggableId={ String(this.props.column.id) + "-" + String(task.id) }
+                                                index={index}>
+                                                {(provided, snapshot) => (
+                                                    <li
+                                                      ref={provided.innerRef}
+                                                      {...provided.draggableProps}
+                                                      {...provided.dragHandleProps}>
+                                                      <Card
+                                                        key={task.id}
+                                                        task={task}
+                                                        handleCreate={this.props.handleCreate}
+                                                        handleDelete={this.props.handleDelete}
+                                                        handleInputChange={this.props.handleInputChange}
+                                                        handleMove={this.props.handleMove}
+                                                      />
+                                                    </li>
+                                                )}
+                                              </Draggable>
+                                             )}
                         {provided.placeholder}
-                        </ul>
-                    )}
-                  </Droppable>
-                </DragDropContext>
+                      </ul>
+                  )}
+                </Droppable>
               </div> {/* ColumnContent */}
 	    </div> // Column
         );
