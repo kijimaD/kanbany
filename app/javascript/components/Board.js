@@ -266,18 +266,18 @@ class Board extends React.Component {
     }
 
     handleOnDragEndColumn(result) {
-        if (!result.destination) return;
+        // if (!result.destination) return;
 
-        const column_id = parseInt(result.draggableId.split("-")[0]);
-	var columns = [...this.state.columns];
+        // const column_id = parseInt(result.draggableId.split("-")[0]);
+	// var columns = [...this.state.columns];
 
-	const [reorderedColumn] = columns.splice(result.source.index, 1); // Get tesk
-        columns.splice(result.destination.index, 0, reorderedColumn); // Add
+	// const [reorderedColumn] = columns.splice(result.source.index, 1);
+        // columns.splice(result.destination.index, 0, reorderedColumn);
 
-        this.setState({
-            columns: columns
-        });
-        this.updateColumnRank(column_id, result.destination.index);
+        // this.setState({
+        //     columns: columns
+        // });
+        // this.updateColumnRank(column_id, result.destination.index);
     }
 
     updateColumnRank(column_id, index) {
@@ -342,17 +342,24 @@ class Board extends React.Component {
         return (
 	    <div className="Board">
               <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
-                <Droppable droppableId="columns" direction="horizontal">
+                <Droppable droppableId="column" type="column" direction="horizontal">
                   {(provided, snapshot) => (
-                      <ul className="columns" {...provided.droppableProps} ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
+                      <ul
+                        className="columns"
+                        ref={provided.innerRef}
+                        style={getListStyle(snapshot.isDraggingOver)}
+                      >
 	                {this.state.columns.map((column, index) =>
-                                                <Draggable key={column.id} draggableId={ String(column.id) } index={index}>
-                                                  {(provided) => (
-                                                      <li ref={provided.innerRef} {...provided.draggableProps}>
+                                                <Draggable
+                                                  key={column.id}
+                                                  draggableId={ String(column.id) }
+                                                  index={index}>
+                                                  {(provided, snapshot) => (
+                                                      <li
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}>
                                                         <span {...provided.dragHandleProps}
                                                               style={{
-                                                                  display: "inline-block",
-                                                                  margin: "0 10px",
                                                                   border: "1px solid black"
                                                               }}
                                                         >
