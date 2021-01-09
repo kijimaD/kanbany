@@ -23,7 +23,6 @@ class Board extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleMove = this.handleMove.bind(this);
-        this.handleOnDragEndTask = this.handleOnDragEndTask.bind(this);
     }
 
     componentDidMount() {
@@ -266,18 +265,39 @@ class Board extends React.Component {
     }
 
     handleOnDragEndColumn(result) {
-        // if (!result.destination) return;
+        if (!result.destination) return;
 
-        // const column_id = parseInt(result.draggableId.split("-")[0]);
-	// var columns = [...this.state.columns];
+        const column_id = parseInt(result.draggableId.split("-")[0]);
+        const task_id = parseInt(result.draggableId.split("-")[1]);
+	var columns = [...this.state.columns];
 
-	// const [reorderedColumn] = columns.splice(result.source.index, 1);
-        // columns.splice(result.destination.index, 0, reorderedColumn);
+        if (result.type === "column") {
+	    const [reorderedColumn] = columns.splice(result.source.index, 1);
+            columns.splice(result.destination.index, 0, reorderedColumn);
 
-        // this.setState({
-        //     columns: columns
-        // });
-        // this.updateColumnRank(column_id, result.destination.index);
+            this.setState({
+                columns: columns
+            });
+            this.updateColumnRank(column_id, result.destination.index);
+        }
+
+        if (result.type === "card") {
+            if (result.source.droppableId === result.destination.droppableId) {
+	        columns.map(function(column){
+	            if(column.id === column_id) {
+		        const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
+                        column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
+	            }
+	        });
+
+                this.setState({
+                    columns: columns
+                });
+                this.updateTaskRank(task_id, result.destination.index);
+            } else {
+                // different column
+            }
+        }
     }
 
     updateColumnRank(column_id, index) {
@@ -292,26 +312,6 @@ class Board extends React.Component {
                   },
                   body: body,
               });
-    }
-
-    handleOnDragEndTask(result) {
-        if (!result.destination) return;
-
-        const column_id = parseInt(result.draggableId.split("-")[0]);
-        const task_id = parseInt(result.draggableId.split("-")[1]);
-	var columns = [...this.state.columns];
-
-	columns.map(function(column){
-	    if(column.id === column_id) {
-		const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
-                column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
-	    }
-	});
-
-        this.setState({
-            columns: columns
-        });
-        this.updateTaskRank(task_id, result.destination.index);
     }
 
     updateTaskRank(task_id, index) {
@@ -375,7 +375,6 @@ class Board extends React.Component {
                                                           handleDelete={this.handleDelete}
 				                          handleInputChange={this.handleInputChange}
 				                          handleMove={this.handleMove}
-                                                          handleOnDragEndTask={this.handleOnDragEndTask}
 				                        />
                                                       </li>
                                                   )}
