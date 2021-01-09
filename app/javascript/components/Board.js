@@ -43,20 +43,6 @@ class Board extends React.Component {
             );
     }
 
-    chara() {
-        const characters = [
-            {
-                id: 'gary',
-                name: 'gary',
-            },
-            {
-                id: 'mon',
-                name: 'mon name',
-            }
-        ];
-        return characters;
-    }
-
     // Column ----------
     handleColumnCreate(board_id, name=""){
         let body = JSON.stringify({
@@ -73,7 +59,7 @@ class Board extends React.Component {
 		  },
 		  body: body,
               })
-            .then((response) => {return response.json();})
+            .then((response) => {return response.json()})
             .then((column) => {
                 this.addColumn(column, board_id);
             });
