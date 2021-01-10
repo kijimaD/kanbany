@@ -10,14 +10,6 @@ class Card extends React.Component {
         super(props);
     }
 
-    moveHorizon(i) {
-        this.props.handleMove("column_id",
-                              this.props.task,
-                              this.props.task.column_id + i,
-                              this.props.task.column_id,
-                              this.props.task.column_id + i);
-    }
-
     bgGradient(color) {
         switch (color) {
         case 'yellow':
@@ -54,9 +46,9 @@ class Card extends React.Component {
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                          <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id - 1, this.props.task.name, this.props.task.color)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id, this.props.task.name, this.props.task.color)} tabIndex="-1" >
                             <span className="material-icons transform">
-                              account_tree
+                              copy_all
                             </span>
                           </button>
                         </li>
@@ -64,20 +56,6 @@ class Card extends React.Component {
                           <button className="MenuButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.task.id, this.props.task.column_id)} tabIndex="-1" >
                             <span className="material-icons">
                               delete_sweep
-                            </span>
-                          </button>
-                        </li>
-                        <li>
-                          <button className="MenuButton btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(-1)} tabIndex="-1" >
-                            <span className="material-icons">
-                              arrow_left
-                            </span>
-                          </button>
-                        </li>
-                        <li>
-                          <button className="MenuButton btn btn-lg btn-outline-secondary" onClick={() => this.moveHorizon(1)} tabIndex="-1" >
-                            <span className="material-icons">
-                              arrow_right
                             </span>
                           </button>
                         </li>

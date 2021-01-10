@@ -17,16 +17,29 @@ class Column extends React.Component {
                 <small>
                   <input type="text" value={this.props.column.name} placeholder="Column Title" onChange={e=>this.props.handleColumnChange(e, "name", this.props.column)} className="w-50 mb-0 pb-0" />
                 </small>
-                <button className="btn btn-sm float-right" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" >
+                <button className="btn btn-sm text-primary px-0 float-right" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
                   <span className="material-icons">
-                    clear
+                    add
                   </span>
                 </button>
-                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
-                  <span className="material-icons">
-                    flash_on
-                  </span>
-                </button>
+                {this.props.settingMode &&
+                 <span className="btn btn-sm px-0 material-icons transform float-right" {...this.props.provided.dragHandleProps}>
+                   drag_indicator
+                 </span>
+                }
+                {!this.props.settingMode &&
+                 <span className="btn btn-sm px-0 material-icons transform float-right" {...this.props.provided.dragHandleProps} style={{display: 'none'}}>
+                   drag_indicator
+                 </span>
+                }
+                {this.props.settingMode &&
+                 <button className="btn btn-sm px-0 text-danger float-right" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" >
+                   <span className="material-icons">
+                     clear
+                   </span>
+                 </button>
+                }
+
 	      </div> {/* ColumnHeader */}
 
 	      <div className="ColumnContent">
@@ -53,7 +66,6 @@ class Column extends React.Component {
                                                         handleCreate={this.props.handleCreate}
                                                         handleDelete={this.props.handleDelete}
                                                         handleInputChange={this.props.handleInputChange}
-                                                        handleMove={this.props.handleMove}
                                                       />
                                                     </li>
                                                 )}
