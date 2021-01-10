@@ -17,13 +17,13 @@
 input, textarea {
     width: 100%;
     border: none;
-    overflow: hidden;
-    resize: none;
 }
 
 .Card input, textarea {
     background-color: transparent;
     font-family: 'Yusei Magic', sans-serif;
+    overflow: hidden !important;
+    resize: none !important;
 }
 
 .Card input:hover, textarea:hover {
