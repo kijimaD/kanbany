@@ -16,3 +16,8 @@ li {
     padding: 0;
     list-style: none;
 }
+
+.switch{
+    transform: scale(2);
+    width: 30px;
+}

@@ -12,8 +12,10 @@ class Board extends React.Component {
         this.state = {
             error: null,
             columns: [],
+            settingMode: false
         };
 
+        this.toggleSettingMode = this.toggleSettingMode.bind(this);
         // Column
         this.handleColumnChange = this.handleColumnChange.bind(this);
         this.handleColumnDelete = this.handleColumnDelete.bind(this);
@@ -39,6 +41,13 @@ class Board extends React.Component {
                     });
                 }
             );
+    }
+
+    toggleSettingMode(e) {
+        const mode = e.target.checked;
+        this.setState({
+            settingMode: mode
+        });
     }
 
     // Column ----------
@@ -340,6 +349,7 @@ class Board extends React.Component {
 
         return (
 	    <div className="Board">
+              <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
               <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
                 <Droppable droppableId="column" type="column" direction="horizontal">
                   {(provided, snapshot) => (
@@ -366,6 +376,7 @@ class Board extends React.Component {
 				                          handleCreate={this.handleCreate}
                                                           handleDelete={this.handleDelete}
 				                          handleInputChange={this.handleInputChange}
+                                                          settingMode={this.state.settingMode}
                                                           provided={provided}
 				                        />
                                                       </li>
@@ -373,7 +384,9 @@ class Board extends React.Component {
                                                 </Draggable>
                                                )}
                         {provided.placeholder}
-	                <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{maxWidth: 40}}>+</button>
+                        {this.state.settingMode &&
+	                 <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{maxWidth: 40}}>+</button>
+                        }
                       </ul>
                   )}
                 </Droppable>
