@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import TextareaAutosize from 'react-textarea-autosize';
 import Time from "./Time.js";
 import MenuColorButton from "./MenuColorButton.js";
 import "./Card.css";
@@ -28,7 +29,7 @@ class Card extends React.Component {
         return (
             <div className="Card mb-2" style={{ background: this.bgGradient(this.props.task.color) }}>
 
-              <textarea type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-2 pb-0" sytle={{rows: "2"}}/>
+              <TextareaAutosize type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-2 pb-0" sytle={{rows: "2"}}/>
 
               <div className="container">
                 <div className="row">
