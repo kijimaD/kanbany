@@ -53,7 +53,6 @@ class Column extends React.Component {
                                                         handleCreate={this.props.handleCreate}
                                                         handleDelete={this.props.handleDelete}
                                                         handleInputChange={this.props.handleInputChange}
-                                                        handleMove={this.props.handleMove}
                                                       />
                                                     </li>
                                                 )}
