@@ -22,7 +22,6 @@ class Board extends React.Component {
         this.handleCreate = this.handleCreate.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleMove = this.handleMove.bind(this);
     }
 
     componentDidMount() {
@@ -191,30 +190,6 @@ class Board extends React.Component {
         this.setState({
             columns: columns
         });
-    }
-
-    handleMove(key, process_task, value, current_column_id, new_column_id){
-	var columns = [...this.state.columns];
-
-	process_task[key] = value;
-	process_task['moved_at'] = moment().format();
-        columns.map(function(column) {
-	    // delete
-            if(column.id === current_column_id) {
-		column.tasks = column.tasks.filter((task) => task.id != process_task.id);
-            }
-
-	    // add
-	    if(column.id === new_column_id) {
- 		column.tasks = column.tasks.concat(process_task);
-	    }
-	});
-
-        this.setState({
-            columns: columns
-        });
-
-	this.handleUpdate(process_task);
     }
 
     handleInputChange(e, key, process_task){
@@ -398,7 +373,6 @@ class Board extends React.Component {
 				                          handleCreate={this.handleCreate}
                                                           handleDelete={this.handleDelete}
 				                          handleInputChange={this.handleInputChange}
-				                          handleMove={this.handleMove}
 				                        />
                                                       </li>
                                                   )}
