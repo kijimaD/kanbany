@@ -46,9 +46,9 @@ class Card extends React.Component {
                       </button>
                       <ul className="dropdown-menu">
                         <li>
-                          <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id - 1, this.props.task.name, this.props.task.color)} tabIndex="-1" >
+                          <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id, this.props.task.name, this.props.task.color)} tabIndex="-1" >
                             <span className="material-icons transform">
-                              account_tree
+                              copy_all
                             </span>
                           </button>
                         </li>
