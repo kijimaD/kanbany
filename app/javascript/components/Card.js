@@ -28,13 +28,13 @@ class Card extends React.Component {
         return (
             <div className="Card mb-2" style={{ background: this.bgGradient(this.props.task.color) }}>
 
-              <input type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-2 pb-0" />
+              <textarea type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-2 pb-0" sytle={{rows: "2"}}/>
 
               <div className="container">
                 <div className="row">
 
                   <div className="col-10 p-0 d-flex align-items-end">
-                    <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-dark small border-top border-dark" />
+                    <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-dark small" />
                   </div> {/* col */}
 
                   <div className="col-2 p-0">
