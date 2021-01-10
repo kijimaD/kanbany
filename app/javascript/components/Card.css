@@ -9,7 +9,7 @@
 }
 
 .Description {
-
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 /* input */
@@ -21,7 +21,6 @@ input, textarea {
 
 .Card input, textarea {
     background-color: transparent;
-    font-family: 'Yusei Magic', sans-serif;
     overflow: hidden !important;
     resize: none !important;
 }
