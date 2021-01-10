@@ -308,6 +308,7 @@ class Board extends React.Component {
                     }
 	            // add
 	            if(column.id === parseInt(result.destination.droppableId)) {
+                        process_task.column_id = parseInt(result.destination.droppableId);
                         column.tasks.splice(result.destination.index, 0, process_task); // Add
 	            }
 	        });
