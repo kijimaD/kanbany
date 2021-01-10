@@ -14,9 +14,7 @@ class Column extends React.Component {
         return (
 	    <div className="Column">
 	      <div className="ColumnHeader">
-                <small>
-                  <input type="text" value={this.props.column.name} placeholder="Column Title" onChange={e=>this.props.handleColumnChange(e, "name", this.props.column)} className="w-50 mb-0 pb-0" />
-                </small>
+                  <input type="text" value={this.props.column.name} placeholder="Column Title" onChange={e=>this.props.handleColumnChange(e, "name", this.props.column)} className="mb-0 pb-0 h3" />
                 <button className="btn btn-sm text-primary px-0 float-right" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
                   <span className="material-icons">
                     add
@@ -59,7 +57,8 @@ class Column extends React.Component {
                                                     <li
                                                       ref={provided.innerRef}
                                                       {...provided.draggableProps}
-                                                      {...provided.dragHandleProps}>
+                                                      {...provided.dragHandleProps}
+                                                      tabIndex="-1">
                                                       <Card
                                                         key={task.id}
                                                         task={task}

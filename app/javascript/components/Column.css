@@ -3,13 +3,16 @@
     min-height: 800px;
     float:left;
     margin: 8px 8px;
+    border-left: 4px solid #333;
 }
 
 .ColumnHeader {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     padding: 4px 8px;
+    border-bottom: 4px solid #333;
 }
 
 .Column input {
     background-color: transparent;
+    font-family: 'Yusei Magic', sans-serif;
 }
