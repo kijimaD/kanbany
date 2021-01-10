@@ -22,11 +22,14 @@ class Column extends React.Component {
                     clear
                   </span>
                 </button>
-                <button className="btn btn-sm btn-outline-warning float-right border-0" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
+                <button className="btn btn-sm btn-outline-warning border-0" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
                   <span className="material-icons">
-                    flash_on
+                    add
                   </span>
                 </button>
+                  <span className="material-icons transform" {...this.props.provided.dragHandleProps}>
+                    drag_indicator
+                  </span>
 	      </div> {/* ColumnHeader */}
 
 	      <div className="ColumnContent">

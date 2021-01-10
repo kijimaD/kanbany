@@ -357,13 +357,6 @@ class Board extends React.Component {
                                                       <li
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}>
-                                                        <span {...provided.dragHandleProps}
-                                                              style={{
-                                                                  border: "1px solid black"
-                                                              }}
-                                                        >
-                                                          Drag
-                                                        </span>
 				                        <Column
 				                          key={column.id}
 				                          column={column}
@@ -373,6 +366,7 @@ class Board extends React.Component {
 				                          handleCreate={this.handleCreate}
                                                           handleDelete={this.handleDelete}
 				                          handleInputChange={this.handleInputChange}
+                                                          provided={provided}
 				                        />
                                                       </li>
                                                   )}
