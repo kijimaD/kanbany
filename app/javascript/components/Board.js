@@ -248,7 +248,7 @@ class Board extends React.Component {
 
         function getTask() {
             return columns.filter(column => column.id === column_id)[0].tasks
-                          .filter(task => task.id === task_id)[0];
+                .filter(task => task.id === task_id)[0];
         }
 
         if (result.type === "column") {
@@ -373,11 +373,11 @@ class Board extends React.Component {
                                                 </Draggable>
                                                )}
                         {provided.placeholder}
+	                <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{maxWidth: 40}}>+</button>
                       </ul>
                   )}
                 </Droppable>
               </DragDropContext>
-	      <button className="btn btn-outline-primary float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)}>+</button>
 	    </div>
         );
     }

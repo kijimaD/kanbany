@@ -17,12 +17,7 @@ class Column extends React.Component {
                 <small>
                   <input type="text" value={this.props.column.name} placeholder="Column Title" onChange={e=>this.props.handleColumnChange(e, "name", this.props.column)} className="w-50 mb-0 pb-0" />
                 </small>
-                <button className="btn btn-sm float-right" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" >
-                  <span className="material-icons">
-                    clear
-                  </span>
-                </button>
-                <button className="btn btn-sm btn-outline-warning border-0" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
+                <button className="btn btn-sm" onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex="-1">
                   <span className="material-icons">
                     add
                   </span>
@@ -30,6 +25,11 @@ class Column extends React.Component {
                   <span className="material-icons transform" {...this.props.provided.dragHandleProps}>
                     drag_indicator
                   </span>
+                <button className="btn btn-sm text-danger" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" >
+                  <span className="material-icons">
+                    clear
+                  </span>
+                </button>
 	      </div> {/* ColumnHeader */}
 
 	      <div className="ColumnContent">
