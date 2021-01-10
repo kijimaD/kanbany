@@ -35,7 +35,7 @@ class Card extends React.Component {
                 <div className="row">
 
                   <div className="col-10 p-0 d-flex align-items-end">
-                    <input type="text" value={this.props.task.name} placeholder="Title" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-dark small" />
+                    <input type="text" value={this.props.task.name} placeholder="Category" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-dark small" />
                   </div> {/* col */}
 
                   <div className="col-2 p-0">

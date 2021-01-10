@@ -23,6 +23,7 @@ input, textarea {
 
 .Card input, textarea {
     background-color: transparent;
+    font-family: 'Yusei Magic', sans-serif;
 }
 
 .Card input:hover, textarea:hover {
