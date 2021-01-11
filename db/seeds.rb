@@ -76,6 +76,11 @@ Column.create!(
   board_id: 2,
 )
 
+Column.create!(
+  name: "Month",
+  board_id: 3,
+)
+
 Task.create!(
   name: "Develop Kanbany",
   description: "Add D&D",
