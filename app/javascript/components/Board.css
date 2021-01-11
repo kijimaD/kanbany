@@ -21,3 +21,12 @@ li {
     transform: scale(2);
     width: 30px;
 }
+
+.page-section {
+    padding: 8rem 0;
+}
+
+header.masthead{
+    padding-top: 10rem;
+    padding-bottom: calc(10rem - 4.5rem);
+}
