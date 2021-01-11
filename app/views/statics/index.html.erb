@@ -6,14 +6,14 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Sign in(dummy)</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Sign in</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Masthead-->
-    <header class="masthead" style='background-image: linear-gradient(rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("<%= asset_path('1.jpg') %>");'>
+    <header class="masthead" style='background-image: linear-gradient(rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.6) 100%), url("<%= asset_path('1.png') %>");'>
         <div class="container h-100">
             <div class="row h-100 align-items-left justify-content-left text-left">
                 <div class="col-lg-10 align-self-end">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-50 font-weight-light mb-5">Kanbany allows for easy and clear task management with a focus on personal use.</p>
-                    <a class="btn btn-xl js-scroll-trigger my-4" href="#about" style="background: linear-gradient(150deg, rgb(239, 236, 136), rgb(254, 250, 188))">Sign up</a>
+                    <a class="btn btn-xl btn-success js-scroll-trigger my-4" href="#about">Sign up</a>
                 </div>
             </div>
         </div>
@@ -30,10 +30,10 @@
 	<%= react_component("Board", url: "/api/v1/columns") %>
     </div>
     <!-- Services-->
-    <section class="page-section" id="services" style="background: linear-gradient(150deg, rgb(239, 236, 136), rgb(254, 250, 188))">
+    <section class="page-section" id="services">
         <div class="container">
             <h2 class="text-left mt-0">Core Features</h2>
-            <hr class="divider my-4" />
+            <hr class="divider" />
             <div class="row">
                 <div class="col-lg-3 col-md-6 text-center">
                     <div class="mt-5">
@@ -87,7 +87,7 @@
             <div class="row justify-content-left">
                 <div class="col-lg-8 text-left">
                     <h2 class="mt-0">Let's Get In Touch!</h2>
-                    <hr class="divider my-4" />
+                    <hr class="divider" />
                     <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
                 </div>
             </div>
