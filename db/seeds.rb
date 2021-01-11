@@ -16,6 +16,11 @@ User.create!(
   email: 'test2@examle.com',
 )
 
+User.create!(
+  name: 'Demo User',
+  email: 'test3@examle.com',
+)
+
 Board.create!(
   name: 'Working',
   user_id: 1,
@@ -24,6 +29,11 @@ Board.create!(
 Board.create!(
   name: 'Working',
   user_id: 2,
+)
+
+Board.create!(
+  name: 'Working',
+  user_id: 3,
 )
 
 Column.create!(
