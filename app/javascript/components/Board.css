@@ -30,3 +30,8 @@ header.masthead{
     padding-top: 10rem;
     padding-bottom: calc(10rem - 4.5rem);
 }
+
+hr.divider {
+    border-width: 0.2rem;
+    border-color: #5FB28E;
+}
