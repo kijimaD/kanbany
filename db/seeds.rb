@@ -11,9 +11,19 @@ User.create!(
   email: 'test@examle.com',
 )
 
+User.create!(
+  name: 'Demo User',
+  email: 'test2@examle.com',
+)
+
 Board.create!(
   name: 'Working',
   user_id: 1,
+)
+
+Board.create!(
+  name: 'Working',
+  user_id: 2,
 )
 
 Column.create!(
@@ -36,32 +46,83 @@ Column.create!(
   board_id: 1,
 )
 
+Column.create!(
+  name: "Done",
+  board_id: 2,
+)
+
+Column.create!(
+  name: "Today",
+  board_id: 2,
+)
+
+Column.create!(
+  name: "Week",
+  board_id: 2,
+)
+
+Column.create!(
+  name: "Month",
+  board_id: 2,
+)
+
 Task.create!(
-  name: "Study React",
-  description: "p0-10",
+  name: "Develop Kanbany",
+  description: "Add D&D",
   column_id: 1,
 )
 
 Task.create!(
-  name: "Study Rails",
-  description: "p0-20",
+  name: "Develop Kanbany",
+  description: "Add header",
   column_id: 1,
 )
 
 Task.create!(
-  name: "Study Rails",
-  description: "p20-30",
+  name: "Develop Kanbany",
+  description: "Pagination",
   column_id: 1,
 )
 
 Task.create!(
-  name: "Study English",
-  description: "p300-350",
+  name: "Develop Kanbany",
+  description: "Fix font",
   column_id: 2,
 )
 
 Task.create!(
-  name: "Study Chinese",
+  name: "Read On Lisp",
   description: "p10-50",
   column_id: 2,
+)
+
+Task.create!(
+  name: "Develop Kanbany",
+  description: "Add D&D",
+  column_id: 5,
+)
+
+Task.create!(
+  name: "Develop Kanbany",
+  description: "Add header",
+  column_id: 5,
+)
+
+Task.create!(
+  name: "Develop Kanbany",
+  description: "Pagination",
+  column_id: 5,
+)
+
+Task.create!(
+  name: "Develop Kanbany",
+  description: "Fix font",
+  column_id: 6,
+  color: "pink",
+)
+
+Task.create!(
+  name: "Read On Lisp",
+  description: "p10-50",
+  column_id: 6,
 )

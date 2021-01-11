@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, format: 'json' do
     namespace :v1 do
-      get 'columns/:user_id', to: 'columns#index'
+      get 'columns/:user_id', to: 'columns#index' # temporary
       resources :columns
       resources :tasks
     end
