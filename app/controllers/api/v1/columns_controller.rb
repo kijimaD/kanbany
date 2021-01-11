@@ -2,7 +2,8 @@ class Api::V1::ColumnsController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    @columns = Column.rank(:row_order)
+    user = User.find(params[:user_id])
+    @columns = user.boards.first.columns.rank(:row_order)
   end
 
   def create
@@ -24,6 +25,6 @@ class Api::V1::ColumnsController < ApplicationController
   private
 
   def column_params
-    params.require(:column).permit(:id, :name, :board_id, :row_order_position)
+    params.require(:column).permit(:id, :name, :board_id, :row_order_position, :user_id)
   end
 end

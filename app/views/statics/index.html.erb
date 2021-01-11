@@ -1,111 +1,77 @@
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-1 bg-white" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Kanbany</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">Sign in</a></li>
-                </ul>
+<!-- Masthead-->
+<header class="masthead" style='background-image: linear-gradient(rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.6) 100%), url("<%= asset_path('1.png') %>");'>
+    <div class="container h-100">
+        <div class="row h-100 align-items-left justify-content-left text-left">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">Simple personal task management</h1>
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-50 font-weight-light mb-5">Kanbany allows for easy and clear task management with a focus on personal use.</p>
+                <a class="btn btn-xl btn-success js-scroll-trigger my-4" href="#about">Sign up</a>
             </div>
         </div>
-    </nav>
-
-    <!-- Masthead-->
-    <header class="masthead" style='background-image: linear-gradient(rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.6) 100%), url("<%= asset_path('1.png') %>");'>
-        <div class="container h-100">
-            <div class="row h-100 align-items-left justify-content-left text-left">
-                <div class="col-lg-10 align-self-end">
-                    <h1 class="text-uppercase text-white font-weight-bold">Simple personal task management</h1>
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-50 font-weight-light mb-5">Kanbany allows for easy and clear task management with a focus on personal use.</p>
-                    <a class="btn btn-xl btn-success js-scroll-trigger my-4" href="#about">Sign up</a>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="container">
-	<%= react_component("Board", url: "/api/v1/columns") %>
     </div>
-    <!-- Services-->
-    <section class="page-section" id="services">
-        <div class="container">
-            <h2 class="text-left mt-0">Core Features</h2>
-            <hr class="divider" />
-            <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-			<span class="material-icons mb-4" style="font-size: 500%;">
-			    person
-			</span>
-                        <h3 class="h4 mb-2">Sturdy Themes</h3>
-                        <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-                    </div>
+</header>
+<div class="container-fluid">
+    <%= react_component("Board", url: "/api/v1/columns/2") %>
+</div>
+<!-- Services-->
+<section class="page-section bg-light" id="services">
+    <div class="container-fluid">
+        <h2 class="mt-0">Core Features</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+		    <span class="material-icons mb-4" style="font-size: 500%;">
+			person
+		    </span>
+                    <h3 class="h4 mb-2">Independent, Open Kanban</h3>
+                    <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-			<span class="material-icons mb-4" style="font-size: 500%;">
-			    gamepad
-			</span>
-                        <h3 class="h4 mb-2">Up to Date</h3>
-                        <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                    </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+		    <span class="material-icons mb-4" style="font-size: 500%;">
+			thumb_up_alt
+		    </span>
+                    <h3 class="h4 mb-2">Social</h3>
+                    <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-			<span class="material-icons mb-4" style="font-size: 500%;">
-			    weekend
-			</span>
-                        <h3 class="h4 mb-2">Ready to Publish</h3>
-                        <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-                    </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+		    <span class="material-icons mb-4" style="font-size: 500%;">
+			school
+		    </span>
+                    <h3 class="h4 mb-2">Administrator Function</h3>
+                    <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
                 </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="mt-5">
-			<span class="material-icons mb-4" style="font-size: 500%;">
-			    layers
-			</span>
-                        <h3 class="h4 mb-2">Made with Love</h3>
-                        <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
-                    </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="mt-5">
+		    <span class="material-icons mb-4" style="font-size: 500%;">
+			query_stats
+		    </span>
+                    <h3 class="h4 mb-2">Detailed statistics</h3>
+                    <p class="text-muted mb-0">Is it really open source if it's not made with love?</p>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Call to action-->
-    <!-- <section class="page-section bg-dark text-white">
-         <div class="container text-left">
-         <h2 class="mb-4">Free Sign up!</h2>
-         <a class="btn btn-light btn-xl" href="#">Sign Up Now!</a>
-         </div>
-	 </section> -->
-    <!-- Contact-->
-    <section class="page-section" id="contact">
-        <div class="container">
-            <div class="row justify-content-left">
-                <div class="col-lg-8 text-left">
-                    <h2 class="mt-0">Let's Get In Touch!</h2>
-                    <hr class="divider" />
-                    <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 ml-auto text-left mb-5 mb-lg-0">
-                    <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                    <div>+1 (555) 123-4567</div>
-                </div>
-                <div class="col-lg-4 mr-auto text-left">
-                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-                    <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                    <a class="d-block" href="mailto:contact@yourwebsite.com">contact@yourwebsite.com</a>
-                </div>
+    </div>
+</section>
+<section class="page-section" id="contact">
+    <div class="container-fluid">
+        <div class="row justify-content-left">
+            <div class="col-lg-8 text-left">
+                <h2 class="mt-0">Let's Get In Touch!</h2>
+                <p class="text-muted mb-5">Ready to start your next project with us? Give us a call or send us an email and we will get back to you as soon as possible!</p>
             </div>
         </div>
-    </section>
-    <!-- Footer-->
-    <footer class="bg-light py-5">
-        <div class="container"><div class="small text-left text-muted">Copyright © 2020 Kijimad</div></div>
-    </footer>
-</body>
+        <div class="row">
+            <div class="col-lg-4 mr-auto text-left">
+                <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                <a class="d-block" href="https://github.com/kijimaD">@kijimad</a>
+            </div>
+        </div>
+    </div>
+</section>
