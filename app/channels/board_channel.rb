@@ -8,6 +8,7 @@ class BoardChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-    ActionCable.server.broadcast 'board_channel', message: data['message']
+    # ActionCable.server.broadcast 'board_channel', message: data['message']
+    User.create! email: data['message'], name: data['message']
   end
 end

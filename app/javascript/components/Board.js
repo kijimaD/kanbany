@@ -348,7 +348,7 @@ class Board extends React.Component {
         const grid = 8;
 
         return (
-	    <div className="Board">
+	    <div className="Board" id="Card">
               <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
               <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
                 <Droppable droppableId="column" type="column" direction="horizontal">
