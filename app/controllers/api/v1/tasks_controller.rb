@@ -3,18 +3,21 @@ class Api::V1::TasksController < ApplicationController
 
   def create
     task = Task.create(task_params)
+    SyncBoardJob.perform_later
     render json: task
   end
 
   def update
     task = Task.find(params[:id])
     task.update(task_params)
+    SyncBoardJob.perform_later
     render json: task
   end
 
   def destroy
     task = Task.find(params[:id])
     task.destroy
+    SyncBoardJob.perform_later
   end
 
   private
