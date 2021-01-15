@@ -5,6 +5,7 @@ import "./Board.css";
 import moment from 'moment';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import actionCable from 'actioncable';
 
 class Board extends React.Component {
     constructor(props){
@@ -27,6 +28,7 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
+        this.setupSubscription();
         fetch(this.props.url)
             .then(res => res.json())
             .then(
@@ -41,6 +43,46 @@ class Board extends React.Component {
                     });
                 }
             );
+    }
+
+    componentWillUnmount() {
+        this.deleteOldSubscription();
+    }
+
+    deleteOldSubscription = () => {
+        if (App.cable.subscriptions['subscriptions'].length > 0) {
+            App.cable.subscriptions['subscriptions'].forEach((subscription) => {
+                App.cable.subscriptions.remove(subscription);
+            });
+        }
+    }
+
+    setupSubscription () {
+        var App = {};
+        App.cable = actionCable.createConsumer();
+        App.board = App.cable.subscriptions.create({channel: 'BoardChannel'}, {
+            connected: () => {console.log('connected');},
+            disconnected: () => {console.log('disconnected');},
+            received: () => {
+                console.log('received!');
+
+                fetch(this.props.url)
+                    .then(res => res.json())
+                    .then(
+                        (result) => {
+                            this.setState({
+                                columns: result
+                            });
+                        },
+                        (error) => {
+                            this.setState({
+                                error
+                            });
+                        }
+                    );
+
+            }
+        });
     }
 
     toggleSettingMode(e) {
