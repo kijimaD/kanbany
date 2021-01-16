@@ -6,9 +6,4 @@ class BoardChannel < ApplicationCable::Channel
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
   end
-
-  def speak(data)
-    # ActionCable.server.broadcast 'board_channel', message: data['message']
-    User.create! email: data['message'], name: data['message']
-  end
 end
