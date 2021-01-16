@@ -49,7 +49,7 @@ class Board extends React.Component {
         this.deleteOldSubscription();
     }
 
-    deleteOldSubscription = () => {
+    deleteOldSubscription() {
         if (App.cable.subscriptions['subscriptions'].length > 0) {
             App.cable.subscriptions['subscriptions'].forEach((subscription) => {
                 App.cable.subscriptions.remove(subscription);
@@ -390,7 +390,7 @@ class Board extends React.Component {
         const grid = 8;
 
         return (
-	    <div className="Board" id="Card">
+	    <div className="Board">
               <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
               <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
                 <Droppable droppableId="column" type="column" direction="horizontal">
