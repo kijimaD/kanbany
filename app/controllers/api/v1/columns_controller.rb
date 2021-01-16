@@ -8,18 +8,21 @@ class Api::V1::ColumnsController < ApplicationController
 
   def create
     column = Column.create(column_params)
+    SyncBoardJob.perform_later
     render json: column
   end
 
   def update
     column = Column.find(params[:id])
     column.update(column_params)
+    SyncBoardJob.perform_later
     render json: column
   end
 
   def destroy
     column = Column.find(params[:id])
     column.destroy
+    SyncBoardJob.perform_later
   end
 
   private
