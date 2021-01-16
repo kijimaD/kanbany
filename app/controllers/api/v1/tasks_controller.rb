@@ -23,6 +23,6 @@ class Api::V1::TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:id, :name, :color, :description, :column_id, :moved_at, :row_order_position)
+    params.require(:task).permit(:id, :name, :color, :description, :column_id, :moved_at, :row_order_position, :created_at)
   end
 end
