@@ -29,20 +29,7 @@ class Board extends React.Component {
 
     componentDidMount() {
         this.setupSubscription();
-        fetch(this.props.url)
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        columns: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        error
-                    });
-                }
-            );
+        this.fetchBoard();
     }
 
     componentWillUnmount() {
@@ -65,24 +52,26 @@ class Board extends React.Component {
             disconnected: () => {console.log('disconnected');},
             received: () => {
                 console.log('received!');
-
-                fetch(this.props.url)
-                    .then(res => res.json())
-                    .then(
-                        (result) => {
-                            this.setState({
-                                columns: result
-                            });
-                        },
-                        (error) => {
-                            this.setState({
-                                error
-                            });
-                        }
-                    );
-
+                this.fetchBoard();
             }
         });
+    }
+
+    fetchBoard() {
+        fetch(this.props.url)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    this.setState({
+                        columns: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        error
+                    });
+                }
+            );
     }
 
     toggleSettingMode(e) {
