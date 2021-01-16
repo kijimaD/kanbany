@@ -7,6 +7,8 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import actionCable from 'actioncable';
 
+const DELAY_INTERVAL = 1000;
+
 class Board extends React.Component {
     constructor(props){
         super(props);
@@ -30,6 +32,7 @@ class Board extends React.Component {
     componentDidMount() {
         this.setupSubscription();
         this.fetchBoard();
+        var timer = 0;
     }
 
     componentWillUnmount() {
@@ -139,10 +142,13 @@ class Board extends React.Component {
             }
         });
 
+        clearTimeout(this.timer);
+
         this.setState({
             columns: columns
         });
-        this.handleColumnUpdate(arg_column);
+
+        this.timer = setTimeout(this.handleColumnUpdate, DELAY_INTERVAL, arg_column);
     }
 
     handleColumnDelete(id){
@@ -258,11 +264,13 @@ class Board extends React.Component {
 	    }
 	});
 
+        clearTimeout(this.timer);
+
         this.setState({
             columns: columns
         });
 
-	this.handleUpdate(process_task);
+        this.timer = setTimeout(this.handleUpdate, DELAY_INTERVAL, process_task);
     }
 
     handleUpdate(task) {
