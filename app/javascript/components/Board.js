@@ -177,7 +177,7 @@ class Board extends React.Component {
     }
 
     // Task ----------
-    handleCreate(column_id, name="", color="black", moved_at=moment().format()){
+    handleCreate(column_id, name="", color="black"){
         let body = JSON.stringify({
             task: {
                 column_id: column_id,
@@ -311,6 +311,7 @@ class Board extends React.Component {
 
         if (result.type === "card") {
             if (result.source.droppableId === result.destination.droppableId) {
+                // same column
 	        columns.map(function(column){
 	            if(column.id === column_id) {
 		        const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
@@ -321,7 +322,6 @@ class Board extends React.Component {
                 this.updateTaskRank(task_id, column_id, result.destination.index);
             } else {
                 // different column
-                this.updateTaskRank(task_id, result.destination.droppableId, result.destination.index);
                 var process_task = getTask();
 
                 columns.map(function(column) {
@@ -335,6 +335,9 @@ class Board extends React.Component {
                         column.tasks.splice(result.destination.index, 0, process_task); // Add
 	            }
 	        });
+
+                this.updateTaskRank(task_id, result.destination.droppableId, result.destination.index);
+                this.handleInputChange(moment().format(), "moved_at", process_task);
             }
 
             this.setState({
