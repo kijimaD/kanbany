@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Board, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe Board do
+    it "is valid with user" do
+      user = create(:user)
+      board = create(:board, user: user)
+      expect(board).to be_valid
+    end
+  end
 end
