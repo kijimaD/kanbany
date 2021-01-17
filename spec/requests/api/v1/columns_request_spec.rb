@@ -32,12 +32,26 @@ RSpec.describe "Api::V1::Columns", type: :request do
 
       get "/api/v1/columns/#{user.id}"
       json = JSON.parse(response.body)
-      expect(json[0]["id"]).to eq(board1.id) # 0
-      expect(json[1]["id"]).to eq(board0.id) # 100
+      expect(json[0]['id']).to eq(board1.id) # 0
+      expect(json[1]['id']).to eq(board0.id) # 100
     end
+  end
 
-    it '#index' do
+  describe '#create' do
+    let!(:user) { create(:user) }
+    let!(:board) { create(:board, user: user) }
 
+    context 'valid_params' do
+      specify do
+        valid_params = { name: 'name', board_id: board.id }
+        expect { post '/api/v1/columns', params: { column: valid_params } }.to change(Column, :count).by(+1)
+      end
+    end
+    context 'invalid_params' do
+      specify do
+        invalid_params = { name: 'name' }
+        expect { post '/api/v1/columns', params: { column: invalid_params } }.to change(Column, :count).by(0)
+      end
     end
   end
 end
