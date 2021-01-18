@@ -16,6 +16,9 @@ body {
 
 .ColumnContent {
     height: 72vh;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .Column input {

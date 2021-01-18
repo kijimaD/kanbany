@@ -40,7 +40,7 @@ class Column extends React.Component {
 
 	      </div> {/* ColumnHeader */}
 
-	      <div className="ColumnContent overflow-auto">
+	      <div className="ColumnContent">
                 <Droppable droppableId={ String(this.props.column.id) } type="card">
                   {(provided, snapshot) => (
                       <ul
