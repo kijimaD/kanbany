@@ -41,14 +41,14 @@ RSpec.describe "Api::V1::Columns", type: :request do
     let!(:user) { create(:user) }
     let!(:board) { create(:board, user: user) }
 
-    context 'valid_params' do
+    context 'valid params' do
       specify do
         valid_params = { name: 'name', board_id: board.id }
         expect { post '/api/v1/columns', params: { column: valid_params } }.to change(Column, :count).by(+1)
         expect(response.status).to eq(200)
       end
     end
-    context 'invalid_params' do
+    context 'invalid params' do
       specify do
         invalid_params = { name: 'name' }
         expect { post '/api/v1/columns', params: { column: invalid_params } }.to change(Column, :count).by(0)
