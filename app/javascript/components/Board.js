@@ -391,22 +391,21 @@ class Board extends React.Component {
 
         return (
 	    <div className="Board">
-              <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
-              <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
+	      <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
                 <Droppable droppableId="column" type="column" direction="horizontal">
                   {(provided, snapshot) => (
-                      <ul
+		      <ul
                         className="columns"
                         ref={provided.innerRef}
                         style={getListStyle(snapshot.isDraggingOver)}
-                      >
+		      >
 	                {this.state.columns.map((column, index) =>
                                                 <Draggable
                                                   key={column.id}
                                                   draggableId={ String(column.id) }
                                                   index={index}>
                                                   {(provided, snapshot) => (
-                                                      <li
+						      <li
                                                         ref={provided.innerRef}
                                                         {...provided.draggableProps}>
 				                        <Column
@@ -421,7 +420,7 @@ class Board extends React.Component {
                                                           settingMode={this.state.settingMode}
                                                           provided={provided}
 				                        />
-                                                      </li>
+						      </li>
                                                   )}
                                                 </Draggable>
                                                )}
@@ -432,7 +431,8 @@ class Board extends React.Component {
                       </ul>
                   )}
                 </Droppable>
-              </DragDropContext>
+	      </DragDropContext>
+	      <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
 	    </div>
         );
     }
