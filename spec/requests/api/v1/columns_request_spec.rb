@@ -45,13 +45,35 @@ RSpec.describe "Api::V1::Columns", type: :request do
       specify do
         valid_params = { name: 'name', board_id: board.id }
         expect { post '/api/v1/columns', params: { column: valid_params } }.to change(Column, :count).by(+1)
+        expect(response.status).to eq(200)
       end
     end
     context 'invalid_params' do
       specify do
         invalid_params = { name: 'name' }
         expect { post '/api/v1/columns', params: { column: invalid_params } }.to change(Column, :count).by(0)
+        expect(response.status).to eq(200)
       end
+    end
+  end
+
+  describe '#update' do
+    specify do
+      column = create(:column, name: 'old')
+      put "/api/v1/columns/#{column.id}", params: { column: { name: 'new' } }
+      json = JSON.parse(response.body)
+
+      expect(response.status).to eq(200)
+      expect(json['name']).to eq('new')
+    end
+  end
+
+  describe '#delete' do
+    specify do
+      column = create(:column)
+
+      expect { delete "/api/v1/columns/#{column.id}" }.to change(Column, :count).by(-1)
+      expect(response.status).to eq(204)
     end
   end
 end
