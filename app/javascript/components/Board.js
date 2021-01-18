@@ -7,7 +7,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import actionCable from 'actioncable';
 
-const DELAY_INTERVAL = 1000;
+const DELAY_INTERVAL = 500;
 
 class Board extends React.Component {
     constructor(props){
