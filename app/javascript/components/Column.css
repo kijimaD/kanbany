@@ -3,7 +3,6 @@
     min-height: 400px;
     float:left;
     margin: 8px 8px;
-    border-left: 4px solid #343a40;
 }
 
 .ColumnHeader {
@@ -12,7 +11,21 @@
     border-bottom: 4px solid #343a40;
 }
 
+.ColumnContent {
+    height: 800px;
+}
+
 .Column input {
     background-color: transparent;
     font-family: 'Yusei Magic', sans-serif;
+}
+
+::-webkit-scrollbar{
+    width: 4px;
+
+}
+::-webkit-scrollbar-thumb{
+    background: #343a40;
+    border-radius: 50px;
+
 }
