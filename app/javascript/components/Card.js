@@ -1,12 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
-import Time from "./Time.js";
-import MenuColorButton from "./MenuColorButton.js";
-import "./Card.css";
+import Time from './Time';
+import MenuColorButton from './MenuColorButton';
+import './Card.css';
 
 class Card extends React.Component {
-
     constructor(props) {
         super(props);
     }

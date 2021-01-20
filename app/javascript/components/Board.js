@@ -7,8 +7,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import actionCable from 'actioncable';
 
-const DELAY_INTERVAL = 500;
-
+const DELAY_INTERVAL = 1000;
 class Board extends React.Component {
     constructor(props){
         super(props);
@@ -17,7 +16,6 @@ class Board extends React.Component {
             columns: [],
             settingMode: false
         };
-
         this.toggleSettingMode = this.toggleSettingMode.bind(this);
         // Column
         this.handleColumnChange = this.handleColumnChange.bind(this);
