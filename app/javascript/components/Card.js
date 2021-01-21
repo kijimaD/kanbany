@@ -24,14 +24,15 @@ class Card extends React.Component {
   render() {
     return (
       <div className="Card mb-2 mx-1" style={{ background: this.bgGradient(this.props.task.color) }}>
-        <TextareaAutosize type="text" value={this.props.task.description} placeholder="Description" onChange={e=>this.props.handleInputChange(e, "description", this.props.task)} className="Description mb-2 pb-0 text-dark"/>
+        <TextareaAutosize type="text" value={this.props.task.description} placeholder="Description" onChange={(e) => this.props.handleInputChange(e, 'description', this.props.task)} className="Description mb-2 pb-0 text-dark" />
 
         <div className="container">
           <div className="row">
 
             <div className="col-10 p-0 d-flex align-items-end">
-              <input type="text" value={this.props.task.name} placeholder="Category" onChange={e=>this.props.handleInputChange(e, "name", this.props.task)} className="text-muted small" />
-            </div> {/* col */}
+              <input type="text" value={this.props.task.name} placeholder="Category" onChange={(e) => this.props.handleInputChange(e, 'name', this.props.task)} className="text-muted small" />
+            </div>
+            {/* col */}
 
             <div className="col-2 p-0">
               <div className="dropleft drop-hover text-right">
@@ -42,41 +43,45 @@ class Card extends React.Component {
                 </button>
                 <ul className="dropdown-menu">
                   <li>
-                    <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id, this.props.task.name, this.props.task.color)} tabIndex="-1" >
+                    <button className="MenuButton btn btn-lg btn-outline-primary" onClick={() => this.props.handleCreate(this.props.task.column_id, this.props.task.name, this.props.task.color)} tabIndex="-1">
                       <span className="material-icons transform">
                         copy_all
                       </span>
                     </button>
                   </li>
                   <li>
-                    <button className="MenuButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.task.id, this.props.task.column_id)} tabIndex="-1" >
+                    <button className="MenuButton btn btn-lg btn-outline-danger" onClick={() => this.props.handleDelete(this.props.task.id, this.props.task.column_id)} tabIndex="-1">
                       <span className="material-icons">
                         delete_sweep
                       </span>
                     </button>
                   </li>
                   <li>
-                    <MenuColorButton color_code="yellow"
-                                     handleInputChange={this.props.handleInputChange}
-                                     task={this.props.task}
+                    <MenuColorButton
+                      color_code="yellow"
+                      handleInputChange={this.props.handleInputChange}
+                      task={this.props.task}
                     />
                   </li>
                   <li>
-                    <MenuColorButton color_code="blue"
-                                     handleInputChange={this.props.handleInputChange}
-                                     task={this.props.task}
+                    <MenuColorButton
+                      color_code="blue"
+                      handleInputChange={this.props.handleInputChange}
+                      task={this.props.task}
                     />
                   </li>
                   <li>
-                    <MenuColorButton color_code="green"
-                                     handleInputChange={this.props.handleInputChange}
-                                     task={this.props.task}
+                    <MenuColorButton
+                      color_code="green"
+                      handleInputChange={this.props.handleInputChange}
+                      task={this.props.task}
                     />
                   </li>
                   <li>
-                    <MenuColorButton color_code="pink"
-                                     handleInputChange={this.props.handleInputChange}
-                                     task={this.props.task}
+                    <MenuColorButton
+                      color_code="pink"
+                      handleInputChange={this.props.handleInputChange}
+                      task={this.props.task}
                     />
                   </li>
                   <li>
@@ -95,18 +100,20 @@ class Card extends React.Component {
                       <Time time={this.props.task.moved_at}/>
                     </small>
                   </li>
-                </ul> {/* dropmenu */}
-              </div> {/* dropleft */}
-            </div> {/* col */}
-          </div> {/* row */}
-        </div> {/* container */}
+                </ul>
+                {/* dropmenu */}
+              </div>
+              {/* dropleft */}
+            </div>
+            {/* col */}
+          </div>
+          {/* row */}
+        </div>
+        {/* container */}
       </div>
     );
   }
 }
 
-Card.propTypes = {
-  name: PropTypes.string,
-  description: PropTypes.string
-};
+Card.propTypes = {};
 export default Card;
