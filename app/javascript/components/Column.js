@@ -7,11 +7,22 @@ import './Column.css';
 class Column extends React.Component {
   render() {
     return (
-	    <div className='Column'>
-	      <div className='ColumnHeader'>
-          <input type='text' value={this.props.column.name} placeholder='Column Title' onChange={e=>this.props.handleColumnChange(e, 'name', this.props.column)} className='mb-0 pb-0 h3' />
-          <button className='btn btn-sm text-primary px-0 float-right' onClick={() => this.props.handleCreate(this.props.column.id)} tabIndex='-1'>
-            <span className='material-icons'>
+      <div className="Column">
+        <div className="ColumnHeader">
+          <input
+            type="text"
+            value={this.props.column.name}
+            placeholder="Column Title"
+            onChange={(e) => this.props.handleColumnChange(e, 'name', this.props.column)}
+            className="mb-0 pb-0 h3"
+          />
+          <button
+            className="btn btn-sm text-primary px-0 float-right"
+            onClick={() => this.props.handleCreate(this.props.column.id)}
+            tabIndex="-1"
+            type="button"
+          >
+            <span className="material-icons">
               add
             </span>
           </button>
@@ -32,9 +43,9 @@ class Column extends React.Component {
              </span>
            </button>
           }
-	      </div> {/* ColumnHeader */}
+        </div>
 
-	      <div className='ColumnContent'>
+        <div className='ColumnContent'>
           <Droppable droppableId={ String(this.props.column.id) } type='card'>
             {(provided, snapshot) => (
               <ul
@@ -42,11 +53,12 @@ class Column extends React.Component {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-		            {this.props.tasks.map((task, index) =>
+                {this.props.tasks.map((task, index) => (
                   <Draggable
                     key={task.id}
                     draggableId={ String(this.props.column.id) + '-' + String(task.id) }
-                    index={index}>
+                    index={index}
+                  >
                     {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
@@ -63,13 +75,14 @@ class Column extends React.Component {
                       </li>
                     )}
                   </Draggable>
-                )}
+                ))}
                 {provided.placeholder}
               </ul>
             )}
           </Droppable>
-        </div> {/* ColumnContent */}
-	    </div>
+        </div>
+        { /* Column Content */ }
+      </div>
     );
   }
 }
