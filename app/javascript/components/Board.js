@@ -92,11 +92,11 @@ class Board extends React.Component {
     });
     fetch(`/api/v1/columns`,
           {
-		        method: 'POST',
-		        headers: {
+            method: 'POST',
+            headers: {
               'Content-Type': 'application/json'
-		        },
-		        body: body,
+            },
+            body: body,
     })
       .then((response) => {return response.json();})
       .then((column) => {
@@ -130,7 +130,7 @@ class Board extends React.Component {
 
   handleColumnChange(e, key, arg_column){
     var target = e.target;
-	  var value = target.value;
+    var value = target.value;
 
     var columns = [...this.state.columns];
 
@@ -159,15 +159,15 @@ class Board extends React.Component {
                 'Content-Type': 'application/json'
               }
       })
-	      .then((response) => {
-		      this.deleteColumn(id);
-	      });
+        .then((response) => {
+          this.deleteColumn(id);
+        });
     }
   }
 
   deleteColumn(id){
     var columns = [...this.state.columns];
-	  columns = columns.filter((column) => column.id != id);
+    columns = columns.filter((column) => column.id != id);
 
     this.setState({
       columns: columns
@@ -179,8 +179,8 @@ class Board extends React.Component {
     let body = JSON.stringify({
       task: {
         column_id: column_id,
-		    name: name,
-		    color: color,
+        name: name,
+        color: color,
       }
     });
     fetch(`/api/v1/tasks`,
@@ -227,7 +227,7 @@ class Board extends React.Component {
     var columns = [...this.state.columns];
     columns.map(function(column){
       if(column.id === column_id) {
-		    column.tasks = column.tasks.filter((task) => task.id != task_id);
+        column.tasks = column.tasks.filter((task) => task.id != task_id);
       }
     });
 
@@ -237,30 +237,30 @@ class Board extends React.Component {
   }
 
   handleInputChange(e, key, process_task){
-	  function get() {
-	    try {
-		    var target = e.target;
-		    var value = target.value;
-		    return value;
-	    } catch(f) {
-		    return e;
-	    }
+    function get() {
+      try {
+        var target = e.target;
+        var value = target.value;
+        return value;
+      } catch(f) {
+        return e;
+      }
       return "error";	// This line is for syntax checker
     }
 
-	  var value = get();
+    var value = get();
 
-	  var columns = [...this.state.columns];
+    var columns = [...this.state.columns];
 
-	  columns.map(function(column){
-	    if(column.id === process_task.column_id) {
-		    column.tasks.map(function(task){
-		      if(task.id === process_task.id) {
-			      task[key] = value;
-		      }
-		    });
-	    }
-	  });
+    columns.map(function(column){
+      if(column.id === process_task.column_id) {
+        column.tasks.map(function(task){
+          if(task.id === process_task.id) {
+            task[key] = value;
+          }
+        });
+      }
+    });
 
     clearTimeout(this.timer);
 
@@ -273,8 +273,8 @@ class Board extends React.Component {
 
   handleUpdate(task) {
     let body = JSON.stringify({
-	    task: task
-	  });
+      task: task
+    });
     fetch(`/api/v1/tasks/${task.id}`,
           {
             method: 'PATCH',
@@ -290,7 +290,7 @@ class Board extends React.Component {
 
     const column_id = parseInt(result.draggableId.split("-")[0]);
     const task_id = parseInt(result.draggableId.split("-")[1]);
-	  var columns = [...this.state.columns];
+    var columns = [...this.state.columns];
 
     function getTask() {
       return columns.filter(column => column.id === column_id)[0].tasks
@@ -298,7 +298,7 @@ class Board extends React.Component {
     }
 
     if (result.type === "column") {
-	    const [reorderedColumn] = columns.splice(result.source.index, 1);
+      const [reorderedColumn] = columns.splice(result.source.index, 1);
       columns.splice(result.destination.index, 0, reorderedColumn);
 
       this.setState({
@@ -310,12 +310,12 @@ class Board extends React.Component {
     if (result.type === "card") {
       if (result.source.droppableId === result.destination.droppableId) {
         // same column
-	      columns.map(function(column){
-	        if(column.id === column_id) {
-		        const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
+        columns.map(function(column){
+          if(column.id === column_id) {
+            const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
             column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
-	        }
-	      });
+          }
+        });
 
         this.updateTaskRank(task_id, column_id, result.destination.index);
       } else {
@@ -323,16 +323,16 @@ class Board extends React.Component {
         var process_task = getTask();
 
         columns.map(function(column) {
-	        // delete
+          // delete
           if(column.id === column_id) {
-		        column.tasks = column.tasks.filter((task) => task.id != task_id);
+            column.tasks = column.tasks.filter((task) => task.id != task_id);
           }
-	        // add
-	        if(column.id === parseInt(result.destination.droppableId)) {
+          // add
+          if(column.id === parseInt(result.destination.droppableId)) {
             process_task.column_id = parseInt(result.destination.droppableId);
             column.tasks.splice(result.destination.index, 0, process_task); // Add
-	        }
-	      });
+          }
+        });
 
         this.updateTaskRank(task_id, result.destination.droppableId, result.destination.index);
         this.handleInputChange(moment().format(), "moved_at", process_task);
@@ -388,50 +388,50 @@ class Board extends React.Component {
     const grid = 8;
 
     return (
-	    <div className="Board">
-	      <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
+      <div className="Board">
+        <DragDropContext onDragEnd={this.handleOnDragEndColumn}>
           <Droppable droppableId="column" type="column" direction="horizontal">
             {(provided, snapshot) => (
-		          <ul
+              <ul
                 className="columns"
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
-		          >
-	              {this.state.columns.map((column, index) =>
+              >
+                {this.state.columns.map((column, index) =>
                   <Draggable
                     key={column.id}
                     draggableId={ String(column.id) }
                     index={index}>
                     {(provided, snapshot) => (
-						          <li
+                      <li
                         ref={provided.innerRef}
                         {...provided.draggableProps}>
-				                <Column
-				                  key={column.id}
-				                  column={column}
-				                  tasks={column.tasks}
+                        <Column
+                          key={column.id}
+                          column={column}
+                          tasks={column.tasks}
                           handleColumnChange={this.handleColumnChange}
                           handleColumnDelete={this.handleColumnDelete}
-				                  handleCreate={this.handleCreate}
+                          handleCreate={this.handleCreate}
                           handleDelete={this.handleDelete}
-				                  handleInputChange={this.handleInputChange}
+                          handleInputChange={this.handleInputChange}
                           settingMode={this.state.settingMode}
                           provided={provided}
-				                />
-						          </li>
+                        />
+                      </li>
                     )}
                   </Draggable>
                 )}
                 {provided.placeholder}
                 {this.state.settingMode &&
-	               <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{maxWidth: 40}}>+</button>
+                 <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{maxWidth: 40}}>+</button>
                 }
               </ul>
             )}
           </Droppable>
-	      </DragDropContext>
-	      <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
-	    </div>
+        </DragDropContext>
+        <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
+      </div>
     );
   }
 }
