@@ -14,7 +14,7 @@ class Board extends React.Component {
     this.state = {
       error: null,
       columns: [],
-      settingMode: false
+      settingMode: false,
     };
     this.toggleSettingMode = this.toggleSettingMode.bind(this);
     // Column
@@ -30,108 +30,92 @@ class Board extends React.Component {
   componentDidMount() {
     this.setupSubscription();
     this.fetchBoard();
-    var timer = 0;
   }
 
   componentWillUnmount() {
     this.deleteOldSubscription();
   }
 
+  setupSubscription() {
+    const App = {};
+    App.cable = actionCable.createConsumer();
+    App.board = App.cable.subscriptions.create({ channel: 'BoardChannel' }, {
+      connected: () => { console.log('connected'); },
+      disconnected: () => { console.log('disconnected'); },
+      received: () => {
+        console.log('received!');
+        this.fetchBoard();
+      },
+    });
+  }
+
   deleteOldSubscription() {
-    if (App.cable.subscriptions['subscriptions'].length > 0) {
-      App.cable.subscriptions['subscriptions'].forEach((subscription) => {
+    if (App.cable.subscriptions.subscriptions.length > 0) {
+      App.cable.subscriptions.subscriptions.forEach((subscription) => {
         App.cable.subscriptions.remove(subscription);
       });
     }
   }
 
-  setupSubscription () {
-    var App = {};
-    App.cable = actionCable.createConsumer();
-    App.board = App.cable.subscriptions.create({channel: 'BoardChannel'}, {
-      connected: () => {console.log('connected');},
-      disconnected: () => {console.log('disconnected');},
-      received: () => {
-        console.log('received!');
-        this.fetchBoard();
-      }
-    });
-  }
-
   fetchBoard() {
     fetch(this.props.url)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
         (result) => {
-          this.setState({
-            columns: result
-          });
+          this.setState({ columns: result });
         },
         (error) => {
-          this.setState({
-            error
-          });
-        }
+          this.setState({ error });
+        },
       );
   }
 
   toggleSettingMode(e) {
     const mode = e.target.checked;
-    this.setState({
-      settingMode: mode
-    });
+    this.setState({ settingMode: mode });
   }
 
   // Column ----------
-  handleColumnCreate(board_id, name=""){
-    let body = JSON.stringify({
+  handleColumnCreate(boardId, name = '') {
+    const body = JSON.stringify({
       column: {
-        board_id: board_id,
-        name: name,
-      }
+        board_id: boardId,
+        name,
+      },
     });
-    fetch(`/api/v1/columns`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: body,
-    })
-      .then((response) => {return response.json();})
+    fetch('/api/v1/columns',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      })
       .then((column) => {
-        this.addColumn(column, board_id);
+        this.addColumn(column);
       });
   }
 
-  addColumn(column, board_id){
-    var columns = [...this.state.columns];
-    column.tasks = [];
-    columns.push(column);
+  addColumn(column) {
+    const insertColumn = column;
+    const columns = [...this.state.columns];
+    insertColumn.tasks = [];
+    columns.push(insertColumn);
 
-    this.setState({
-      columns: columns
-    });
+    this.setState({ columns });
   }
 
-  handleColumnUpdate(column){
-    var body = JSON.stringify({
-      column: column
-    });
+  handleColumnUpdate(column) {
+    const body = JSON.stringify({ column });
     fetch(`/api/v1/columns/${column.id}`,
-          {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: body,
-    });
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      });
   }
 
   handleColumnChange(e, key, arg_column){
     var target = e.target;
     var value = target.value;
-
     var columns = [...this.state.columns];
 
     columns.map(function(column){
@@ -165,7 +149,7 @@ class Board extends React.Component {
     }
   }
 
-  deleteColumn(id){
+  deleteColumn(id) {
     var columns = [...this.state.columns];
     columns = columns.filter((column) => column.id != id);
 
@@ -191,7 +175,6 @@ class Board extends React.Component {
             },
             body: body,
     })
-      .then((response) => {return response.json();})
       .then((task) => {
         this.addTask(task, column_id);
       });
