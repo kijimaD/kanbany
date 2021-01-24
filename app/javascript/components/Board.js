@@ -200,26 +200,25 @@ class Board extends React.Component {
     this.setState({ columns });
   }
 
-  handleInputChange(e, key, process_task){
+  handleInputChange(e, key, processTask){
     function get() {
       try {
-        var target = e.target;
-        var value = target.value;
+        const target = e.target;
+        const value = target.value;
         return value;
-      } catch(f) {
+      } catch (f) {
         return e;
       }
-      return "error";	// This line is for syntax checker
     }
 
-    var value = get();
+    const value = get();
 
-    var columns = [...this.state.columns];
+    const columns = [...this.state.columns];
 
-    columns.map(function(column){
-      if(column.id === process_task.column_id) {
-        column.tasks.map(function(task){
-          if(task.id === process_task.id) {
+    columns.forEach((column) => {
+      if (column.id === processTask.column_id) {
+        column.tasks.forEach((task) => {
+          if (task.id === processTask.id) {
             task[key] = value;
           }
         });
@@ -228,25 +227,18 @@ class Board extends React.Component {
 
     clearTimeout(this.timer);
 
-    this.setState({
-      columns: columns
-    });
-
-    this.timer = setTimeout(this.handleUpdate, DELAY_INTERVAL, process_task);
+    this.setState({ columns });
+    this.timer = setTimeout(this.handleUpdate, DELAY_INTERVAL, processTask);
   }
 
   handleUpdate(task) {
-    let body = JSON.stringify({
-      task: task
-    });
+    const body = JSON.stringify({ task });
     fetch(`/api/v1/tasks/${task.id}`,
-          {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: body,
-    });
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      });
   }
 
   handleOnDragEndColumn(result) {
@@ -308,25 +300,23 @@ class Board extends React.Component {
     }
   }
 
-  updateColumnRank(column_id, index) {
-    let body = JSON.stringify({
-      column: { row_order_position: index }
+  updateColumnRank(columnId, index) {
+    const body = JSON.stringify({
+      column: { row_order_position: index },
     });
-    fetch(`/api/v1/columns/${column_id}`,
-          {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: body,
-    });
+    fetch(`/api/v1/columns/${columnId}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      });
   }
 
-  updateTaskRank(task_id, column_id, index) {
+  updateTaskRank(task_id, columnId, index) {
     let body = JSON.stringify({
       task: {
         row_order_position: index,
-        column_id: column_id
+        column_id: columnId
       }
     });
 

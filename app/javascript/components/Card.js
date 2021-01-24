@@ -35,7 +35,7 @@ class Card extends React.Component {
             {/* col */}
 
             <div className="col-2 p-0">
-              <div className="dropleft drop-hover text-right">
+              <div className="dropright drop-hover text-right">
                 <button className="btn border-0 my-0 pr-0 pb-0" data-toggle="dropdown" tabIndex="-1">
                   <span className="material-icons text-dark">
                     whatshot
