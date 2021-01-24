@@ -89,6 +89,7 @@ class Board extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body,
       })
+      .then((response) => { return response.json(); })
       .then((column) => {
         this.addColumn(column);
       });
@@ -165,6 +166,7 @@ class Board extends React.Component {
         headers: { 'Content-Type': 'application/json' },
         body,
       })
+      .then((response) => { return response.json(); })
       .then((task) => {
         this.addTask(task, columnId);
       });
