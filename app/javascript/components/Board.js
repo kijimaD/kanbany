@@ -15,6 +15,7 @@ class Board extends React.Component {
       error: null,
       columns: [],
       settingMode: false,
+      App: {},
     };
     this.toggleSettingMode = this.toggleSettingMode.bind(this);
     // Column
@@ -37,7 +38,7 @@ class Board extends React.Component {
   }
 
   setupSubscription() {
-    const App = {};
+    const App = this.state.App;
     App.cable = actionCable.createConsumer();
     App.board = App.cable.subscriptions.create({ channel: 'BoardChannel' }, {
       connected: () => { console.log('connected'); },
@@ -47,14 +48,17 @@ class Board extends React.Component {
         this.fetchBoard();
       },
     });
+    this.setState({ App });
   }
 
   deleteOldSubscription() {
+    const App = this.state.App;
     if (App.cable.subscriptions.subscriptions.length > 0) {
       App.cable.subscriptions.subscriptions.forEach((subscription) => {
         App.cable.subscriptions.remove(subscription);
       });
     }
+    this.setState({ App });
   }
 
   fetchBoard() {
