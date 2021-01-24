@@ -113,110 +113,91 @@ class Board extends React.Component {
       });
   }
 
-  handleColumnChange(e, key, arg_column){
-    var target = e.target;
-    var value = target.value;
-    var columns = [...this.state.columns];
+  handleColumnChange(e, key, argColumn){
+    let target = e.target;
+    let value = target.value;
+    const columns = [...this.state.columns];
 
-    columns.map(function(column){
-      if(column.id === arg_column.id) {
+    columns.forEach((column) => {
+      if (column.id === argColumn.id) {
         column[key] = value;
       }
     });
 
     clearTimeout(this.timer);
 
-    this.setState({
-      columns: columns
-    });
+    this.setState({ columns });
 
-    this.timer = setTimeout(this.handleColumnUpdate, DELAY_INTERVAL, arg_column);
+    this.timer = setTimeout(this.handleColumnUpdate, DELAY_INTERVAL, argColumn);
   }
 
-  handleColumnDelete(id){
-    let check = window.confirm('Are you sure you want to delete the column?');
+  handleColumnDelete(id) {
+    const check = window.confirm('Are you sure you want to delete the column?');
     if (check){
       fetch(`/api/v1/columns/${id}`,
-            {
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json'
-              }
-      })
-        .then((response) => {
-          this.deleteColumn(id);
-        });
+        {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+        })
+        .then(this.deleteColumn(id));
     }
   }
 
   deleteColumn(id) {
-    var columns = [...this.state.columns];
-    columns = columns.filter((column) => column.id != id);
+    let columns = [...this.state.columns];
+    columns = columns.filter((column) => column.id !== id);
 
-    this.setState({
-      columns: columns
-    });
+    this.setState({ columns });
   }
 
   // Task ----------
-  handleCreate(column_id, name="", color="black"){
-    let body = JSON.stringify({
+  handleCreate(columnId, name = '', color = 'black'){
+    const body = JSON.stringify({
       task: {
-        column_id: column_id,
-        name: name,
-        color: color,
-      }
+        column_id: columnId,
+        name,
+        color,
+      },
     });
-    fetch(`/api/v1/tasks`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: body,
-    })
+    fetch('/api/v1/tasks',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      })
       .then((task) => {
-        this.addTask(task, column_id);
+        this.addTask(task, columnId);
       });
   }
 
-  addTask(task, column_id){
-    var columns = [...this.state.columns];
-    columns.map(function(column){
-      if(column.id === column_id) {
+  addTask(task, columnId){
+    const columns = [...this.state.columns];
+    columns.forEach((column) => {
+      if (column.id === columnId) {
         column.tasks = column.tasks.concat(task);
       }
     });
 
-    this.setState({
-      columns: columns
-    });
+    this.setState({ columns });
   }
 
-  handleDelete(id, column_id){
+  handleDelete(id, columnId){
     fetch(`/api/v1/tasks/${id}`,
-          {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-    })
-      .then((response) => {
-        this.deleteTask(id, column_id);
-      });
+      {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      .then(this.deleteTask(id, columnId));
   }
 
-  deleteTask(task_id, column_id){
-    var columns = [...this.state.columns];
-    columns.map(function(column){
-      if(column.id === column_id) {
-        column.tasks = column.tasks.filter((task) => task.id != task_id);
+  deleteTask(taskId, columnId){
+    const columns = [...this.state.columns];
+    columns.forEach((column) => {
+      if (column.id === columnId) {
+        column.tasks = column.tasks.filter((task) => task.id !== taskId);
       }
     });
-
-    this.setState({
-      columns: columns
-    });
+    this.setState({ columns });
   }
 
   handleInputChange(e, key, process_task){
