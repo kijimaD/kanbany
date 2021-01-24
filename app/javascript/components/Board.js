@@ -244,59 +244,55 @@ class Board extends React.Component {
   handleOnDragEndColumn(result) {
     if (!result.destination) return;
 
-    const column_id = parseInt(result.draggableId.split("-")[0]);
-    const task_id = parseInt(result.draggableId.split("-")[1]);
-    var columns = [...this.state.columns];
+    const columnId = parseInt(result.draggableId.split('-')[0], 10);
+    const taskId = parseInt(result.draggableId.split('-')[1], 10);
+    const columns = [...this.state.columns];
 
     function getTask() {
-      return columns.filter(column => column.id === column_id)[0].tasks
-                    .filter(task => task.id === task_id)[0];
+      return columns.filter((column) => column.id === columnId)[0].tasks
+        .filter((task) => task.id === taskId)[0];
     }
 
-    if (result.type === "column") {
+    if (result.type === 'column') {
       const [reorderedColumn] = columns.splice(result.source.index, 1);
       columns.splice(result.destination.index, 0, reorderedColumn);
 
-      this.setState({
-        columns: columns
-      });
-      this.updateColumnRank(column_id, result.destination.index);
+      this.setState({ columns });
+      this.updateColumnRank(columnId, result.destination.index);
     }
 
-    if (result.type === "card") {
+    if (result.type === 'card') {
       if (result.source.droppableId === result.destination.droppableId) {
         // same column
-        columns.map(function(column){
-          if(column.id === column_id) {
+        columns.forEach((column) => {
+          if (column.id === columnId) {
             const [reorderedItem] = column.tasks.splice(result.source.index, 1); // Get tesk
             column.tasks.splice(result.destination.index, 0, reorderedItem); // Add
           }
         });
 
-        this.updateTaskRank(task_id, column_id, result.destination.index);
+        this.updateTaskRank(taskId, columnId, result.destination.index);
       } else {
         // different column
-        var process_task = getTask();
+        const processTask = getTask();
 
-        columns.map(function(column) {
+        columns.forEach((column) => {
           // delete
-          if(column.id === column_id) {
-            column.tasks = column.tasks.filter((task) => task.id != task_id);
+          if (column.id === columnId) {
+            column.tasks = column.tasks.filter((task) => task.id !== taskId);
           }
           // add
-          if(column.id === parseInt(result.destination.droppableId)) {
-            process_task.column_id = parseInt(result.destination.droppableId);
-            column.tasks.splice(result.destination.index, 0, process_task); // Add
+          if (column.id === parseInt(result.destination.droppableId, 10)) {
+            processTask.column_id = parseInt(result.destination.droppableId, 10);
+            column.tasks.splice(result.destination.index, 0, processTask); // Add
           }
         });
 
-        this.updateTaskRank(task_id, result.destination.droppableId, result.destination.index);
-        this.handleInputChange(moment().format(), "moved_at", process_task);
+        this.updateTaskRank(taskId, result.destination.droppableId, result.destination.index);
+        this.handleInputChange(moment().format(), 'moved_at', processTask);
       }
 
-      this.setState({
-        columns: columns
-      });
+      this.setState({ columns });
     }
   }
 
@@ -312,25 +308,23 @@ class Board extends React.Component {
       });
   }
 
-  updateTaskRank(task_id, columnId, index) {
-    let body = JSON.stringify({
+  updateTaskRank(taskId, columnId, index) {
+    const body = JSON.stringify({
       task: {
         row_order_position: index,
-        column_id: columnId
-      }
+        column_id: columnId,
+      },
     });
 
-    fetch(`/api/v1/tasks/${task_id}`,
-          {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: body,
-    });
+    fetch(`/api/v1/tasks/${taskId}`,
+      {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body,
+      });
   }
 
-  render () {
+  render() {
     const { error, columns } = this.state;
 
     const getListStyle = isDraggingOver => ({
