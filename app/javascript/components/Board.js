@@ -347,15 +347,17 @@ class Board extends React.Component {
                 ref={provided.innerRef}
                 style={getListStyle(snapshot.isDraggingOver)}
               >
-                {this.state.columns.map((column, index) =>
+                {this.state.columns.map((column, index) => (
                   <Draggable
                     key={column.id}
-                    draggableId={ String(column.id) }
-                    index={index}>
+                    draggableId={String(column.id)}
+                    index={index}
+                  >
                     {(provided, snapshot) => (
                       <li
                         ref={provided.innerRef}
-                        {...provided.draggableProps}>
+                        {...provided.draggableProps}
+                      >
                         <Column
                           key={column.id}
                           column={column}
@@ -371,16 +373,17 @@ class Board extends React.Component {
                       </li>
                     )}
                   </Draggable>
-                )}
+                ))}
                 {provided.placeholder}
-                {this.state.settingMode &&
-                 <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{maxWidth: 40}}>+</button>
-                }
+                {this.state.settingMode
+                && <button className="btn btn-outline-primary btn-block float-right" onClick={() => this.handleColumnCreate(this.state.columns[0].board_id)} style={{ maxWidth: 40 }} type="button">+</button>}
               </ul>
             )}
           </Droppable>
         </DragDropContext>
-        <input className="switch" type="checkbox" onChange={e=>this.toggleSettingMode(e)} />{"←Column Setting"}
+
+        <input className="switch" type="checkbox" onChange={(e) => this.toggleSettingMode(e)} />
+        {/* ↑Column Setting */}
       </div>
     );
   }
