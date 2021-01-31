@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import TextareaAutosize from 'react-textarea-autosize';
 import Time from './Time';
 import MenuColorButton from './MenuColorButton';
@@ -114,6 +113,4 @@ class Card extends React.Component {
     );
   }
 }
-
-Card.propTypes = {};
 export default Card;

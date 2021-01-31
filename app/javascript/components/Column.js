@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import Card from './Card';
 import './Column.css';
@@ -26,37 +25,36 @@ class Column extends React.Component {
               add
             </span>
           </button>
-          {this.props.settingMode &&
-           <span className='btn btn-sm px-0 material-icons transform float-right' {...this.props.provided.dragHandleProps}>
-             drag_indicator
-           </span>
+          {
+            this.props.settingMode
+            && <span className="btn btn-sm px-0 material-icons transform float-right" {...this.props.provided.dragHandleProps}>drag_indicator</span>
           }
-          {!this.props.settingMode &&
-           <span className='btn btn-sm px-0 material-icons transform float-right' {...this.props.provided.dragHandleProps} style={{display: 'none'}}>
-             drag_indicator
-           </span>
+          {
+            !this.props.settingMode
+            && <span className="btn btn-sm px-0 material-icons transform float-right" {...this.props.provided.dragHandleProps} style={{ display: 'none' }}>drag_indicator</span>
           }
-          {this.props.settingMode &&
-           <button className='btn btn-sm px-0 text-danger float-right' onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex='-1' >
-             <span className='material-icons'>
-               clear
-             </span>
-           </button>
+          {
+            this.props.settingMode
+            && <button className="btn btn-sm px-0 text-danger float-right" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" type="button">
+              <span className="material-icons">
+                clear
+              </span>
+            </button>
           }
         </div>
 
-        <div className='ColumnContent'>
-          <Droppable droppableId={ String(this.props.column.id) } type='card'>
+        <div className="ColumnContent">
+          <Droppable droppableId={String(this.props.column.id)} type="card">
             {(provided, snapshot) => (
               <ul
-                className='cards'
+                className="cards"
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
                 {this.props.tasks.map((task, index) => (
                   <Draggable
                     key={task.id}
-                    draggableId={ String(this.props.column.id) + '-' + String(task.id) }
+                    draggableId={String(this.props.column.id) + '-' + String(task.id)}
                     index={index}
                   >
                     {(provided, snapshot) => (
@@ -64,7 +62,7 @@ class Column extends React.Component {
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        tabIndex='-1'>
+                        tabIndex="-1">
                         <Card
                           key={task.id}
                           task={task}
@@ -86,8 +84,4 @@ class Column extends React.Component {
     );
   }
 }
-
-Column.propTypes = {
-  name: PropTypes.string
-};
 export default Column;
