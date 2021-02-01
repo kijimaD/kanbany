@@ -10,7 +10,7 @@ RSpec.describe 'kanban', type: :system, js: true do
   end
 
   scenario 'Column' do
-    check 'toggleColumnOption'
+    check 'toggle-column-option'
     # 最初の1つが存在する
     expect(page).to have_field('Column Title', with: 'First Column')
 
@@ -20,7 +20,7 @@ RSpec.describe 'kanban', type: :system, js: true do
 
     # 削除できる
     page.accept_confirm do
-      first('#column-clear-button').click
+      click_on 'column-clear-button', match: :first
     end
 
     # 編集できる

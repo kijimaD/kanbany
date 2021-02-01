@@ -35,7 +35,7 @@ class Column extends React.Component {
           }
           {
             this.props.settingMode
-            && <button className="btn btn-sm px-0 text-danger float-right" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" type="button">
+            && <button name="column-clear-button" className="btn btn-sm px-0 text-danger float-right" onClick={() => this.props.handleColumnDelete(this.props.column.id)} tabIndex="-1" type="button">
               <span className="material-icons">
                 clear
               </span>
