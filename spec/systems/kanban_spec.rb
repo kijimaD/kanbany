@@ -3,11 +3,32 @@ require 'rails_helper'
 RSpec.describe 'kanban', type: :system, js: true do
   let!(:user) { create(:user) }
   let!(:board) { create(:board, user: user) }
-  let!(:column) { create(:column, board: board) }
-  # let!(:task) { create(:task, column: column) }
+  let!(:column) { create(:column, name: 'First Column', board: board) }
 
   before do
     visit '/develop'
+  end
+
+  scenario 'Column' do
+    check 'toggleColumnOption'
+    # 最初の1つが存在する
+    expect(page).to have_field('Column Title', with: 'First Column')
+
+    # 追加できる
+    click_button '+'
+    expect(page).to have_field('Column Title', with: '')
+
+    # 削除できる
+    page.accept_confirm do
+      first('#column-clear-button').click
+    end
+
+    # 編集できる
+    fill_in 'Column Title', with: 'Edited Column'
+    sleep 1
+
+    visit '/develop'
+    expect(page).to have_field('Column Title', with: 'Edited Column')
   end
 
   scenario 'Card' do
