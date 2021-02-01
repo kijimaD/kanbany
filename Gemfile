@@ -45,6 +45,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
   gem 'sqlite3'
+  gem 'database_rewinder'
 end
 
 group :development do

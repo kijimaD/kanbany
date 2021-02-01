@@ -386,7 +386,7 @@ class Board extends React.Component {
           </Droppable>
         </DragDropContext>
 
-        <input className="switch" type="checkbox" onChange={(e) => this.toggleSettingMode(e)} />
+        <input name="toggle-column-option" className="switch" type="checkbox" onChange={(e) => this.toggleSettingMode(e)} />
         {/* ↑Column Setting */}
       </div>
     );
