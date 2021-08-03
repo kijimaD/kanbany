@@ -2,6 +2,30 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
 
+commands:
+  bootsnap_cache:
+    steps:
+      - restore_cache:
+          keys:
+            - bootsnap-cache-{{ .Branch }}-{{ .Revision }}
+            - bootsnap-cache-{{ .Branch }}
+            - bootsnap-cache
+      - save_cache:
+          key: bootsnap-cache-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - tmp/cache/bootsnap-load-path-cache
+            - tmp/cache/bootsnap-compile-cache
+      - save_cache:
+          key: bootsnap-cache-{{ .Branch }}
+          paths:
+            - tmp/cache/bootsnap-load-path-cache
+            - tmp/cache/bootsnap-compile-cache
+      - save_cache:
+          key: bootsnap-cache
+          paths:
+            - tmp/cache/bootsnap-load-path-cache
+            - tmp/cache/bootsnap-compile-cache
+
 jobs:
   build:
     docker:
@@ -9,6 +33,7 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
+      - bootsnap_cache
       - run: yarn install
       - run: bundle update --bundler
       - run: bundle install
