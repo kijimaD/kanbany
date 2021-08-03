@@ -38,7 +38,6 @@ jobs:
             - v1-bootsnap-cache-{{ checksum "Gemfile.lock" }}-{{ .Branch }}
             - v1-bootsnap-cache-{{ checksum "Gemfile.lock" }}-master
       - run: yarn install
-      - run: bundle update --bundler
       - run: bundle install
       - run: bundle exec bin/webpack
       - run: bundle exec rails db:create db:migrate RAILS_ENV=test
