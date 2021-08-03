@@ -37,6 +37,14 @@ jobs:
       - run: yarn install
       - run: bundle update --bundler
       - run: bundle install
+      - restore_cache:
+          keys:
+            - v1-bootsnap-cache-{{ checksum "Gemfile.lock" }}-{{ .Branch }}
+            - v1-bootsnap-cache-{{ checksum "Gemfile.lock" }}-master
       - run: bundle exec bin/webpack
       - run: bundle exec rails db:create db:migrate RAILS_ENV=test
       - run: bundle exec rspec
+      - save_cache:
+          key: v1-bootsnap-cache-{{ checksum "Gemfile.lock" }}-{{ .Branch }}-{{ epoch }}
+          paths:
+            - tmp/bootsnap_cache
