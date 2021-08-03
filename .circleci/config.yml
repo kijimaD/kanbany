@@ -33,7 +33,6 @@ jobs:
     executor: ruby/default
     steps:
       - checkout
-      - bootsnap_cache
       - run: yarn install
       - run: bundle update --bundler
       - run: bundle install
